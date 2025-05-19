@@ -92,6 +92,46 @@ function extractVocabulary(content) {
       });
     });
 
+    // Extract terms from paragraphs (looking for technical terms)
+    const paragraphs = topic.split("\n\n");
+    paragraphs.forEach((paragraph) => {
+      // Look for technical terms in camelCase or PascalCase
+      const camelCaseTerms = paragraph.match(/\b[a-z]+[A-Z][a-zA-Z]*\b/g) || [];
+      const pascalCaseTerms = paragraph.match(/\b[A-Z][a-zA-Z]*\b/g) || [];
+
+      // Look for terms in quotes
+      const quotedTerms = paragraph.match(/"([^"]+)"/g) || [];
+
+      // Look for terms in backticks
+      const backtickTerms = paragraph.match(/`([^`]+)`/g) || [];
+
+      const allTerms = [
+        ...camelCaseTerms,
+        ...pascalCaseTerms,
+        ...quotedTerms.map((t) => t.replace(/"/g, "")),
+        ...backtickTerms.map((t) => t.replace(/`/g, "")),
+      ];
+
+      allTerms.forEach((term) => {
+        if (term && !concepts.some((c) => c.includes(term))) {
+          concepts.push(`**${term}**: ${term}`);
+        }
+      });
+    });
+
+    // Extract terms from code comments
+    codeBlocks.forEach((block) => {
+      const comments = block.match(/\/\/\s*(.*?)$/gm) || [];
+      comments.forEach((comment) => {
+        const terms = comment.replace(/\/\/\s*/, "").split(/\s+/);
+        terms.forEach((term) => {
+          if (term && !concepts.some((c) => c.includes(term))) {
+            concepts.push(`**${term}**: ${term}`);
+          }
+        });
+      });
+    });
+
     concepts.forEach((concept) => {
       const match = concept.match(/\*\*(.*?)\*\*:?.*?(.*)/);
       if (!match) return;
