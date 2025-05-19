@@ -1,0 +1,354 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2025-05-19T13:42:44.079Z",
+    "topic": "Why JavaScript?",
+    "totalTerms": 43
+  },
+  "vocabulary": [
+    {
+      "term": "Topic",
+      "type": "Subject",
+      "category": "Core Concepts",
+      "difficulty": "Beginner",
+      "description": "Topic 1: Why JavaScript",
+      "example": "Topic 1: Why JavaScript"
+    },
+    {
+      "term": "JavaScript",
+      "type": "Subject",
+      "category": "Core Concepts",
+      "difficulty": "Beginner",
+      "description": "Topic 1: Why JavaScript",
+      "example": "Topic 1: Why JavaScript"
+    },
+    {
+      "term": "JavaScript's",
+      "type": "Subject",
+      "category": "Core Concepts",
+      "difficulty": "Beginner",
+      "description": "JavaScript's position as the language of the web makes it unique—it's the only programming language that runs natively in every web browser",
+      "example": "JavaScript's position as the language of the web makes it unique—it's the only programming language that runs natively in every web browser"
+    },
+    {
+      "term": "Beyond",
+      "type": "Subject",
+      "category": "Core Concepts",
+      "difficulty": "Beginner",
+      "description": "Beyond that, Javascript is a flexible language in its own right, capable of more than just web front ends",
+      "example": "Beyond that, Javascript is a flexible language in its own right, capable of more than just web front ends"
+    },
+    {
+      "term": "Javascript",
+      "type": "Subject",
+      "category": "Core Concepts",
+      "difficulty": "Beginner",
+      "description": "Beyond that, Javascript is a flexible language in its own right, capable of more than just web front ends",
+      "example": "Beyond that, Javascript is a flexible language in its own right, capable of more than just web front ends"
+    },
+    {
+      "term": "Asynchronous",
+      "type": "Subject",
+      "category": "Core Concepts",
+      "difficulty": "Beginner",
+      "description": "Here are JavaScript's biggest strengths:\nAsynchronous Powerhouse: JavaScript's event-driven, non-blocking I/O model makes it exceptional at handling concurrency without the complexities of traditional threading",
+      "example": "Here are JavaScript's biggest strengths:\nAsynchronous Powerhouse: JavaScript's event-driven, non-blocking I/O model makes it exceptional at handling concurrency without the complexities of traditional threading"
+    },
+    {
+      "term": "Powerhouse:",
+      "type": "Subject",
+      "category": "Core Concepts",
+      "difficulty": "Beginner",
+      "description": "Here are JavaScript's biggest strengths:\nAsynchronous Powerhouse: JavaScript's event-driven, non-blocking I/O model makes it exceptional at handling concurrency without the complexities of traditional threading",
+      "example": "Here are JavaScript's biggest strengths:\nAsynchronous Powerhouse: JavaScript's event-driven, non-blocking I/O model makes it exceptional at handling concurrency without the complexities of traditional threading"
+    },
+    {
+      "term": "Universal",
+      "type": "Adjective",
+      "category": "Core Concepts",
+      "difficulty": "Beginner",
+      "description": "Universal Runtime: With Node",
+      "example": "Universal Runtime: With Node"
+    },
+    {
+      "term": "Runtime:",
+      "type": "Subject",
+      "category": "Core Concepts",
+      "difficulty": "Beginner",
+      "description": "Universal Runtime: With Node",
+      "example": "Universal Runtime: With Node"
+    },
+    {
+      "term": "Node",
+      "type": "Subject",
+      "category": "Core Concepts",
+      "difficulty": "Beginner",
+      "description": "Universal Runtime: With Node",
+      "example": "Universal Runtime: With Node"
+    },
+    {
+      "term": "IoT",
+      "type": "Subject",
+      "category": "Core Concepts",
+      "difficulty": "Beginner",
+      "description": "js, JavaScript runs everywhere—browsers, servers, mobile, IoT devices",
+      "example": "js, JavaScript runs everywhere—browsers, servers, mobile, IoT devices"
+    },
+    {
+      "term": "Mastering",
+      "type": "Verb Phrase",
+      "category": "Core Concepts",
+      "difficulty": "Beginner",
+      "description": "Mastering it makes you a versatile programmer in many contexts",
+      "example": "Mastering it makes you a versatile programmer in many contexts"
+    },
+    {
+      "term": "Rich",
+      "type": "Subject",
+      "category": "Core Concepts",
+      "difficulty": "Beginner",
+      "description": "Rich Ecosystem: npm is the world's largest software registry",
+      "example": "Rich Ecosystem: npm is the world's largest software registry"
+    },
+    {
+      "term": "Ecosystem:",
+      "type": "Subject",
+      "category": "Core Concepts",
+      "difficulty": "Beginner",
+      "description": "Rich Ecosystem: npm is the world's largest software registry",
+      "example": "Rich Ecosystem: npm is the world's largest software registry"
+    },
+    {
+      "term": "npm",
+      "type": "Subject",
+      "category": "Core Concepts",
+      "difficulty": "Beginner",
+      "description": "Rich Ecosystem: npm is the world's largest software registry",
+      "example": "Rich Ecosystem: npm is the world's largest software registry"
+    },
+    {
+      "term": "Whether",
+      "type": "Subject",
+      "category": "Core Concepts",
+      "difficulty": "Beginner",
+      "description": "Whether you need a full framework like React, a utility library like Lodash, or specialized tools for data visualization or server-side rendering, the ecosystem has mature solutions ready to use",
+      "example": "Whether you need a full framework like React, a utility library like Lodash, or specialized tools for data visualization or server-side rendering, the ecosystem has mature solutions ready to use"
+    },
+    {
+      "term": "React,",
+      "type": "Subject",
+      "category": "Core Concepts",
+      "difficulty": "Beginner",
+      "description": "Whether you need a full framework like React, a utility library like Lodash, or specialized tools for data visualization or server-side rendering, the ecosystem has mature solutions ready to use",
+      "example": "Whether you need a full framework like React, a utility library like Lodash, or specialized tools for data visualization or server-side rendering, the ecosystem has mature solutions ready to use"
+    },
+    {
+      "term": "Lodash,",
+      "type": "Subject",
+      "category": "Core Concepts",
+      "difficulty": "Beginner",
+      "description": "Whether you need a full framework like React, a utility library like Lodash, or specialized tools for data visualization or server-side rendering, the ecosystem has mature solutions ready to use",
+      "example": "Whether you need a full framework like React, a utility library like Lodash, or specialized tools for data visualization or server-side rendering, the ecosystem has mature solutions ready to use"
+    },
+    {
+      "term": "Dynamic",
+      "type": "Subject",
+      "category": "Core Concepts",
+      "difficulty": "Beginner",
+      "description": "Dynamic and Flexible: JavaScript's dynamic typing and prototype-based object system offer incredible flexibility",
+      "example": "Dynamic and Flexible: JavaScript's dynamic typing and prototype-based object system offer incredible flexibility"
+    },
+    {
+      "term": "Flexible:",
+      "type": "Subject",
+      "category": "Core Concepts",
+      "difficulty": "Beginner",
+      "description": "Dynamic and Flexible: JavaScript's dynamic typing and prototype-based object system offer incredible flexibility",
+      "example": "Dynamic and Flexible: JavaScript's dynamic typing and prototype-based object system offer incredible flexibility"
+    },
+    {
+      "term": "Interactive",
+      "type": "Adjective",
+      "category": "Core Concepts",
+      "difficulty": "Beginner",
+      "description": "In practice, JavaScript excels at:\nInteractive Web Applications: Tight DOM integration and event handling make it perfect for responsive, engaging UIs\nScalable Microservices: Node",
+      "example": "In practice, JavaScript excels at:\nInteractive Web Applications: Tight DOM integration and event handling make it perfect for responsive, engaging UIs\nScalable Microservices: Node"
+    },
+    {
+      "term": "Web",
+      "type": "Subject",
+      "category": "Core Concepts",
+      "difficulty": "Beginner",
+      "description": "In practice, JavaScript excels at:\nInteractive Web Applications: Tight DOM integration and event handling make it perfect for responsive, engaging UIs\nScalable Microservices: Node",
+      "example": "In practice, JavaScript excels at:\nInteractive Web Applications: Tight DOM integration and event handling make it perfect for responsive, engaging UIs\nScalable Microservices: Node"
+    },
+    {
+      "term": "Applications:",
+      "type": "Subject",
+      "category": "Core Concepts",
+      "difficulty": "Beginner",
+      "description": "In practice, JavaScript excels at:\nInteractive Web Applications: Tight DOM integration and event handling make it perfect for responsive, engaging UIs\nScalable Microservices: Node",
+      "example": "In practice, JavaScript excels at:\nInteractive Web Applications: Tight DOM integration and event handling make it perfect for responsive, engaging UIs\nScalable Microservices: Node"
+    },
+    {
+      "term": "Tight",
+      "type": "Subject",
+      "category": "Core Concepts",
+      "difficulty": "Beginner",
+      "description": "In practice, JavaScript excels at:\nInteractive Web Applications: Tight DOM integration and event handling make it perfect for responsive, engaging UIs\nScalable Microservices: Node",
+      "example": "In practice, JavaScript excels at:\nInteractive Web Applications: Tight DOM integration and event handling make it perfect for responsive, engaging UIs\nScalable Microservices: Node"
+    },
+    {
+      "term": "DOM",
+      "type": "Subject",
+      "category": "Core Concepts",
+      "difficulty": "Beginner",
+      "description": "In practice, JavaScript excels at:\nInteractive Web Applications: Tight DOM integration and event handling make it perfect for responsive, engaging UIs\nScalable Microservices: Node",
+      "example": "In practice, JavaScript excels at:\nInteractive Web Applications: Tight DOM integration and event handling make it perfect for responsive, engaging UIs\nScalable Microservices: Node"
+    },
+    {
+      "term": "Scalable",
+      "type": "Adjective",
+      "category": "Core Concepts",
+      "difficulty": "Beginner",
+      "description": "In practice, JavaScript excels at:\nInteractive Web Applications: Tight DOM integration and event handling make it perfect for responsive, engaging UIs\nScalable Microservices: Node",
+      "example": "In practice, JavaScript excels at:\nInteractive Web Applications: Tight DOM integration and event handling make it perfect for responsive, engaging UIs\nScalable Microservices: Node"
+    },
+    {
+      "term": "Microservices:",
+      "type": "Subject",
+      "category": "Core Concepts",
+      "difficulty": "Beginner",
+      "description": "In practice, JavaScript excels at:\nInteractive Web Applications: Tight DOM integration and event handling make it perfect for responsive, engaging UIs\nScalable Microservices: Node",
+      "example": "In practice, JavaScript excels at:\nInteractive Web Applications: Tight DOM integration and event handling make it perfect for responsive, engaging UIs\nScalable Microservices: Node"
+    },
+    {
+      "term": "Isomorphic",
+      "type": "Subject",
+      "category": "Core Concepts",
+      "difficulty": "Beginner",
+      "description": "Isomorphic Applications: Code sharing between front-end and back-end drastically reduces duplication and boosts maintainability\nHowever, you should probably look elsewhere for:\nCPU-Intensive Tasks: For heavy number crunching or data processing, compiled languages like C++ or Rust offer superior performance\nStatic Type Safety: While TypeScript helps, languages like Java or C# provide stronger static type systems out of the box\nMemory-Critical Applications: JavaScript's garbage collection and dynamic nature make memory usage less predictable\nMulti-threaded Processing: Languages like Go or Java handle true parallel processing more natively",
+      "example": "Isomorphic Applications: Code sharing between front-end and back-end drastically reduces duplication and boosts maintainability\nHowever, you should probably look elsewhere for:\nCPU-Intensive Tasks: For heavy number crunching or data processing, compiled languages like C++ or Rust offer superior performance\nStatic Type Safety: While TypeScript helps, languages like Java or C# provide stronger static type systems out of the box\nMemory-Critical Applications: JavaScript's garbage collection and dynamic nature make memory usage less predictable\nMulti-threaded Processing: Languages like Go or Java handle true parallel processing more natively"
+    },
+    {
+      "term": "Code",
+      "type": "Subject",
+      "category": "Core Concepts",
+      "difficulty": "Beginner",
+      "description": "Isomorphic Applications: Code sharing between front-end and back-end drastically reduces duplication and boosts maintainability\nHowever, you should probably look elsewhere for:\nCPU-Intensive Tasks: For heavy number crunching or data processing, compiled languages like C++ or Rust offer superior performance\nStatic Type Safety: While TypeScript helps, languages like Java or C# provide stronger static type systems out of the box\nMemory-Critical Applications: JavaScript's garbage collection and dynamic nature make memory usage less predictable\nMulti-threaded Processing: Languages like Go or Java handle true parallel processing more natively",
+      "example": "Isomorphic Applications: Code sharing between front-end and back-end drastically reduces duplication and boosts maintainability\nHowever, you should probably look elsewhere for:\nCPU-Intensive Tasks: For heavy number crunching or data processing, compiled languages like C++ or Rust offer superior performance\nStatic Type Safety: While TypeScript helps, languages like Java or C# provide stronger static type systems out of the box\nMemory-Critical Applications: JavaScript's garbage collection and dynamic nature make memory usage less predictable\nMulti-threaded Processing: Languages like Go or Java handle true parallel processing more natively"
+    },
+    {
+      "term": "However,",
+      "type": "Subject",
+      "category": "Core Concepts",
+      "difficulty": "Beginner",
+      "description": "Isomorphic Applications: Code sharing between front-end and back-end drastically reduces duplication and boosts maintainability\nHowever, you should probably look elsewhere for:\nCPU-Intensive Tasks: For heavy number crunching or data processing, compiled languages like C++ or Rust offer superior performance\nStatic Type Safety: While TypeScript helps, languages like Java or C# provide stronger static type systems out of the box\nMemory-Critical Applications: JavaScript's garbage collection and dynamic nature make memory usage less predictable\nMulti-threaded Processing: Languages like Go or Java handle true parallel processing more natively",
+      "example": "Isomorphic Applications: Code sharing between front-end and back-end drastically reduces duplication and boosts maintainability\nHowever, you should probably look elsewhere for:\nCPU-Intensive Tasks: For heavy number crunching or data processing, compiled languages like C++ or Rust offer superior performance\nStatic Type Safety: While TypeScript helps, languages like Java or C# provide stronger static type systems out of the box\nMemory-Critical Applications: JavaScript's garbage collection and dynamic nature make memory usage less predictable\nMulti-threaded Processing: Languages like Go or Java handle true parallel processing more natively"
+    },
+    {
+      "term": "CPU-Intensive",
+      "type": "Adjective",
+      "category": "Core Concepts",
+      "difficulty": "Beginner",
+      "description": "Isomorphic Applications: Code sharing between front-end and back-end drastically reduces duplication and boosts maintainability\nHowever, you should probably look elsewhere for:\nCPU-Intensive Tasks: For heavy number crunching or data processing, compiled languages like C++ or Rust offer superior performance\nStatic Type Safety: While TypeScript helps, languages like Java or C# provide stronger static type systems out of the box\nMemory-Critical Applications: JavaScript's garbage collection and dynamic nature make memory usage less predictable\nMulti-threaded Processing: Languages like Go or Java handle true parallel processing more natively",
+      "example": "Isomorphic Applications: Code sharing between front-end and back-end drastically reduces duplication and boosts maintainability\nHowever, you should probably look elsewhere for:\nCPU-Intensive Tasks: For heavy number crunching or data processing, compiled languages like C++ or Rust offer superior performance\nStatic Type Safety: While TypeScript helps, languages like Java or C# provide stronger static type systems out of the box\nMemory-Critical Applications: JavaScript's garbage collection and dynamic nature make memory usage less predictable\nMulti-threaded Processing: Languages like Go or Java handle true parallel processing more natively"
+    },
+    {
+      "term": "Tasks:",
+      "type": "Subject",
+      "category": "Core Concepts",
+      "difficulty": "Beginner",
+      "description": "Isomorphic Applications: Code sharing between front-end and back-end drastically reduces duplication and boosts maintainability\nHowever, you should probably look elsewhere for:\nCPU-Intensive Tasks: For heavy number crunching or data processing, compiled languages like C++ or Rust offer superior performance\nStatic Type Safety: While TypeScript helps, languages like Java or C# provide stronger static type systems out of the box\nMemory-Critical Applications: JavaScript's garbage collection and dynamic nature make memory usage less predictable\nMulti-threaded Processing: Languages like Go or Java handle true parallel processing more natively",
+      "example": "Isomorphic Applications: Code sharing between front-end and back-end drastically reduces duplication and boosts maintainability\nHowever, you should probably look elsewhere for:\nCPU-Intensive Tasks: For heavy number crunching or data processing, compiled languages like C++ or Rust offer superior performance\nStatic Type Safety: While TypeScript helps, languages like Java or C# provide stronger static type systems out of the box\nMemory-Critical Applications: JavaScript's garbage collection and dynamic nature make memory usage less predictable\nMulti-threaded Processing: Languages like Go or Java handle true parallel processing more natively"
+    },
+    {
+      "term": "Rust",
+      "type": "Subject",
+      "category": "Core Concepts",
+      "difficulty": "Beginner",
+      "description": "Isomorphic Applications: Code sharing between front-end and back-end drastically reduces duplication and boosts maintainability\nHowever, you should probably look elsewhere for:\nCPU-Intensive Tasks: For heavy number crunching or data processing, compiled languages like C++ or Rust offer superior performance\nStatic Type Safety: While TypeScript helps, languages like Java or C# provide stronger static type systems out of the box\nMemory-Critical Applications: JavaScript's garbage collection and dynamic nature make memory usage less predictable\nMulti-threaded Processing: Languages like Go or Java handle true parallel processing more natively",
+      "example": "Isomorphic Applications: Code sharing between front-end and back-end drastically reduces duplication and boosts maintainability\nHowever, you should probably look elsewhere for:\nCPU-Intensive Tasks: For heavy number crunching or data processing, compiled languages like C++ or Rust offer superior performance\nStatic Type Safety: While TypeScript helps, languages like Java or C# provide stronger static type systems out of the box\nMemory-Critical Applications: JavaScript's garbage collection and dynamic nature make memory usage less predictable\nMulti-threaded Processing: Languages like Go or Java handle true parallel processing more natively"
+    },
+    {
+      "term": "Static",
+      "type": "Subject",
+      "category": "Core Concepts",
+      "difficulty": "Beginner",
+      "description": "Isomorphic Applications: Code sharing between front-end and back-end drastically reduces duplication and boosts maintainability\nHowever, you should probably look elsewhere for:\nCPU-Intensive Tasks: For heavy number crunching or data processing, compiled languages like C++ or Rust offer superior performance\nStatic Type Safety: While TypeScript helps, languages like Java or C# provide stronger static type systems out of the box\nMemory-Critical Applications: JavaScript's garbage collection and dynamic nature make memory usage less predictable\nMulti-threaded Processing: Languages like Go or Java handle true parallel processing more natively",
+      "example": "Isomorphic Applications: Code sharing between front-end and back-end drastically reduces duplication and boosts maintainability\nHowever, you should probably look elsewhere for:\nCPU-Intensive Tasks: For heavy number crunching or data processing, compiled languages like C++ or Rust offer superior performance\nStatic Type Safety: While TypeScript helps, languages like Java or C# provide stronger static type systems out of the box\nMemory-Critical Applications: JavaScript's garbage collection and dynamic nature make memory usage less predictable\nMulti-threaded Processing: Languages like Go or Java handle true parallel processing more natively"
+    },
+    {
+      "term": "Type",
+      "type": "Subject",
+      "category": "Core Concepts",
+      "difficulty": "Beginner",
+      "description": "Isomorphic Applications: Code sharing between front-end and back-end drastically reduces duplication and boosts maintainability\nHowever, you should probably look elsewhere for:\nCPU-Intensive Tasks: For heavy number crunching or data processing, compiled languages like C++ or Rust offer superior performance\nStatic Type Safety: While TypeScript helps, languages like Java or C# provide stronger static type systems out of the box\nMemory-Critical Applications: JavaScript's garbage collection and dynamic nature make memory usage less predictable\nMulti-threaded Processing: Languages like Go or Java handle true parallel processing more natively",
+      "example": "Isomorphic Applications: Code sharing between front-end and back-end drastically reduces duplication and boosts maintainability\nHowever, you should probably look elsewhere for:\nCPU-Intensive Tasks: For heavy number crunching or data processing, compiled languages like C++ or Rust offer superior performance\nStatic Type Safety: While TypeScript helps, languages like Java or C# provide stronger static type systems out of the box\nMemory-Critical Applications: JavaScript's garbage collection and dynamic nature make memory usage less predictable\nMulti-threaded Processing: Languages like Go or Java handle true parallel processing more natively"
+    },
+    {
+      "term": "Safety:",
+      "type": "Subject",
+      "category": "Core Concepts",
+      "difficulty": "Beginner",
+      "description": "Isomorphic Applications: Code sharing between front-end and back-end drastically reduces duplication and boosts maintainability\nHowever, you should probably look elsewhere for:\nCPU-Intensive Tasks: For heavy number crunching or data processing, compiled languages like C++ or Rust offer superior performance\nStatic Type Safety: While TypeScript helps, languages like Java or C# provide stronger static type systems out of the box\nMemory-Critical Applications: JavaScript's garbage collection and dynamic nature make memory usage less predictable\nMulti-threaded Processing: Languages like Go or Java handle true parallel processing more natively",
+      "example": "Isomorphic Applications: Code sharing between front-end and back-end drastically reduces duplication and boosts maintainability\nHowever, you should probably look elsewhere for:\nCPU-Intensive Tasks: For heavy number crunching or data processing, compiled languages like C++ or Rust offer superior performance\nStatic Type Safety: While TypeScript helps, languages like Java or C# provide stronger static type systems out of the box\nMemory-Critical Applications: JavaScript's garbage collection and dynamic nature make memory usage less predictable\nMulti-threaded Processing: Languages like Go or Java handle true parallel processing more natively"
+    },
+    {
+      "term": "While",
+      "type": "Subject",
+      "category": "Core Concepts",
+      "difficulty": "Beginner",
+      "description": "Isomorphic Applications: Code sharing between front-end and back-end drastically reduces duplication and boosts maintainability\nHowever, you should probably look elsewhere for:\nCPU-Intensive Tasks: For heavy number crunching or data processing, compiled languages like C++ or Rust offer superior performance\nStatic Type Safety: While TypeScript helps, languages like Java or C# provide stronger static type systems out of the box\nMemory-Critical Applications: JavaScript's garbage collection and dynamic nature make memory usage less predictable\nMulti-threaded Processing: Languages like Go or Java handle true parallel processing more natively",
+      "example": "Isomorphic Applications: Code sharing between front-end and back-end drastically reduces duplication and boosts maintainability\nHowever, you should probably look elsewhere for:\nCPU-Intensive Tasks: For heavy number crunching or data processing, compiled languages like C++ or Rust offer superior performance\nStatic Type Safety: While TypeScript helps, languages like Java or C# provide stronger static type systems out of the box\nMemory-Critical Applications: JavaScript's garbage collection and dynamic nature make memory usage less predictable\nMulti-threaded Processing: Languages like Go or Java handle true parallel processing more natively"
+    },
+    {
+      "term": "TypeScript",
+      "type": "Subject",
+      "category": "Core Concepts",
+      "difficulty": "Beginner",
+      "description": "Isomorphic Applications: Code sharing between front-end and back-end drastically reduces duplication and boosts maintainability\nHowever, you should probably look elsewhere for:\nCPU-Intensive Tasks: For heavy number crunching or data processing, compiled languages like C++ or Rust offer superior performance\nStatic Type Safety: While TypeScript helps, languages like Java or C# provide stronger static type systems out of the box\nMemory-Critical Applications: JavaScript's garbage collection and dynamic nature make memory usage less predictable\nMulti-threaded Processing: Languages like Go or Java handle true parallel processing more natively",
+      "example": "Isomorphic Applications: Code sharing between front-end and back-end drastically reduces duplication and boosts maintainability\nHowever, you should probably look elsewhere for:\nCPU-Intensive Tasks: For heavy number crunching or data processing, compiled languages like C++ or Rust offer superior performance\nStatic Type Safety: While TypeScript helps, languages like Java or C# provide stronger static type systems out of the box\nMemory-Critical Applications: JavaScript's garbage collection and dynamic nature make memory usage less predictable\nMulti-threaded Processing: Languages like Go or Java handle true parallel processing more natively"
+    },
+    {
+      "term": "Java",
+      "type": "Subject",
+      "category": "Core Concepts",
+      "difficulty": "Beginner",
+      "description": "Isomorphic Applications: Code sharing between front-end and back-end drastically reduces duplication and boosts maintainability\nHowever, you should probably look elsewhere for:\nCPU-Intensive Tasks: For heavy number crunching or data processing, compiled languages like C++ or Rust offer superior performance\nStatic Type Safety: While TypeScript helps, languages like Java or C# provide stronger static type systems out of the box\nMemory-Critical Applications: JavaScript's garbage collection and dynamic nature make memory usage less predictable\nMulti-threaded Processing: Languages like Go or Java handle true parallel processing more natively",
+      "example": "Isomorphic Applications: Code sharing between front-end and back-end drastically reduces duplication and boosts maintainability\nHowever, you should probably look elsewhere for:\nCPU-Intensive Tasks: For heavy number crunching or data processing, compiled languages like C++ or Rust offer superior performance\nStatic Type Safety: While TypeScript helps, languages like Java or C# provide stronger static type systems out of the box\nMemory-Critical Applications: JavaScript's garbage collection and dynamic nature make memory usage less predictable\nMulti-threaded Processing: Languages like Go or Java handle true parallel processing more natively"
+    },
+    {
+      "term": "Memory-Critical",
+      "type": "Subject",
+      "category": "Core Concepts",
+      "difficulty": "Beginner",
+      "description": "Isomorphic Applications: Code sharing between front-end and back-end drastically reduces duplication and boosts maintainability\nHowever, you should probably look elsewhere for:\nCPU-Intensive Tasks: For heavy number crunching or data processing, compiled languages like C++ or Rust offer superior performance\nStatic Type Safety: While TypeScript helps, languages like Java or C# provide stronger static type systems out of the box\nMemory-Critical Applications: JavaScript's garbage collection and dynamic nature make memory usage less predictable\nMulti-threaded Processing: Languages like Go or Java handle true parallel processing more natively",
+      "example": "Isomorphic Applications: Code sharing between front-end and back-end drastically reduces duplication and boosts maintainability\nHowever, you should probably look elsewhere for:\nCPU-Intensive Tasks: For heavy number crunching or data processing, compiled languages like C++ or Rust offer superior performance\nStatic Type Safety: While TypeScript helps, languages like Java or C# provide stronger static type systems out of the box\nMemory-Critical Applications: JavaScript's garbage collection and dynamic nature make memory usage less predictable\nMulti-threaded Processing: Languages like Go or Java handle true parallel processing more natively"
+    },
+    {
+      "term": "Multi-threaded",
+      "type": "Subject",
+      "category": "Core Concepts",
+      "difficulty": "Beginner",
+      "description": "Isomorphic Applications: Code sharing between front-end and back-end drastically reduces duplication and boosts maintainability\nHowever, you should probably look elsewhere for:\nCPU-Intensive Tasks: For heavy number crunching or data processing, compiled languages like C++ or Rust offer superior performance\nStatic Type Safety: While TypeScript helps, languages like Java or C# provide stronger static type systems out of the box\nMemory-Critical Applications: JavaScript's garbage collection and dynamic nature make memory usage less predictable\nMulti-threaded Processing: Languages like Go or Java handle true parallel processing more natively",
+      "example": "Isomorphic Applications: Code sharing between front-end and back-end drastically reduces duplication and boosts maintainability\nHowever, you should probably look elsewhere for:\nCPU-Intensive Tasks: For heavy number crunching or data processing, compiled languages like C++ or Rust offer superior performance\nStatic Type Safety: While TypeScript helps, languages like Java or C# provide stronger static type systems out of the box\nMemory-Critical Applications: JavaScript's garbage collection and dynamic nature make memory usage less predictable\nMulti-threaded Processing: Languages like Go or Java handle true parallel processing more natively"
+    },
+    {
+      "term": "Processing:",
+      "type": "Verb Phrase",
+      "category": "Core Concepts",
+      "difficulty": "Beginner",
+      "description": "Isomorphic Applications: Code sharing between front-end and back-end drastically reduces duplication and boosts maintainability\nHowever, you should probably look elsewhere for:\nCPU-Intensive Tasks: For heavy number crunching or data processing, compiled languages like C++ or Rust offer superior performance\nStatic Type Safety: While TypeScript helps, languages like Java or C# provide stronger static type systems out of the box\nMemory-Critical Applications: JavaScript's garbage collection and dynamic nature make memory usage less predictable\nMulti-threaded Processing: Languages like Go or Java handle true parallel processing more natively",
+      "example": "Isomorphic Applications: Code sharing between front-end and back-end drastically reduces duplication and boosts maintainability\nHowever, you should probably look elsewhere for:\nCPU-Intensive Tasks: For heavy number crunching or data processing, compiled languages like C++ or Rust offer superior performance\nStatic Type Safety: While TypeScript helps, languages like Java or C# provide stronger static type systems out of the box\nMemory-Critical Applications: JavaScript's garbage collection and dynamic nature make memory usage less predictable\nMulti-threaded Processing: Languages like Go or Java handle true parallel processing more natively"
+    },
+    {
+      "term": "Languages",
+      "type": "Subject",
+      "category": "Core Concepts",
+      "difficulty": "Beginner",
+      "description": "Isomorphic Applications: Code sharing between front-end and back-end drastically reduces duplication and boosts maintainability\nHowever, you should probably look elsewhere for:\nCPU-Intensive Tasks: For heavy number crunching or data processing, compiled languages like C++ or Rust offer superior performance\nStatic Type Safety: While TypeScript helps, languages like Java or C# provide stronger static type systems out of the box\nMemory-Critical Applications: JavaScript's garbage collection and dynamic nature make memory usage less predictable\nMulti-threaded Processing: Languages like Go or Java handle true parallel processing more natively",
+      "example": "Isomorphic Applications: Code sharing between front-end and back-end drastically reduces duplication and boosts maintainability\nHowever, you should probably look elsewhere for:\nCPU-Intensive Tasks: For heavy number crunching or data processing, compiled languages like C++ or Rust offer superior performance\nStatic Type Safety: While TypeScript helps, languages like Java or C# provide stronger static type systems out of the box\nMemory-Critical Applications: JavaScript's garbage collection and dynamic nature make memory usage less predictable\nMulti-threaded Processing: Languages like Go or Java handle true parallel processing more natively"
+    }
+  ]
+}
