@@ -1,304 +1,257 @@
-# JavaScript Technical Vocabulary Table
+# JavaScript Technical Vocabulary
 
-## 📚 Complete Vocabulary List
+| Term | Type | Category | Difficulty | Description | Example |
+|------|------|----------|------------|-------------|--------|
+| Asynchronous Powerhouse | Subject | Core Concepts | Beginner | JavaScript's event-driven, non-blocking I/O model makes it exceptional at handling concurrency without the complexities of traditional threading. The async/await syntax makes this power accessible and readable. | JavaScript's event-driven, non-blocking I/O model makes it exceptional at handling concurrency without the complexities of traditional threading. The async/await syntax makes this power accessible and readable. |
+| Universal Runtime | Subject | Core Concepts | Beginner | With Node.js, JavaScript runs everywhere—browsers, servers, mobile, IoT devices. Mastering it makes you a versatile programmer in many contexts. | With Node.js, JavaScript runs everywhere—browsers, servers, mobile, IoT devices. Mastering it makes you a versatile programmer in many contexts. |
+| Rich Ecosystem | Noun Phrase | Core Concepts | Beginner | npm is the world's largest software registry. Whether you need a full framework like React, a utility library like Lodash, or specialized tools for data visualization or server-side rendering, the ecosystem has mature solutions ready to use. | npm is the world's largest software registry. Whether you need a full framework like React, a utility library like Lodash, or specialized tools for data visualization or server-side rendering, the ecosystem has mature solutions ready to use. |
+| Dynamic and Flexible | Subject | Core Concepts | Beginner | JavaScript's dynamic typing and prototype-based object system offer incredible flexibility. | JavaScript's dynamic typing and prototype-based object system offer incredible flexibility. |
+| JavaScript's Strengths: | Subject | Core Concepts | Beginner | JavaScript's Strengths: | JavaScript's Strengths: |
+| Where JavaScript Excels: | Subject | Core Concepts | Beginner | Where JavaScript Excels: | Where JavaScript Excels: |
+| Where to Look Elsewhere: | Subject | Core Concepts | Beginner | Where to Look Elsewhere: | Where to Look Elsewhere: |
+| Interactive Web Applications | Subject | Core Concepts | Beginner | Interactive Web Applications | Interactive Web Applications |
+| Scalable Microservices | Subject | Core Concepts | Beginner | Scalable Microservices | Scalable Microservices |
+| Isomorphic Applications | Subject | Core Concepts | Beginner | Isomorphic Applications | Isomorphic Applications |
+| CPU-Intensive Tasks | Subject | Core Concepts | Beginner | CPU-Intensive Tasks | CPU-Intensive Tasks |
+| Static Type Safety | Subject | Core Concepts | Beginner | Static Type Safety | Static Type Safety |
+| Memory-Critical Applications | Subject | Core Concepts | Beginner | Memory-Critical Applications | Memory-Critical Applications |
+| Multi-threaded Processing | Subject | Core Concepts | Beginner | Multi-threaded Processing | Multi-threaded Processing |
+| BigInt | Subject | Core Concepts | Beginner | Represents integers with arbitrary precision | Represents integers with arbitrary precision |
+| Always Use Strict Equality (===) | Subject | Core Concepts | Beginner |  |  |
+| Handle NaN Correctly | Subject | Core Concepts | Beginner |  |  |
+| Use Modern Optional Chaining | Subject | Core Concepts | Beginner |  |  |
+| The Foundation: JavaScript's Type System | Noun Phrase | Core Concepts | Beginner | The Foundation: JavaScript's Type System | The Foundation: JavaScript's Type System |
+| Type Coercion: The Good, The Bad, and The Ugly | Subject | Core Concepts | Beginner | Type Coercion: The Good, The Bad, and The Ugly | Type Coercion: The Good, The Bad, and The Ugly |
+| Best Practices for Interview and Production Code: | Subject | Core Concepts | Beginner | Best Practices for Interview and Production Code: | Best Practices for Interview and Production Code: |
+|  | Subject | Core Concepts | Beginner | Number**: Represents both integers and floating-point**: **Number**: Represents both integers and floating-point | Number**: Represents both integers and floating-point**: **Number**: Represents both integers and floating-point |
+|  | Subject | Core Concepts | Beginner | String**: Immutable text data**: **String**: Immutable text data | String**: Immutable text data**: **String**: Immutable text data |
+|  | Subject | Core Concepts | Beginner | Boolean**: true or false**: **Boolean**: true or false | Boolean**: true or false**: **Boolean**: true or false |
+|  | Subject | Core Concepts | Beginner | Undefined**: Variable exists but has no assigned value**: **Undefined**: Variable exists but has no assigned value | Undefined**: Variable exists but has no assigned value**: **Undefined**: Variable exists but has no assigned value |
+|  | Subject | Core Concepts | Beginner | Null**: Absence of any object value**: **Null**: Absence of any object value | Null**: Absence of any object value**: **Null**: Absence of any object value |
+|  | Subject | Core Concepts | Beginner | Symbol**: Unique identifier, often used as object keys**: **Symbol**: Unique identifier, often used as object keys | Symbol**: Unique identifier, often used as object keys**: **Symbol**: Unique identifier, often used as object keys |
+| Data Privacy (The Module Pattern) | Noun Phrase | Core Concepts | Beginner |  |  |
+| State Management in Event Handlers | Subject | Core Concepts | Beginner |  |  |
+| The Loop Variable Problem | Subject | Core Concepts | Beginner |  |  |
+| Memory Management | Subject | Core Concepts | Beginner |  |  |
+| Lexical Scope: The Foundation | Subject | Core Concepts | Beginner | Lexical Scope: The Foundation | Lexical Scope: The Foundation |
+| Understanding Closures: Functions with Memory | Verb Phrase | Core Concepts | Beginner | Understanding Closures: Functions with Memory | Understanding Closures: Functions with Memory |
+| Practical Applications: Why Closures Matter | Subject | Core Concepts | Beginner | Practical Applications: Why Closures Matter | Practical Applications: Why Closures Matter |
+| Common Pitfalls and Solutions | Subject | Core Concepts | Beginner | Common Pitfalls and Solutions | Common Pitfalls and Solutions |
+| outer | Subject | Core Concepts | Beginner | outer | outer |
+| inner | Subject | Core Concepts | Beginner | inner | inner |
+| scopes | Subject | Core Concepts | Beginner | scopes | scopes |
+| globalMessage | Subject | Core Concepts | Beginner | globalMessage | globalMessage |
+| outerMessage | Subject | Core Concepts | Beginner | outerMessage | outerMessage |
+| innerMessage | Subject | Core Concepts | Beginner | innerMessage | innerMessage |
+| createGreeting | Subject | Core Concepts | Beginner | createGreeting | createGreeting |
+| forms | Subject | Core Concepts | Beginner | forms | forms |
+| greetJohn | Subject | Core Concepts | Beginner | greetJohn | greetJohn |
+| greetJane | Subject | Core Concepts | Beginner | greetJane | greetJane |
+| greeting | Subject | Core Concepts | Beginner | greeting | greeting |
+| The Event Loop: JavaScript's Heart | Subject | Async | Beginner | The Event Loop: JavaScript's Heart | The Event Loop: JavaScript's Heart |
+| The Evolution of Asynchronous Programming | Subject | Async | Beginner | The Evolution of Asynchronous Programming | The Evolution of Asynchronous Programming |
+| 1. Callback Style: The Traditional Approach | Subject | Async | Beginner | 1. Callback Style: The Traditional Approach | 1. Callback Style: The Traditional Approach |
+| 2. Promises: A Step Forward | Subject | Async | Beginner | 2. Promises: A Step Forward | 2. Promises: A Step Forward |
+| 3. Async/Await: Modern Elegance | Subject | Async | Beginner | 3. Async/Await: Modern Elegance | 3. Async/Await: Modern Elegance |
+| Tips for Coding Interviews | Subject | Async | Beginner | Tips for Coding Interviews | Tips for Coding Interviews |
+| The Call Stack (the 'road' for synchronous code) | Subject | Async | Beginner | The Call Stack (the 'road' for synchronous code) | The Call Stack (the 'road' for synchronous code) |
+| The Task Queue (the 'waiting area' for longer tasks) | Subject | Async | Beginner | The Task Queue (the 'waiting area' for longer tasks) | The Task Queue (the 'waiting area' for longer tasks) |
+| The Microtask Queue (the 'express lane' for high-priority tasks) | Subject | Async | Beginner | The Microtask Queue (the 'express lane' for high-priority tasks) | The Microtask Queue (the 'express lane' for high-priority tasks) |
+| getUserData | Subject | Async | Beginner | getUserData | getUserData |
+| user | Subject | Async | Beginner | user | user |
+| loadUserProfile | Subject | Async | Beginner | loadUserProfile | loadUserProfile |
+| loadMultipleProfiles | Subject | Async | Beginner | loadMultipleProfiles | loadMultipleProfiles |
+| posts | Subject | Async | Beginner | posts | posts |
+| comments | Subject | Async | Beginner | comments | comments |
+| profiles | Subject | Async | Beginner | profiles | profiles |
+| The Foundation: Prototypal Inheritance | Subject | Core Concepts | Beginner | The Foundation: Prototypal Inheritance | The Foundation: Prototypal Inheritance |
+| The Modern Way: ES6 Classes | Subject | Core Concepts | Beginner | The Modern Way: ES6 Classes | The Modern Way: ES6 Classes |
+| Modern Features: Private Fields and Methods | Verb Phrase | Core Concepts | Beginner | Modern Features: Private Fields and Methods | Modern Features: Private Fields and Methods |
+| Preparing for Coding Interviews | Subject | Core Concepts | Beginner | Preparing for Coding Interviews | Preparing for Coding Interviews |
+| animal | Subject | Core Concepts | Beginner | animal | animal |
+| dog | Subject | Core Concepts | Beginner | dog | dog |
+| Animal | Subject | Core Concepts | Beginner | Animal | Animal |
+| itself | Subject | Core Concepts | Beginner | itself | itself |
+| Dog | Subject | Core Concepts | Beginner | Dog | Dog |
+| BankAccount | Subject | Core Concepts | Beginner | BankAccount | BankAccount |
+| account | Subject | Core Concepts | Beginner | account | account |
+| Arrow Functions and the Evolution of this | Verb Phrase | Modern Features | Beginner | Arrow Functions and the Evolution of this | Arrow Functions and the Evolution of this |
+| Destructuring: Elegant Data Extraction | Subject | Modern Features | Beginner | Destructuring: Elegant Data Extraction | Destructuring: Elegant Data Extraction |
+| The Spread Operator: Immutable Operations Made Simple | Subject | Modern Features | Beginner | The Spread Operator: Immutable Operations Made Simple | The Spread Operator: Immutable Operations Made Simple |
+| Template Literals: Beyond Simple String Concatenation | Subject | Modern Features | Beginner | Template Literals: Beyond Simple String Concatenation | Template Literals: Beyond Simple String Concatenation |
+| Nullish Coalescing | Subject | Modern Features | Beginner | Nullish Coalescing | Nullish Coalescing |
+| Interview Success Tips | Subject | Modern Features | Beginner | Interview Success Tips | Interview Success Tips |
+| addClickListener | Subject | Modern Features | Beginner | addClickListener | addClickListener |
+| addClickListenerArrow | Subject | Modern Features | Beginner | addClickListenerArrow | addClickListenerArrow |
+| Button | Subject | Modern Features | Beginner | Button | Button |
+| obj | Subject | Modern Features | Beginner | obj | obj |
+| user | Subject | Modern Features | Beginner | user | user |
+| arr1 | Subject | Modern Features | Beginner | arr1 | arr1 |
+| arr2 | Subject | Modern Features | Beginner | arr2 | arr2 |
+| combined | Subject | Modern Features | Beginner | combined | combined |
+| clone | Subject | Modern Features | Beginner | clone | clone |
+| defaults | Subject | Modern Features | Beginner | defaults | defaults |
+| userPrefs | Subject | Modern Features | Beginner | userPrefs | userPrefs |
+| settings | Subject | Modern Features | Beginner | settings | settings |
+| name | Subject | Modern Features | Beginner | name | name |
+| age | Subject | Modern Features | Beginner | age | age |
+| greeting | Subject | Modern Features | Beginner | greeting | greeting |
+| email | Subject | Modern Features | Beginner | email | email |
+| count | Subject | Modern Features | Beginner | count | count |
+| value | Subject | Modern Features | Beginner | value | value |
+| Release | Subject | Memory | Beginner | When an object is no longer reachable through any references in your application, it becomes eligible for garbage collection. | When an object is no longer reachable through any references in your application, it becomes eligible for garbage collection. |
+| Performance Panel | Subject | Memory | Beginner | Monitor memory usage over time | Monitor memory usage over time |
+| The Memory Cycle: Allocate, Use, Release | Subject | Memory | Beginner | The Memory Cycle: Allocate, Use, Release | The Memory Cycle: Allocate, Use, Release |
+| Understanding the Garbage Collector | Subject | Memory | Beginner | Understanding the Garbage Collector | Understanding the Garbage Collector |
+| Common Memory Leaks and How to Avoid Them | Subject | Memory | Beginner | Common Memory Leaks and How to Avoid Them | Common Memory Leaks and How to Avoid Them |
+| 1. The Global Variable Trap | Subject | Memory | Beginner | 1. The Global Variable Trap | 1. The Global Variable Trap |
+| 2. Closure Complications | Subject | Memory | Beginner | 2. Closure Complications | 2. Closure Complications |
+| Debugging Memory Issues | Subject | Memory | Beginner | Debugging Memory Issues | Debugging Memory Issues |
+| Interview Tips | Subject | Memory | Beginner | Interview Tips | Interview Tips |
+| leak | Subject | Memory | Beginner | leak | leak |
+| noLeak | Subject | Memory | Beginner | noLeak | noLeak |
+| localVariable | Subject | Memory | Beginner | localVariable | localVariable |
+| createLeak | Subject | Memory | Beginner | createLeak | createLeak |
+| return | Subject | Memory | Beginner | return | return |
+| createEfficientClosure | Adjective | Memory | Beginner | createEfficientClosure | createEfficientClosure |
+| largeData | Subject | Memory | Beginner | largeData | largeData |
+| length | Subject | Memory | Beginner | length | length |
+| Observer Pattern | Noun Phrase | Design Patterns | Beginner |  |  |
+| Module Pattern | Noun Phrase | Design Patterns | Beginner |  |  |
+| Proxy Pattern | Noun Phrase | Design Patterns | Beginner |  |  |
+| The Singleton Pattern: One and Only | Noun Phrase | Design Patterns | Beginner | The Singleton Pattern: One and Only | The Singleton Pattern: One and Only |
+| The Factory Pattern: Creating Objects Flexibly | Noun Phrase | Design Patterns | Beginner | The Factory Pattern: Creating Objects Flexibly | The Factory Pattern: Creating Objects Flexibly |
+| Dependency Injection | Subject | Design Patterns | Beginner | Dependency Injection | Dependency Injection |
+| Choosing the Right Pattern | Noun Phrase | Design Patterns | Beginner | Choosing the Right Pattern | Choosing the Right Pattern |
+| Common Design Patterns in Modern JavaScript | Noun Phrase | Design Patterns | Beginner | Common Design Patterns in Modern JavaScript | Common Design Patterns in Modern JavaScript |
+| createConnectionSingleton | Subject | Design Patterns | Beginner | createConnectionSingleton | createConnectionSingleton |
+| Database | Subject | Design Patterns | Beginner | Database | Database |
+| instance | Subject | Design Patterns | Beginner | instance | instance |
+| UIFactory | Subject | Design Patterns | Beginner | UIFactory | UIFactory |
+| ShoppingService | Subject | Design Patterns | Beginner | ShoppingService | ShoppingService |
+| total | Subject | Design Patterns | Beginner | total | total |
+| Test Structure | Subject | Testing | Beginner |  |  |
+| Mocking Strategy | Subject | Testing | Beginner |  |  |
+| Async Testing | Subject | Testing | Beginner |  |  |
+| Understanding Jest: The Swiss Army Knife of Testing | Subject | Testing | Beginner | Understanding Jest: The Swiss Army Knife of Testing | Understanding Jest: The Swiss Army Knife of Testing |
+| The Art of Mocking: Controlling Your Test Environment | Subject | Testing | Beginner | The Art of Mocking: Controlling Your Test Environment | The Art of Mocking: Controlling Your Test Environment |
+| Testing Asynchronous Code: Promises and Timing | Subject | Testing | Beginner | Testing Asynchronous Code: Promises and Timing | Testing Asynchronous Code: Promises and Timing |
+| Common Pitfalls and Best Practices | Subject | Testing | Beginner | Common Pitfalls and Best Practices | Common Pitfalls and Best Practices |
+| Interview Tips | Subject | Testing | Beginner | Interview Tips | Interview Tips |
+| add | Subject | Testing | Beginner | add | add |
+| UserService | Subject | Testing | Beginner | UserService | UserService |
+| response | Subject | Testing | Beginner | response | response |
+| mockApiClient | Subject | Testing | Beginner | mockApiClient | mockApiClient |
+| mockDate | Subject | Testing | Beginner | mockDate | mockDate |
+| service | Subject | Testing | Beginner | service | service |
+| profile | Subject | Testing | Beginner | profile | profile |
+| DataService | Subject | Testing | Beginner | DataService | DataService |
+| data | Subject | Testing | Beginner | data | data |
+| dataPromise | Subject | Testing | Beginner | dataPromise | dataPromise |
+| result | Subject | Testing | Beginner | result | result |
+| Optimization | Subject | Core Concepts | Beginner | Creates highly optimized versions of frequently-used functions | Creates highly optimized versions of frequently-used functions |
+| Web Workers | Subject | Core Concepts | Beginner |  |  |
+| Memory Pools | Subject | Core Concepts | Beginner |  |  |
+| TypedArrays | Subject | Core Concepts | Beginner |  |  |
+| Measure First | Subject | Core Concepts | Beginner |  |  |
+| Focus on Hot Paths | Subject | Core Concepts | Beginner |  |  |
+| Balance Speed and Maintainability | Subject | Core Concepts | Beginner |  |  |
+| Cross-Browser Testing | Subject | Core Concepts | Beginner |  |  |
+| Understanding the V8 Engine's Journey | Subject | Core Concepts | Beginner | Understanding the V8 Engine's Journey | Understanding the V8 Engine's Journey |
+| Hidden Classes: Help V8 Help You | Subject | Core Concepts | Beginner | Hidden Classes: Help V8 Help You | Hidden Classes: Help V8 Help You |
+| Performance Profiling: Making Data-Driven Decisions | Subject | Core Concepts | Beginner | Performance Profiling: Making Data-Driven Decisions | Performance Profiling: Making Data-Driven Decisions |
+| Advanced Optimization Techniques | Subject | Core Concepts | Beginner | Advanced Optimization Techniques | Advanced Optimization Techniques |
+| The Art of Performance Optimization | Subject | Core Concepts | Beginner | The Art of Performance Optimization | The Art of Performance Optimization |
+| will | Subject | Core Concepts | Beginner | will | will |
+| calculateDistance | Subject | Core Concepts | Beginner | calculateDistance | calculateDistance |
+| repeatedly | Subject | Core Concepts | Beginner | repeatedly | repeatedly |
+| to | Subject | Core Concepts | Beginner | to | to |
+| createPlayerBad | Subject | Core Concepts | Beginner | createPlayerBad | createPlayerBad |
+| player | Subject | Core Concepts | Beginner | player | player |
+| measurePerformance | Subject | Core Concepts | Beginner | measurePerformance | measurePerformance |
+| bigArray | Subject | Core Concepts | Beginner | bigArray | bigArray |
+| result1 | Subject | Core Concepts | Beginner | result1 | result1 |
+| result2 | Subject | Core Concepts | Beginner | result2 | result2 |
+| Code Organization | Subject | Development | Beginner |  |  |
+| Error Handling | Subject | Development | Beginner |  |  |
+| Security Best Practices | Subject | Development | Beginner |  |  |
+| Code Quality | Subject | Development | Beginner |  |  |
+| Problem Solving | Subject | Development | Beginner |  |  |
+| Communication | Subject | Development | Beginner |  |  |
+| Understanding ES Modules: The Building Blocks of Modern JavaScript | Subject | Development | Beginner | Understanding ES Modules: The Building Blocks of Modern JavaScript | Understanding ES Modules: The Building Blocks of Modern JavaScript |
+| Build Tools and Modern Development Workflow | Subject | Development | Beginner | Build Tools and Modern Development Workflow | Build Tools and Modern Development Workflow |
+| TypeScript: Adding Safety to JavaScript | Subject | Development | Beginner | TypeScript: Adding Safety to JavaScript | TypeScript: Adding Safety to JavaScript |
+| NPM: The Package Manager for JavaScript | Subject | Development | Beginner | NPM: The Package Manager for JavaScript | NPM: The Package Manager for JavaScript |
+| Best Practices for Modern JavaScript Development | Subject | Development | Beginner | Best Practices for Modern JavaScript Development | Best Practices for Modern JavaScript Development |
+| Interview Success Tips | Subject | Development | Beginner | Interview Success Tips | Interview Success Tips |
+| Arrays | Subject | Development | Beginner | Arrays | Arrays |
+| Objects | Subject | Development | Beginner | Objects | Objects |
+| Linked Lists | Subject | Development | Beginner | Linked Lists | Linked Lists |
+| Stacks and Queues | Subject | Development | Beginner | Stacks and Queues | Stacks and Queues |
+| Trees | Subject | Development | Beginner | Trees | Trees |
+| Graphs | Subject | Development | Beginner | Graphs | Graphs |
+| Sorting | Subject | Development | Beginner | Sorting | Sorting |
+| Searching | Subject | Development | Beginner | Searching | Searching |
+| Dynamic Programming | Subject | Development | Beginner | Dynamic Programming | Dynamic Programming |
+| Easy | Subject | Development | Beginner | Easy | Easy |
+| Medium | Subject | Development | Beginner | Medium | Medium |
+| Hard | Subject | Development | Beginner | Hard | Hard |
+| Code Style | Subject | Development | Beginner | Code Style | Code Style |
+| Time and Space Complexity | Subject | Development | Beginner | Time and Space Complexity | Time and Space Complexity |
+| Tips for Interviews | Subject | Development | Beginner | Tips for Interviews | Tips for Interviews |
+| Dynamic arrays in JavaScript | Subject | Development | Beginner | Dynamic arrays in JavaScript | Dynamic arrays in JavaScript |
+| Common operations: push, pop, shift, unshift | Subject | Development | Beginner | Common operations: push, pop, shift, unshift | Common operations: push, pop, shift, unshift |
+| Time complexity of array operations | Subject | Development | Beginner | Time complexity of array operations | Time complexity of array operations |
+| Array methods: map, filter, reduce, find | Verb Phrase | Development | Beginner | Array methods: map, filter, reduce, find | Array methods: map, filter, reduce, find |
+| Key-value pairs | Subject | Development | Beginner | Key-value pairs | Key-value pairs |
+| Object methods and properties | Verb Phrase | Development | Beginner | Object methods and properties | Object methods and properties |
+| Object destructuring | Subject | Development | Beginner | Object destructuring | Object destructuring |
+| Object spread operator | Subject | Development | Beginner | Object spread operator | Object spread operator |
+| Singly linked lists | Subject | Development | Beginner | Singly linked lists | Singly linked lists |
+| Doubly linked lists | Subject | Development | Beginner | Doubly linked lists | Doubly linked lists |
+| Common operations: insertion, deletion, traversal | Subject | Development | Beginner | Common operations: insertion, deletion, traversal | Common operations: insertion, deletion, traversal |
+| Stack implementation using arrays | Subject | Development | Beginner | Stack implementation using arrays | Stack implementation using arrays |
+| Queue implementation using arrays | Subject | Development | Beginner | Queue implementation using arrays | Queue implementation using arrays |
+| Priority queues | Subject | Development | Beginner | Priority queues | Priority queues |
+| Binary trees | Subject | Development | Beginner | Binary trees | Binary trees |
+| Binary search trees | Subject | Development | Beginner | Binary search trees | Binary search trees |
+| Tree traversal (in-order, pre-order, post-order) | Subject | Development | Beginner | Tree traversal (in-order, pre-order, post-order) | Tree traversal (in-order, pre-order, post-order) |
+| Balanced trees (AVL, Red-Black) | Subject | Development | Beginner | Balanced trees (AVL, Red-Black) | Balanced trees (AVL, Red-Black) |
+| Graph representation | Subject | Development | Beginner | Graph representation | Graph representation |
+| BFS and DFS | Subject | Development | Beginner | BFS and DFS | BFS and DFS |
+| Shortest path algorithms | Subject | Development | Beginner | Shortest path algorithms | Shortest path algorithms |
+| Minimum spanning trees | Subject | Development | Beginner | Minimum spanning trees | Minimum spanning trees |
+| Bubble sort | Subject | Development | Beginner | Bubble sort | Bubble sort |
+| Quick sort | Subject | Development | Beginner | Quick sort | Quick sort |
+| Merge sort | Subject | Development | Beginner | Merge sort | Merge sort |
+| Heap sort | Subject | Development | Beginner | Heap sort | Heap sort |
+| Time complexity comparison | Subject | Development | Beginner | Time complexity comparison | Time complexity comparison |
+| Linear search | Subject | Development | Beginner | Linear search | Linear search |
+| Depth-first search | Subject | Development | Beginner | Depth-first search | Depth-first search |
+| Breadth-first search | Subject | Development | Beginner | Breadth-first search | Breadth-first search |
+| Memoization | Subject | Development | Beginner | Memoization | Memoization |
+| Tabulation | Subject | Development | Beginner | Tabulation | Tabulation |
+| Common DP problems | Subject | Development | Beginner | Common DP problems | Common DP problems |
+| Optimization techniques | Subject | Development | Beginner | Optimization techniques | Optimization techniques |
+| Use meaningful variable names | Subject | Development | Beginner | Use meaningful variable names | Use meaningful variable names |
+| Write clean, readable code | Subject | Development | Beginner | Write clean, readable code | Write clean, readable code |
+| Follow consistent formatting | Subject | Development | Beginner | Follow consistent formatting | Follow consistent formatting |
+| Add comments where necessary | Subject | Development | Beginner | Add comments where necessary | Add comments where necessary |
+| Big O notation | Subject | Development | Beginner | Big O notation | Big O notation |
+| Time complexity analysis | Subject | Development | Beginner | Time complexity analysis | Time complexity analysis |
+| Space complexity analysis | Subject | Development | Beginner | Space complexity analysis | Space complexity analysis |
+| [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript) | Subject | Development | Beginner | [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript) | [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript) |
+| [JavaScript.info](https://javascript.info/) | Subject | Development | Beginner | [JavaScript.info](https://javascript.info/) | [JavaScript.info](https://javascript.info/) |
+| [LeetCode](https://leetcode.com/) | Subject | Development | Beginner | [LeetCode](https://leetcode.com/) | [LeetCode](https://leetcode.com/) |
+| [HackerRank](https://www.hackerrank.com/) | Subject | Development | Beginner | [HackerRank](https://www.hackerrank.com/) | [HackerRank](https://www.hackerrank.com/) |
+| [CodeSignal](https://codesignal.com/) | Subject | Development | Beginner | [CodeSignal](https://codesignal.com/) | [CodeSignal](https://codesignal.com/) |
+| add | Subject | Development | Beginner | add | add |
+| multiply | Subject | Development | Beginner | multiply | multiply |
+| Calculator | Subject | Development | Beginner | Calculator | Calculator |
 
-| Phrase                   | Type        | Category        | Example Sentence                                                                    |
-| ------------------------ | ----------- | --------------- | ----------------------------------------------------------------------------------- |
-| event loop               | Subject     | Core Concepts   | The event loop manages asynchronous operations in JavaScript.                       |
-| garbage collector        | Subject     | Core Concepts   | The garbage collector automatically frees up unused memory.                         |
-| prototype chain          | Subject     | Core Concepts   | The prototype chain enables inheritance in JavaScript.                              |
-| lexical scope            | Subject     | Core Concepts   | Lexical scope determines how variables are accessed in nested functions.            |
-| handle errors            | Verb Phrase | Core Concepts   | We handle errors using try/catch blocks or .catch() methods.                        |
-| manage memory            | Verb Phrase | Core Concepts   | Developers must manage memory carefully to prevent leaks.                           |
-| implement inheritance    | Verb Phrase | Core Concepts   | We can implement inheritance using classes or prototypes.                           |
-| optimize performance     | Verb Phrase | Core Concepts   | We optimize performance by reducing unnecessary operations.                         |
-| memory leak              | Noun Phrase | Core Concepts   | A memory leak can significantly impact application performance.                     |
-| callback function        | Noun Phrase | Core Concepts   | A callback function executes after an asynchronous operation completes.             |
-| prototype object         | Noun Phrase | Core Concepts   | The prototype object contains shared properties and methods.                        |
-| execution context        | Noun Phrase | Core Concepts   | The execution context determines how code is executed.                              |
-| asynchronous             | Adjective   | Core Concepts   | Asynchronous code allows better responsiveness in web applications.                 |
-| lexical                  | Adjective   | Core Concepts   | Lexical scoping provides predictable variable access patterns.                      |
-| prototypal               | Adjective   | Core Concepts   | Prototypal inheritance is a fundamental concept in JavaScript.                      |
-| hoisted                  | Adjective   | Core Concepts   | Hoisted variables are accessible before their declaration.                          |
-| ES modules               | Subject     | Modern Features | ES modules provide a standardized way to organize code.                             |
-| arrow functions          | Subject     | Modern Features | Arrow functions provide a concise syntax for function expressions.                  |
-| destructuring            | Subject     | Modern Features | Destructuring simplifies extracting values from objects and arrays.                 |
-| spread operator          | Subject     | Modern Features | The spread operator expands iterables into individual elements.                     |
-| destructure objects      | Verb Phrase | Modern Features | We destructure objects to extract specific properties.                              |
-| spread arrays            | Verb Phrase | Modern Features | We spread arrays to combine or clone them efficiently.                              |
-| chain promises           | Verb Phrase | Modern Features | We chain promises to handle multiple asynchronous operations.                       |
-| memoize functions        | Verb Phrase | Modern Features | We memoize functions to cache expensive calculations.                               |
-| template literal         | Noun Phrase | Modern Features | A template literal allows embedded expressions in strings.                          |
-| rest parameter           | Noun Phrase | Modern Features | A rest parameter collects remaining arguments into an array.                        |
-| default parameter        | Noun Phrase | Modern Features | A default parameter provides a fallback value for undefined arguments.              |
-| computed property        | Noun Phrase | Modern Features | A computed property uses an expression as a property name.                          |
-| immutable                | Adjective   | Modern Features | Immutable data structures prevent accidental modifications.                         |
-| pure                     | Adjective   | Modern Features | Pure functions always return the same output for the same input.                    |
-| lazy                     | Adjective   | Modern Features | Lazy evaluation improves performance by deferring computations.                     |
-| curried                  | Adjective   | Modern Features | Curried functions transform multiple arguments into a sequence of functions.        |
-| singleton pattern        | Subject     | Design Patterns | The singleton pattern ensures only one instance exists.                             |
-| factory pattern          | Subject     | Design Patterns | The factory pattern creates objects without specifying exact classes.               |
-| observer pattern         | Subject     | Design Patterns | The observer pattern enables event-driven communication.                            |
-| module pattern           | Subject     | Design Patterns | The module pattern encapsulates private data and methods.                           |
-| implement patterns       | Verb Phrase | Design Patterns | We implement patterns to solve common design problems.                              |
-| inject dependencies      | Verb Phrase | Design Patterns | We inject dependencies to improve testability and flexibility.                      |
-| encapsulate data         | Verb Phrase | Design Patterns | We encapsulate data to control access and maintain integrity.                       |
-| separate concerns        | Verb Phrase | Design Patterns | We separate concerns to improve code organization and maintainability.              |
-| design pattern           | Noun Phrase | Design Patterns | A design pattern provides a reusable solution to common problems.                   |
-| dependency injection     | Noun Phrase | Design Patterns | Dependency injection improves code flexibility and testability.                     |
-| code smell               | Noun Phrase | Design Patterns | A code smell indicates potential problems in the codebase.                          |
-| technical debt           | Noun Phrase | Design Patterns | Technical debt represents the cost of maintaining suboptimal code.                  |
-| maintainable             | Adjective   | Design Patterns | Maintainable code is easy to understand and modify.                                 |
-| testable                 | Adjective   | Design Patterns | Testable code can be easily verified for correctness.                               |
-| scalable                 | Adjective   | Design Patterns | Scalable code can handle increased load without major changes.                      |
-| reusable                 | Adjective   | Design Patterns | Reusable code can be applied to multiple scenarios.                                 |
-| test runner              | Subject     | Testing         | The test runner executes test cases and reports results.                            |
-| debugger                 | Subject     | Testing         | The debugger helps identify and fix code issues.                                    |
-| test suite               | Subject     | Testing         | The test suite contains all test cases for a feature.                               |
-| profiler                 | Subject     | Testing         | The profiler measures code performance and identifies bottlenecks.                  |
-| write tests              | Verb Phrase | Testing         | We write tests to verify code functionality.                                        |
-| debug code               | Verb Phrase | Testing         | We debug code to find and fix errors.                                               |
-| mock dependencies        | Verb Phrase | Testing         | We mock dependencies to isolate test units.                                         |
-| profile performance      | Verb Phrase | Testing         | We profile performance to identify optimization opportunities.                      |
-| unit test                | Noun Phrase | Testing         | A unit test verifies individual component behavior.                                 |
-| integration test         | Noun Phrase | Testing         | An integration test checks component interactions.                                  |
-| test coverage            | Noun Phrase | Testing         | Test coverage measures how much code is tested.                                     |
-| performance bottleneck   | Noun Phrase | Testing         | A performance bottleneck slows down application execution.                          |
-| testable                 | Adjective   | Testing         | Testable code is easy to verify for correctness.                                    |
-| debuggable               | Adjective   | Testing         | Debuggable code is easy to troubleshoot.                                            |
-| maintainable             | Adjective   | Testing         | Maintainable code is easy to understand and modify.                                 |
-| performant               | Adjective   | Testing         | Performant code executes efficiently and quickly.                                   |
-| memory heap              | Subject     | Memory          | The memory heap stores dynamically allocated objects.                               |
-| call stack               | Subject     | Memory          | The call stack tracks function execution order.                                     |
-| memory pool              | Subject     | Memory          | The memory pool manages object allocation efficiently.                              |
-| garbage collector        | Subject     | Memory          | The garbage collector reclaims unused memory.                                       |
-| allocate memory          | Verb Phrase | Memory          | We allocate memory for new objects and data structures.                             |
-| free memory              | Verb Phrase | Memory          | We free memory when objects are no longer needed.                                   |
-| optimize memory          | Verb Phrase | Memory          | We optimize memory usage to improve performance.                                    |
-| prevent leaks            | Verb Phrase | Memory          | We prevent memory leaks by proper resource management.                              |
-| memory leak              | Noun Phrase | Memory          | A memory leak occurs when unused memory isn't released.                             |
-| reference cycle          | Noun Phrase | Memory          | A reference cycle prevents garbage collection.                                      |
-| memory fragmentation     | Noun Phrase | Memory          | Memory fragmentation reduces available contiguous memory.                           |
-| performance optimization | Noun Phrase | Memory          | Performance optimization improves code execution speed.                             |
-| memory-efficient         | Adjective   | Memory          | Memory-efficient code uses minimal resources.                                       |
-| performant               | Adjective   | Memory          | Performant code executes quickly and efficiently.                                   |
-| optimized                | Adjective   | Memory          | Optimized code runs with maximum efficiency.                                        |
-| resource-intensive       | Adjective   | Memory          | Resource-intensive operations require significant memory or CPU.                    |
-| promise                  | Subject     | Async           | A promise represents an asynchronous operation's result.                            |
-| async function           | Subject     | Async           | An async function returns a promise automatically.                                  |
-| event emitter            | Subject     | Async           | The event emitter manages event-based communication.                                |
-| microtask queue          | Subject     | Async           | The microtask queue processes high-priority async tasks.                            |
-| await results            | Verb Phrase | Async           | We await results from asynchronous operations.                                      |
-| handle promises          | Verb Phrase | Async           | We handle promises to process async results.                                        |
-| emit events              | Verb Phrase | Async           | We emit events to notify listeners of changes.                                      |
-| process callbacks        | Verb Phrase | Async           | We process callbacks after async operations complete.                               |
-| async operation          | Noun Phrase | Async           | An async operation executes without blocking the main thread.                       |
-| promise chain            | Noun Phrase | Async           | A promise chain processes sequential async operations.                              |
-| callback queue           | Noun Phrase | Async           | The callback queue stores pending async callbacks.                                  |
-| event listener           | Noun Phrase | Async           | An event listener responds to specific events.                                      |
-| asynchronous             | Adjective   | Async           | Asynchronous code executes without blocking.                                        |
-| non-blocking             | Adjective   | Async           | Non-blocking operations allow concurrent execution.                                 |
-| event-driven             | Adjective   | Async           | Event-driven code responds to system events.                                        |
-| concurrent               | Adjective   | Async           | Concurrent operations execute simultaneously.                                       |
-| security policy          | Subject     | Security        | The security policy defines application security rules.                             |
-| input validator          | Subject     | Security        | The input validator checks user input for security.                                 |
-| authentication system    | Subject     | Security        | The authentication system verifies user identity.                                   |
-| encryption module        | Subject     | Security        | The encryption module protects sensitive data.                                      |
-| sanitize input           | Verb Phrase | Security        | We sanitize input to prevent security vulnerabilities.                              |
-| encrypt data             | Verb Phrase | Security        | We encrypt data to protect sensitive information.                                   |
-| validate requests        | Verb Phrase | Security        | We validate requests to ensure data integrity.                                      |
-| implement security       | Verb Phrase | Security        | We implement security measures to protect applications.                             |
-| security vulnerability   | Noun Phrase | Security        | A security vulnerability exposes system weaknesses.                                 |
-| input validation         | Noun Phrase | Security        | Input validation prevents malicious data entry.                                     |
-| authentication token     | Noun Phrase | Security        | An authentication token verifies user identity.                                     |
-| security measure         | Noun Phrase | Security        | A security measure protects against threats.                                        |
-| secure                   | Adjective   | Security        | Secure code protects against vulnerabilities.                                       |
-| encrypted                | Adjective   | Security        | Encrypted data is protected from unauthorized access.                               |
-| validated                | Adjective   | Security        | Validated input is safe for processing.                                             |
-| authenticated            | Adjective   | Security        | Authenticated users have verified identities.                                       |
-| type coercion            | Subject     | Core Concepts   | Type coercion automatically converts values between different types.                |
-| strict equality          | Subject     | Core Concepts   | Strict equality (===) compares values without type coercion.                        |
-| nullish coalescing       | Subject     | Modern Features | The nullish coalescing operator (??) provides a fallback for null/undefined values. |
-| optional chaining        | Subject     | Modern Features | Optional chaining (?.) safely accesses nested object properties.                    |
-| mark and sweep           | Subject     | Memory          | The mark and sweep algorithm identifies and removes unreachable objects.            |
-| memory cycle             | Subject     | Memory          | The memory cycle consists of allocation, use, and release phases.                   |
-| heap snapshot            | Subject     | Memory          | A heap snapshot shows memory usage at a specific point in time.                     |
-| allocation timeline      | Subject     | Memory          | The allocation timeline tracks object creation over time.                           |
-| performance panel        | Subject     | Memory          | The performance panel monitors memory usage in real-time.                           |
-| web worker               | Subject     | Performance     | A web worker runs JavaScript in a separate thread.                                  |
-| object pool              | Subject     | Performance     | An object pool reuses objects to reduce garbage collection.                         |
-| typed array              | Subject     | Performance     | A typed array stores numerical data more efficiently.                               |
-| hot path                 | Subject     | Performance     | A hot path is code that executes frequently and needs optimization.                 |
-| build tool               | Subject     | Development     | A build tool processes and bundles JavaScript code.                                 |
-| module bundler           | Subject     | Development     | A module bundler combines multiple modules into a single file.                      |
-| type safety              | Subject     | Development     | Type safety prevents type-related errors at compile time.                           |
-| code coverage            | Subject     | Testing         | Code coverage measures how much code is tested.                                     |
-| test runner              | Subject     | Testing         | A test runner executes and reports test results.                                    |
-| mock object              | Subject     | Testing         | A mock object simulates the behavior of real objects.                               |
-| test suite               | Subject     | Testing         | A test suite contains all tests for a feature.                                      |
-| performance bottleneck   | Subject     | Performance     | A performance bottleneck slows down application execution.                          |
-| memory leak              | Subject     | Memory          | A memory leak occurs when unused memory isn't released.                             |
-| garbage collection       | Subject     | Memory          | Garbage collection automatically frees unused memory.                               |
-| prototype chain          | Subject     | Core Concepts   | The prototype chain enables inheritance in JavaScript.                              |
-| lexical scope            | Subject     | Core Concepts   | Lexical scope determines variable accessibility.                                    |
-| closure                  | Subject     | Core Concepts   | A closure preserves access to variables from its outer scope.                       |
-| event loop               | Subject     | Core Concepts   | The event loop manages asynchronous operations.                                     |
-| promise chain            | Subject     | Async           | A promise chain processes sequential async operations.                              |
-| async function           | Subject     | Async           | An async function returns a promise automatically.                                  |
-| error handling           | Subject     | Core Concepts   | Error handling manages unexpected situations gracefully.                            |
-| type checking            | Subject     | Core Concepts   | Type checking verifies data types at runtime.                                       |
-| memory profiling         | Subject     | Memory          | Memory profiling analyzes memory usage patterns.                                    |
-| code optimization        | Subject     | Performance     | Code optimization improves execution efficiency.                                    |
-| test isolation           | Subject     | Testing         | Test isolation ensures tests don't affect each other.                               |
-| dependency injection     | Subject     | Design Patterns | Dependency injection improves code flexibility.                                     |
-| design pattern           | Subject     | Design Patterns | A design pattern solves common programming problems.                                |
-| security vulnerability   | Subject     | Security        | A security vulnerability exposes system weaknesses.                                 |
-| input validation         | Subject     | Security        | Input validation prevents malicious data entry.                                     |
-| authentication           | Subject     | Security        | Authentication verifies user identity.                                              |
-| encryption               | Subject     | Security        | Encryption protects sensitive data.                                                 |
-| performance optimization | Subject     | Performance     | Performance optimization improves code execution speed.                             |
-| memory management        | Subject     | Memory          | Memory management controls memory allocation and release.                           |
-| asynchronous programming | Subject     | Async           | Asynchronous programming handles non-blocking operations.                           |
-| error boundary           | Subject     | Core Concepts   | An error boundary catches and handles errors gracefully.                            |
-| type system              | Subject     | Core Concepts   | The type system defines how data types are handled.                                 |
-| memory allocation        | Subject     | Memory          | Memory allocation reserves space for data.                                          |
-| test coverage            | Subject     | Testing         | Test coverage measures how much code is tested.                                     |
-| performance monitoring   | Subject     | Performance     | Performance monitoring tracks application speed.                                    |
-| security measure         | Subject     | Security        | A security measure protects against threats.                                        |
-| code quality             | Subject     | Development     | Code quality ensures maintainable and efficient code.                               |
-| development workflow     | Subject     | Development     | A development workflow organizes the coding process.                                |
-| build process            | Subject     | Development     | The build process prepares code for production.                                     |
-| module system            | Subject     | Development     | The module system organizes code into reusable units.                               |
-| testing strategy         | Subject     | Testing         | A testing strategy ensures code reliability.                                        |
-| performance testing      | Subject     | Testing         | Performance testing measures application speed.                                     |
-| security testing         | Subject     | Security        | Security testing identifies vulnerabilities.                                        |
-| memory testing           | Subject     | Memory          | Memory testing checks for memory leaks.                                             |
-| code review              | Subject     | Development     | A code review improves code quality.                                                |
-| development environment  | Subject     | Development     | A development environment supports coding.                                          |
-| build configuration      | Subject     | Development     | Build configuration controls the build process.                                     |
-| module bundling          | Subject     | Development     | Module bundling combines multiple modules.                                          |
-| type checking            | Subject     | Development     | Type checking verifies data types.                                                  |
-| test automation          | Subject     | Testing         | Test automation runs tests automatically.                                           |
-| performance profiling    | Subject     | Performance     | Performance profiling analyzes code speed.                                          |
-| security policy          | Subject     | Security        | A security policy defines security rules.                                           |
-| memory optimization      | Subject     | Memory          | Memory optimization improves memory usage.                                          |
-| asynchronous operation   | Subject     | Async           | An asynchronous operation runs without blocking.                                    |
-| error recovery           | Subject     | Core Concepts   | Error recovery handles errors gracefully.                                           |
-| type conversion          | Subject     | Core Concepts   | Type conversion changes data types.                                                 |
-| memory deallocation      | Subject     | Memory          | Memory deallocation frees unused memory.                                            |
-| test execution           | Subject     | Testing         | Test execution runs test cases.                                                     |
-| performance metric       | Subject     | Performance     | A performance metric measures code speed.                                           |
-| security protocol        | Subject     | Security        | A security protocol protects data.                                                  |
-| code organization        | Subject     | Development     | Code organization structures code logically.                                        |
-| development tool         | Subject     | Development     | A development tool supports coding.                                                 |
-| build optimization       | Subject     | Development     | Build optimization improves build speed.                                            |
-| module loading           | Subject     | Development     | Module loading loads code modules.                                                  |
-| type safety              | Subject     | Development     | Type safety prevents type errors.                                                   |
-| test framework           | Subject     | Testing         | A test framework supports testing.                                                  |
-| performance benchmark    | Subject     | Performance     | A performance benchmark measures speed.                                             |
-| security audit           | Subject     | Security        | A security audit checks for vulnerabilities.                                        |
-| memory allocation        | Subject     | Memory          | Memory allocation reserves memory.                                                  |
-| asynchronous flow        | Subject     | Async           | An asynchronous flow handles async operations.                                      |
-| error propagation        | Subject     | Core Concepts   | Error propagation passes errors up the stack.                                       |
-| type inference           | Subject     | Core Concepts   | Type inference determines types automatically.                                      |
-| memory fragmentation     | Subject     | Memory          | Memory fragmentation reduces available memory.                                      |
-| test result              | Subject     | Testing         | A test result shows test outcomes.                                                  |
-| performance analysis     | Subject     | Performance     | Performance analysis studies code speed.                                            |
-| security check           | Subject     | Security        | A security check verifies security.                                                 |
-| code structure           | Subject     | Development     | Code structure organizes code.                                                      |
-| development practice     | Subject     | Development     | A development practice guides coding.                                               |
-| build pipeline           | Subject     | Development     | A build pipeline automates builds.                                                  |
-| module dependency        | Subject     | Development     | A module dependency requires other modules.                                         |
-| type annotation          | Subject     | Development     | A type annotation specifies types.                                                  |
-| test case                | Subject     | Testing         | A test case verifies functionality.                                                 |
-| performance tool         | Subject     | Performance     | A performance tool measures speed.                                                  |
-| security feature         | Subject     | Security        | A security feature protects data.                                                   |
-| memory usage             | Subject     | Memory          | Memory usage tracks memory consumption.                                             |
-| asynchronous pattern     | Subject     | Async           | An asynchronous pattern handles async code.                                         |
-| error handling           | Subject     | Core Concepts   | Error handling manages errors.                                                      |
-| type checking            | Subject     | Core Concepts   | Type checking verifies types.                                                       |
-| memory management        | Subject     | Memory          | Memory management controls memory.                                                  |
-| test coverage            | Subject     | Testing         | Test coverage measures testing.                                                     |
-| performance optimization | Subject     | Performance     | Performance optimization improves speed.                                            |
-| security measure         | Subject     | Security        | A security measure protects data.                                                   |
-| code quality             | Subject     | Development     | Code quality ensures good code.                                                     |
-| development workflow     | Subject     | Development     | A development workflow organizes work.                                              |
-| build process            | Subject     | Development     | A build process prepares code.                                                      |
-| module system            | Subject     | Development     | A module system organizes code.                                                     |
-| testing strategy         | Subject     | Testing         | A testing strategy guides testing.                                                  |
-| performance testing      | Subject     | Testing         | Performance testing measures speed.                                                 |
-| security testing         | Subject     | Security        | Security testing checks security.                                                   |
-| memory testing           | Subject     | Memory          | Memory testing checks memory.                                                       |
-| code review              | Subject     | Development     | A code review improves code.                                                        |
-| development environment  | Subject     | Development     | A development environment supports work.                                            |
-| build configuration      | Subject     | Development     | Build configuration controls builds.                                                |
-| module bundling          | Subject     | Development     | Module bundling combines modules.                                                   |
-| type checking            | Subject     | Development     | Type checking verifies types.                                                       |
-| test automation          | Subject     | Testing         | Test automation runs tests.                                                         |
-| performance profiling    | Subject     | Performance     | Performance profiling analyzes speed.                                               |
-| security policy          | Subject     | Security        | A security policy defines rules.                                                    |
-| memory optimization      | Subject     | Memory          | Memory optimization improves memory.                                                |
-| asynchronous operation   | Subject     | Async           | An asynchronous operation runs async.                                               |
-| error recovery           | Subject     | Core Concepts   | Error recovery handles errors.                                                      |
-| type conversion          | Subject     | Core Concepts   | Type conversion changes types.                                                      |
-| memory deallocation      | Subject     | Memory          | Memory deallocation frees memory.                                                   |
-| test execution           | Subject     | Testing         | Test execution runs tests.                                                          |
-| performance metric       | Subject     | Performance     | A performance metric measures speed.                                                |
-| security protocol        | Subject     | Security        | A security protocol protects data.                                                  |
-| code organization        | Subject     | Development     | Code organization structures code.                                                  |
-| development tool         | Subject     | Development     | A development tool supports work.                                                   |
-| build optimization       | Subject     | Development     | Build optimization improves builds.                                                 |
-| module loading           | Subject     | Development     | Module loading loads modules.                                                       |
-| type safety              | Subject     | Development     | Type safety prevents errors.                                                        |
-| test framework           | Subject     | Testing         | A test framework supports testing.                                                  |
-| performance benchmark    | Subject     | Performance     | A performance benchmark measures speed.                                             |
-| security audit           | Subject     | Security        | A security audit checks security.                                                   |
-| memory allocation        | Subject     | Memory          | Memory allocation reserves memory.                                                  |
-| asynchronous flow        | Subject     | Async           | An asynchronous flow handles async.                                                 |
-| error propagation        | Subject     | Core Concepts   | Error propagation passes errors.                                                    |
-| type inference           | Subject     | Core Concepts   | Type inference determines types.                                                    |
-| memory fragmentation     | Subject     | Memory          | Memory fragmentation reduces memory.                                                |
-| test result              | Subject     | Testing         | A test result shows outcomes.                                                       |
-| performance analysis     | Subject     | Performance     | Performance analysis studies speed.                                                 |
-| security check           | Subject     | Security        | A security check verifies security.                                                 |
-| code structure           | Subject     | Development     | Code structure organizes code.                                                      |
-| development practice     | Subject     | Development     | A development practice guides work.                                                 |
-| build pipeline           | Subject     | Development     | A build pipeline automates builds.                                                  |
-| module dependency        | Subject     | Development     | A module dependency requires modules.                                               |
-| type annotation          | Subject     | Development     | A type annotation specifies types.                                                  |
-| test case                | Subject     | Testing         | A test case verifies functionality.                                                 |
-| performance tool         | Subject     | Performance     | A performance tool measures speed.                                                  |
-| security feature         | Subject     | Security        | A security feature protects data.                                                   |
-| memory usage             | Subject     | Memory          | Memory usage tracks memory.                                                         |
-| asynchronous pattern     | Subject     | Async           | An asynchronous pattern handles async.                                              |
+## Metadata
 
-## 📝 Usage Notes
-
-1. **Categories**:
-
-   - Core Concepts: Fundamental JavaScript concepts
-   - Modern Features: ES6+ and modern JavaScript features
-   - Design Patterns: Common design patterns and practices
-   - Testing: Testing and debugging related terms
-   - Memory: Memory management and performance
-   - Async: Asynchronous programming concepts
-   - Security: Security and best practices
-   - Development: Development tools and practices
-   - Performance: Performance optimization and monitoring
-
-2. **Types**:
-
-   - Subject: Main concepts or entities
-   - Verb Phrase: Actions or operations
-   - Noun Phrase: Objects or concepts
-   - Adjective: Describing words
-
-3. **Practice Tips**:
-   - Use terms in appropriate contexts
-   - Create your own examples
-   - Group related terms
-   - Review regularly
-   - Focus on understanding relationships between terms
-   - Practice using terms in technical discussions
-   - Build your own glossary
-   - Apply terms in real coding scenarios
+- Version: 1.0.0
+- Last Updated: 2025-05-19T13:10:52.872Z
+- Total Terms: 246
+- Categories: Core Concepts, Modern Features, Design Patterns, Testing, Memory, Async, Security, Development, Performance
