@@ -2,20 +2,21 @@ import React from 'react';
 import { Chip } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useTheme } from '../../../context/ThemeContext';
+import { Vocabulary } from '../../../types/vocabulary';
 
 interface WordChipProps {
-  term: string;
-  onDelete: () => void;
+  word: Vocabulary;
+  onDelete?: () => void;
 }
 
-export const WordChip: React.FC<WordChipProps> = ({ term, onDelete }) => {
+export const WordChip: React.FC<WordChipProps> = ({ word, onDelete }) => {
   const { themeSettings } = useTheme();
 
   return (
     <Chip
-      label={term}
+      label={word.term}
       onDelete={onDelete}
-      deleteIcon={<DeleteIcon />}
+      deleteIcon={onDelete && <DeleteIcon />}
       sx={{
         fontSize: '1rem',
         py: 2.5,

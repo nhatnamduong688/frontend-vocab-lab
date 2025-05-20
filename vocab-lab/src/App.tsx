@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from './context/ThemeContext';
 import { MainLayout } from './components/templates/MainLayout/MainLayout';
@@ -9,14 +9,35 @@ import { ErrorDisplay } from './components/atoms/ErrorDisplay/ErrorDisplay';
 import { useVocabulary } from './hooks/useVocabulary';
 
 function App() {
+  return (
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
+  );
+}
+
+function AppContent() {
   const {
     selectedWords,
     loading,
     error,
     vocabularyByType,
+    availableTypes = [], // Provide default empty array
+    currentTypeFilter,
     handleWordSelect,
     handleRemoveWord,
+    setCurrentTypeFilter,
+    refreshVocabulary
   } = useVocabulary();
+
+  // Log state for debugging
+  useEffect(() => {
+    console.log('Current state:', {
+      availableTypes,
+      currentTypeFilter,
+      vocabularyTypes: Object.keys(vocabularyByType || {})
+    });
+  }, [availableTypes, currentTypeFilter, vocabularyByType]);
 
   if (loading) {
     return <LoadingSpinner />;
@@ -27,26 +48,28 @@ function App() {
   }
 
   return (
-    <ThemeProvider>
-      <Router>
-        <MainLayout>
-          <Routes>
-            <Route 
-              path="/" 
-              element={
-                <HomePage
-                  selectedWords={selectedWords}
-                  vocabularyByType={vocabularyByType}
-                  handleWordSelect={handleWordSelect}
-                  handleRemoveWord={handleRemoveWord}
-                />
-              } 
-            />
-            <Route path="/settings" element={<SettingsPage />} />
-          </Routes>
-        </MainLayout>
-      </Router>
-    </ThemeProvider>
+    <Router>
+      <MainLayout>
+        <Routes>
+          <Route 
+            path="/" 
+            element={
+              <HomePage
+                selectedWords={selectedWords || []}
+                vocabularyByType={vocabularyByType || {}}
+                availableTypes={availableTypes}
+                currentTypeFilter={currentTypeFilter}
+                handleWordSelect={handleWordSelect}
+                handleRemoveWord={handleRemoveWord}
+                setCurrentTypeFilter={setCurrentTypeFilter}
+                refreshVocabulary={refreshVocabulary}
+              />
+            } 
+          />
+          <Route path="/settings" element={<SettingsPage />} />
+        </Routes>
+      </MainLayout>
+    </Router>
   );
 }
 

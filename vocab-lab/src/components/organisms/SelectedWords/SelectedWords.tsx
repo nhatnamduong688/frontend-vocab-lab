@@ -4,12 +4,12 @@ import { Vocabulary } from '../../../types/vocabulary';
 import { WordChip } from '../../atoms/WordChip/WordChip';
 
 interface SelectedWordsProps {
-  selectedWords: Vocabulary[];
+  words: Vocabulary[];
   onRemoveWord: (term: string) => void;
 }
 
 export const SelectedWords: React.FC<SelectedWordsProps> = ({
-  selectedWords,
+  words,
   onRemoveWord,
 }) => {
   return (
@@ -77,19 +77,19 @@ export const SelectedWords: React.FC<SelectedWordsProps> = ({
                 flexWrap: 'wrap',
                 gap: 1,
                 alignItems: 'center',
-                justifyContent: selectedWords.length ? 'flex-start' : 'center',
+                justifyContent: words.length ? 'flex-start' : 'center',
                 minHeight: '50px'
               }}
             >
-              {selectedWords.length === 0 ? (
+              {words.length === 0 ? (
                 <Typography color="text.secondary" variant="body1">
                   Your selected words will appear here
                 </Typography>
               ) : (
-                selectedWords.map((word) => (
+                words.map((word) => (
                   <WordChip
                     key={word.id}
-                    term={word.term}
+                    word={word}
                     onDelete={() => onRemoveWord(word.term)}
                   />
                 ))
@@ -97,7 +97,7 @@ export const SelectedWords: React.FC<SelectedWordsProps> = ({
             </Box>
 
             {/* Sentence Preview */}
-            {selectedWords.length > 0 && (
+            {words.length > 0 && (
               <Box sx={{ 
                 mt: 3,
                 pt: 2,
@@ -113,7 +113,7 @@ export const SelectedWords: React.FC<SelectedWordsProps> = ({
                     textAlign: 'center'
                   }}
                 >
-                  {selectedWords.map(word => word.term).join(' ')}
+                  {words.map(word => word.term).join(' ')}
                 </Typography>
               </Box>
             )}
