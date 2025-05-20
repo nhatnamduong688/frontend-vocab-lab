@@ -1,12 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Box, Container } from '@mui/material';
 import { ThemeProvider } from './context/ThemeContext';
-import { Settings } from './components/Settings';
-import { Navigation } from './components/Navigation';
-import { HomePage } from './components/HomePage';
-import { LoadingSpinner } from './components/LoadingSpinner';
-import { ErrorDisplay } from './components/ErrorDisplay';
+import { MainLayout } from './components/templates/MainLayout/MainLayout';
+import { HomePage } from './components/pages/HomePage/HomePage';
+import { SettingsPage } from './components/pages/SettingsPage/SettingsPage';
+import { LoadingSpinner } from './components/atoms/LoadingSpinner/LoadingSpinner';
+import { ErrorDisplay } from './components/atoms/ErrorDisplay/ErrorDisplay';
 import { useVocabulary } from './hooks/useVocabulary';
 
 function App() {
@@ -30,25 +29,22 @@ function App() {
   return (
     <ThemeProvider>
       <Router>
-        <Box sx={{ flexGrow: 1 }}>
-          <Navigation />
-          <Container>
-            <Routes>
-              <Route 
-                path="/" 
-                element={
-                  <HomePage
-                    selectedWords={selectedWords}
-                    vocabularyByType={vocabularyByType}
-                    handleWordSelect={handleWordSelect}
-                    handleRemoveWord={handleRemoveWord}
-                  />
-                } 
-              />
-              <Route path="/settings" element={<Settings />} />
-            </Routes>
-          </Container>
-        </Box>
+        <MainLayout>
+          <Routes>
+            <Route 
+              path="/" 
+              element={
+                <HomePage
+                  selectedWords={selectedWords}
+                  vocabularyByType={vocabularyByType}
+                  handleWordSelect={handleWordSelect}
+                  handleRemoveWord={handleRemoveWord}
+                />
+              } 
+            />
+            <Route path="/settings" element={<SettingsPage />} />
+          </Routes>
+        </MainLayout>
       </Router>
     </ThemeProvider>
   );
