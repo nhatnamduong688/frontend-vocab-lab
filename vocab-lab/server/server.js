@@ -575,11 +575,9 @@ app.get("/api/vocabulary/types/:typeName", (req, res) => {
       `Error getting vocabulary for type ${req.params.typeName}:`,
       error
     );
-    res
-      .status(500)
-      .json({
-        error: `Failed to retrieve vocabulary for type ${req.params.typeName}`,
-      });
+    res.status(500).json({
+      error: `Failed to retrieve vocabulary for type ${req.params.typeName}`,
+    });
   }
 });
 
