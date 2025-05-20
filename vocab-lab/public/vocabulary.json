@@ -1,0 +1,95 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2024-03-20",
+    "totalTerms": 5,
+    "categories": ["React Hooks", "React Basics", "React Concepts"]
+  },
+  "vocabulary": [
+    {
+      "term": "useState",
+      "definition": "A React Hook that lets you add state to functional components",
+      "type": "React Hooks",
+      "example": "const [count, setCount] = useState(0);",
+      "category": "State Management",
+      "difficulty": "Beginner",
+      "frequency": "Very High",
+      "interviewImportance": "High",
+      "description": "The useState hook is fundamental for managing local state in React components",
+      "relatedTerms": ["useEffect", "useContext", "useReducer"],
+      "codeExample": "function Counter() {\n  const [count, setCount] = useState(0);\n  return <button onClick={() => setCount(count + 1)}>{count}</button>;\n}",
+      "commonQuestions": [
+        "What is the difference between useState and useReducer?",
+        "How do you handle multiple state updates?"
+      ]
+    },
+    {
+      "term": "useEffect",
+      "definition": "A React Hook for handling side effects in functional components",
+      "type": "React Hooks",
+      "example": "useEffect(() => { document.title = `Count: ${count}`; }, [count]);",
+      "category": "Lifecycle",
+      "difficulty": "Intermediate",
+      "frequency": "Very High",
+      "interviewImportance": "High",
+      "description": "useEffect handles side effects like data fetching, subscriptions, or DOM manipulation",
+      "relatedTerms": ["useState", "useLayoutEffect", "useCallback"],
+      "codeExample": "useEffect(() => {\n  const subscription = api.subscribe(data => {\n    // Handle data\n  });\n  return () => subscription.unsubscribe();\n}, []);",
+      "commonQuestions": [
+        "What are the differences between useEffect and useLayoutEffect?",
+        "How do you handle cleanup in useEffect?"
+      ]
+    },
+    {
+      "term": "Component",
+      "definition": "A reusable piece of UI in React",
+      "type": "React Basics",
+      "example": "function Welcome(props) { return <h1>Hello, {props.name}</h1>; }",
+      "category": "Core Concepts",
+      "difficulty": "Beginner",
+      "frequency": "Very High",
+      "interviewImportance": "High",
+      "description": "Components are the building blocks of React applications",
+      "relatedTerms": ["Props", "JSX", "Elements"],
+      "codeExample": "class Welcome extends React.Component {\n  render() {\n    return <h1>Hello, {this.props.name}</h1>;\n  }\n}",
+      "commonQuestions": [
+        "What is the difference between functional and class components?",
+        "When should you create a new component?"
+      ]
+    },
+    {
+      "term": "Props",
+      "definition": "Properties passed to React components",
+      "type": "React Basics",
+      "example": "<Welcome name='Sara' />",
+      "category": "Core Concepts",
+      "difficulty": "Beginner",
+      "frequency": "Very High",
+      "interviewImportance": "High",
+      "description": "Props are read-only and help make components reusable",
+      "relatedTerms": ["State", "Component", "PropTypes"],
+      "codeExample": "function Welcome(props) {\n  return <h1>Hello, {props.name}</h1>;\n}",
+      "commonQuestions": [
+        "What is the difference between props and state?",
+        "How do you handle prop validation?"
+      ]
+    },
+    {
+      "term": "Virtual DOM",
+      "definition": "A lightweight copy of the actual DOM used by React for performance",
+      "type": "React Concepts",
+      "example": "React uses Virtual DOM to minimize actual DOM updates",
+      "category": "Performance",
+      "difficulty": "Intermediate",
+      "frequency": "Medium",
+      "interviewImportance": "Medium",
+      "description": "Virtual DOM helps optimize rendering performance in React applications",
+      "relatedTerms": ["Reconciliation", "DOM", "React Fiber"],
+      "codeExample": "// React handles Virtual DOM automatically\nfunction App() {\n  return <div>Content</div>;\n}",
+      "commonQuestions": [
+        "How does Virtual DOM improve performance?",
+        "What is the difference between Virtual DOM and Shadow DOM?"
+      ]
+    }
+  ]
+} 
