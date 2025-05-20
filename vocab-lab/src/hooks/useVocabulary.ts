@@ -1,133 +1,185 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Vocabulary } from '../types/vocabulary';
 import { 
-  fetchVocabulary, 
-  fetchVocabularyByType, 
-  fetchVocabularyIndex,
-  clearVocabularyCache
-} from '../services/vocabularyService';
+  VocabularyItem, 
+  VocabularyTypeInfo,
+  DifficultyLevel,
+  VocabularyType,
+  Vocabulary
+} from '../types/vocabulary';
+import * as vocabularyService from '../services/vocabularyService';
 
-export const useVocabulary = () => {
-  const [vocabulary, setVocabulary] = useState<Vocabulary[]>([]);
+interface VocabularyHookState {
+  loading: boolean;
+  error: string | null;
+  vocabularyData: VocabularyItem[];
+  availableTypes: VocabularyTypeInfo[];
+  filteredData: VocabularyItem[];
+}
+
+interface VocabularyHookFilters {
+  types?: VocabularyType[];
+  difficulty?: DifficultyLevel;
+  searchText?: string;
+}
+
+export function useVocabulary() {
+  const [state, setState] = useState<VocabularyHookState>({
+    loading: true,
+    error: null,
+    vocabularyData: [],
+    availableTypes: [],
+    filteredData: [],
+  });
+
+  const [filters, setFilters] = useState<VocabularyHookFilters>({
+    types: undefined,
+    difficulty: undefined,
+    searchText: '',
+  });
+
   const [selectedWords, setSelectedWords] = useState<Vocabulary[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [availableTypes, setAvailableTypes] = useState<string[]>([]);
   const [currentTypeFilter, setCurrentTypeFilter] = useState<string | null>(null);
-  const [initialized, setInitialized] = useState(false);
 
-  // Load vocabulary index and available types
-  const loadVocabularyIndex = useCallback(async () => {
+  // Tải danh sách loại từ vựng có sẵn
+  const loadAvailableTypes = useCallback(async () => {
     try {
-      console.log('Loading vocabulary index...');
-      const indexData = await fetchVocabularyIndex();
-      if (indexData && indexData.availableTypes) {
-        const types = indexData.availableTypes.map(t => t.type);
-        console.log('Available types:', types);
-        setAvailableTypes(types);
-      } else {
-        console.warn('No vocabulary types found in index data');
-        setAvailableTypes([]);
-      }
-    } catch (err) {
-      console.error('Error loading vocabulary index:', err);
-      setAvailableTypes([]);
+      const types = await vocabularyService.getAvailableTypes();
+      setState(prevState => ({
+        ...prevState,
+        availableTypes: types,
+      }));
+    } catch (error) {
+      console.error('Failed to load available types:', error);
+      setState(prevState => ({
+        ...prevState,
+        error: 'Failed to load vocabulary types',
+      }));
     }
   }, []);
 
-  // Load all vocabulary when the component mounts
-  const loadVocabulary = useCallback(async () => {
-    try {
-      setLoading(true);
-      console.log('Loading all vocabulary...');
-      const data = await fetchVocabulary();
-      console.log(`Loaded ${data.length} vocabulary items`);
-      setVocabulary(data);
-      setError(null);
-    } catch (err) {
-      console.error('Failed to load vocabulary:', err);
-      setError('Failed to load vocabulary');
-      setVocabulary([]);
-    } finally {
-      setLoading(false);
-      setInitialized(true);
-    }
-  }, []);
-
-  // Load vocabulary by type when type filter changes
-  const loadVocabularyByType = useCallback(async (type: string) => {
-    try {
-      setLoading(true);
-      console.log(`Loading vocabulary for type: ${type}`);
-      const data = await fetchVocabularyByType(type);
-      console.log(`Loaded ${data.length} ${type} vocabulary items`);
-      setVocabulary(data);
-      setError(null);
-    } catch (err) {
-      console.error(`Failed to load ${type} vocabulary:`, err);
-      setError(`Failed to load ${type} vocabulary`);
-      setVocabulary([]);
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
-  // Initial loading
-  useEffect(() => {
-    const initializeData = async () => {
-      await loadVocabularyIndex();
-      await loadVocabulary();
-    };
+  // Tải dữ liệu từ vựng
+  const loadVocabularyData = useCallback(async () => {
+    setState(prevState => ({ ...prevState, loading: true, error: null }));
     
-    initializeData();
-  }, [loadVocabularyIndex, loadVocabulary]);
-
-  // Load vocabulary by type when type filter changes
-  useEffect(() => {
-    if (initialized && currentTypeFilter) {
-      loadVocabularyByType(currentTypeFilter);
+    try {
+      // Nếu có chỉ định loại cụ thể
+      if (filters.types && filters.types.length > 0) {
+        const typePromises = filters.types.map(type => 
+          vocabularyService.getVocabularyByType(type)
+        );
+        const typeResults = await Promise.all(typePromises);
+        const combinedData = typeResults.flat();
+        
+        setState(prevState => ({
+          ...prevState,
+          loading: false,
+          vocabularyData: combinedData,
+          filteredData: applyFilters(combinedData, filters),
+        }));
+      } else {
+        // Tải tất cả các loại
+        const allData = await vocabularyService.getAllVocabulary();
+        setState(prevState => ({
+          ...prevState,
+          loading: false,
+          vocabularyData: allData,
+          filteredData: applyFilters(allData, filters),
+        }));
+      }
+    } catch (error) {
+      console.error('Failed to load vocabulary data:', error);
+      setState(prevState => ({
+        ...prevState,
+        loading: false,
+        error: 'Failed to load vocabulary data',
+      }));
     }
-  }, [currentTypeFilter, loadVocabularyByType, initialized]);
+  }, [filters]);
 
-  const handleWordSelect = (word: Vocabulary) => {
-    setSelectedWords(prev => [...prev, word]);
-  };
-
-  const handleRemoveWord = (term: string) => {
-    setSelectedWords(prev => prev.filter(word => word.term !== term));
-  };
-
-  // Group vocabulary by type
-  const vocabularyByType = vocabulary.reduce<Record<string, Vocabulary[]>>((acc, word) => {
-    const type = word.type || 'Other';
-    if (!acc[type]) {
-      acc[type] = [];
-    }
-    acc[type].push(word);
-    return acc;
-  }, {});
-
-  const refreshVocabulary = useCallback(() => {
-    clearVocabularyCache();
-    loadVocabulary();
-  }, [loadVocabulary]);
-
-  const setTypeFilter = useCallback((type: string | null) => {
-    console.log(`Setting type filter to: ${type}`);
-    setCurrentTypeFilter(type);
+  // Cập nhật bộ lọc
+  const updateFilters = useCallback((newFilters: Partial<VocabularyHookFilters>) => {
+    setFilters(prevFilters => ({
+      ...prevFilters,
+      ...newFilters,
+    }));
   }, []);
+
+  // Lọc dữ liệu dựa trên bộ lọc hiện tại
+  const applyFilters = (data: VocabularyItem[], currentFilters: VocabularyHookFilters) => {
+    return data.filter(item => {
+      // Lọc theo loại
+      if (currentFilters.types && currentFilters.types.length > 0 && 
+          !currentFilters.types.includes(item.type as VocabularyType)) {
+        return false;
+      }
+      
+      // Lọc theo độ khó
+      if (currentFilters.difficulty && item.difficulty !== currentFilters.difficulty) {
+        return false;
+      }
+      
+      // Lọc theo từ khóa tìm kiếm
+      if (currentFilters.searchText && currentFilters.searchText.trim() !== '') {
+        const searchLower = currentFilters.searchText.toLowerCase();
+        return (
+          item.term.toLowerCase().includes(searchLower) ||
+          item.definition.toLowerCase().includes(searchLower)
+        );
+      }
+      
+      return true;
+    });
+  };
+
+  // Các hàm xử lý cần thiết cho HomePage cũ
+  const handleWordSelect = useCallback((word: Vocabulary) => {
+    setSelectedWords(prev => [...prev, word]);
+  }, []);
+
+  const handleRemoveWord = useCallback((term: string) => {
+    setSelectedWords(prev => prev.filter(word => word.term !== term));
+  }, []);
+
+  // Nhóm từ vựng theo loại (cần thiết cho HomePage cũ)
+  const vocabularyByType = Object.fromEntries(
+    state.availableTypes.map(typeInfo => [
+      typeInfo.name,
+      state.vocabularyData.filter(item => item.type === typeInfo.name)
+    ])
+  );
+
+  // Cập nhật bộ lọc trên dữ liệu hiện có
+  useEffect(() => {
+    if (state.vocabularyData.length > 0) {
+      const filtered = applyFilters(state.vocabularyData, filters);
+      setState(prevState => ({
+        ...prevState,
+        filteredData: filtered,
+      }));
+    }
+  }, [filters]);
+
+  // Tải dữ liệu ban đầu
+  useEffect(() => {
+    loadAvailableTypes();
+    loadVocabularyData();
+  }, [loadAvailableTypes, loadVocabularyData]);
 
   return {
-    vocabulary,
+    loading: state.loading,
+    error: state.error,
+    vocabulary: state.filteredData,
+    allVocabulary: state.vocabularyData,
+    availableTypes: state.availableTypes,
+    filters,
+    updateFilters,
+    refreshData: loadVocabularyData,
+    // Các tính năng từ phiên bản cũ của hook
     selectedWords,
-    loading,
-    error,
-    vocabularyByType,
-    availableTypes,
-    currentTypeFilter,
     handleWordSelect,
     handleRemoveWord,
-    setCurrentTypeFilter: setTypeFilter,
-    refreshVocabulary,
+    setCurrentTypeFilter,
+    vocabularyByType,
+    currentTypeFilter
   };
-}; 
+} 

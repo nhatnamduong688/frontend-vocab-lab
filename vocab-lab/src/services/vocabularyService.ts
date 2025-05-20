@@ -1,135 +1,131 @@
-import { Vocabulary } from '../types/vocabulary';
+import { VocabularyItem, VocabularyMetadata, VocabularyTypeInfo } from '../types/vocabulary';
 
-interface VocabularyIndex {
-  metadata: {
-    version: string;
-    lastUpdated: string;
-    totalTerms: number;
-    categories: string[];
-  };
-  availableTypes: {
-    type: string;
-    count: number;
-    file: string;
-  }[];
-  allWordsFile: string;
+// Interface cho dữ liệu từ vựng
+interface VocabularyData {
+  metadata: VocabularyMetadata & { type?: string };
+  vocabulary: VocabularyItem[];
 }
 
-// Cache for loaded vocabulary data
-const cache: Record<string, Vocabulary[]> = {};
+// Interface cho dữ liệu index
+interface VocabularyIndex {
+  metadata: VocabularyMetadata & {
+    types: VocabularyTypeInfo[];
+  };
+}
 
-/**
- * Helper function to log errors
- */
-const logError = (message: string, error: any) => {
-  console.error(`[VocabularyService] ${message}:`, error);
+// Cache để lưu trữ dữ liệu đã tải
+const cache: {
+  index?: VocabularyIndex;
+  types: Record<string, VocabularyData>;
+} = {
+  types: {}
 };
 
 /**
- * Check if the response is valid
+ * Tải thông tin index của từ vựng
  */
-const validateResponse = async (response: Response, errorContext: string) => {
-  if (!response.ok) {
-    throw new Error(`${errorContext} - HTTP error ${response.status}`);
+export async function loadVocabularyIndex(): Promise<VocabularyIndex> {
+  if (cache.index) {
+    return cache.index;
   }
-  
-  try {
-    return await response.json();
-  } catch (error) {
-    logError(`${errorContext} - Invalid JSON`, error);
-    throw error;
-  }
-};
 
-/**
- * Fetch the vocabulary index file
- */
-export const fetchVocabularyIndex = async (): Promise<VocabularyIndex> => {
   try {
-    console.log('[VocabularyService] Fetching vocabulary index...');
-    
-    const response = await fetch('/vocabulary/index.json');
-    const data = await validateResponse(response, 'Fetching vocabulary index');
-    
-    console.log('[VocabularyService] Loaded index data with types:', 
-      data.availableTypes?.map((t: any) => t.type).join(', ') || 'none');
-      
+    const response = await fetch('/vocabulary/types/index.json');
+    if (!response.ok) {
+      throw new Error(`Failed to load vocabulary index: ${response.status} ${response.statusText}`);
+    }
+
+    const data = await response.json() as VocabularyIndex;
+    cache.index = data;
     return data;
   } catch (error) {
-    logError('Error loading vocabulary index', error);
-    // Return a valid empty index
-    return {
-      metadata: { version: '1.0.0', lastUpdated: '', totalTerms: 0, categories: [] },
-      availableTypes: [],
-      allWordsFile: 'all.json'
-    };
+    console.error('Error loading vocabulary index:', error);
+    throw error;
   }
-};
+}
 
 /**
- * Fetch vocabulary by type
- * @param type The type of vocabulary to fetch (noun, verb, etc.) or 'all' for all vocabulary
+ * Tải dữ liệu từ vựng cho một loại cụ thể
  */
-export const fetchVocabularyByType = async (type: string): Promise<Vocabulary[]> => {
+export async function loadVocabularyByType(type: string): Promise<VocabularyData> {
+  // Nếu đã có trong cache, trả về từ cache
+  if (cache.types[type]) {
+    return cache.types[type];
+  }
+
   try {
-    console.log(`[VocabularyService] Fetching vocabulary for type: ${type}`);
-    
-    // Return from cache if available
-    if (cache[type]) {
-      console.log(`[VocabularyService] Returning ${cache[type].length} items from cache for type: ${type}`);
-      return cache[type];
+    const response = await fetch(`/vocabulary/types/${type}.json`);
+    if (!response.ok) {
+      throw new Error(`Failed to load vocabulary data for type ${type}: ${response.status} ${response.statusText}`);
     }
 
-    // Determine the file path
-    const filePath = type === 'all' 
-      ? '/vocabulary/all.json' 
-      : `/vocabulary/types/${type}.json`;
-    
-    console.log(`[VocabularyService] Loading from: ${filePath}`);
-    
-    const response = await fetch(filePath);
-    const data = await validateResponse(response, `Fetching vocabulary for type ${type}`);
-    
-    // Extract and transform the vocabulary data
-    if (!data || !data.vocabulary || !Array.isArray(data.vocabulary)) {
-      console.warn(`[VocabularyService] Invalid data format for type ${type}:`, data);
-      return [];
-    }
-    
-    // Transform and normalize the data
-    const transformedData = data.vocabulary.map((item: any, index: number) => ({
-      ...item,
-      id: item.id || `word-${index}`,
-      type: item.type || type,
-      difficulty: item.difficulty || 'medium',
-      frequency: typeof item.frequency === 'number' ? item.frequency : 1
-    }));
-    
-    console.log(`[VocabularyService] Loaded ${transformedData.length} items for type: ${type}`);
-    
-    // Store in cache
-    cache[type] = transformedData;
-    
-    return transformedData;
+    const data = await response.json() as VocabularyData;
+    // Lưu vào cache
+    cache.types[type] = data;
+    return data;
   } catch (error) {
-    logError(`Error loading vocabulary for type ${type}`, error);
-    return [];
+    console.error(`Error loading vocabulary data for type ${type}:`, error);
+    throw error;
   }
-};
+}
 
 /**
- * Fetch all vocabulary data
+ * Lấy tất cả loại từ vựng có sẵn
  */
-export const fetchVocabulary = async (): Promise<Vocabulary[]> => {
-  return fetchVocabularyByType('all');
-};
+export async function getAvailableTypes(): Promise<VocabularyTypeInfo[]> {
+  const index = await loadVocabularyIndex();
+  return index.metadata.types || [];
+}
 
 /**
- * Clear the cache (useful when new data is added)
+ * Lấy danh sách từ vựng theo loại
  */
-export const clearVocabularyCache = () => {
-  console.log('[VocabularyService] Clearing cache');
-  Object.keys(cache).forEach(key => {
-    delete cache[key];
+export async function getVocabularyByType(type: string): Promise<VocabularyItem[]> {
+  const data = await loadVocabularyByType(type);
+  return data.vocabulary || [];
+}
+
+/**
+ * Lấy thông tin metadata cho một loại từ vựng
+ */
+export async function getTypeMetadata(type: string): Promise<VocabularyMetadata> {
+  const data = await loadVocabularyByType(type);
+  return data.metadata;
+}
+
+/**
+ * Lấy tất cả từ vựng từ tất cả các loại
+ */
+export async function getAllVocabulary(): Promise<VocabularyItem[]> {
+  const index = await loadVocabularyIndex();
+  const types = index.metadata.types.map(t => t.name);
+  
+  const allPromises = types.map(type => loadVocabularyByType(type));
+  const allData = await Promise.all(allPromises);
+  
+  return allData.flatMap(data => data.vocabulary);
+}
+
+/**
+ * Tìm kiếm từ vựng theo chuỗi tìm kiếm
+ */
+export async function searchVocabulary(
+  searchText: string, 
+  types?: string[]
+): Promise<VocabularyItem[]> {
+  const allVocab = await getAllVocabulary();
+  const searchLower = searchText.toLowerCase();
+  
+  return allVocab.filter(item => {
+    // Lọc theo type nếu có chỉ định
+    if (types && types.length > 0 && !types.includes(item.type)) {
+      return false;
+    }
+    
+    // Tìm kiếm theo term hoặc definition
+    return (
+      item.term.toLowerCase().includes(searchLower) ||
+      item.definition.toLowerCase().includes(searchLower)
+    );
   });
-}; 
+} 

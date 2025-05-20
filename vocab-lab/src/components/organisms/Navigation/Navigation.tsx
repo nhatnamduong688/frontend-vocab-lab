@@ -1,6 +1,9 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography, Button } from '@mui/material';
+import { AppBar, Toolbar, Typography, Button, Box } from '@mui/material';
 import { Link } from 'react-router-dom';
+import HomeIcon from '@mui/icons-material/Home';
+import ExploreIcon from '@mui/icons-material/Explore';
+import SettingsIcon from '@mui/icons-material/Settings';
 
 export const Navigation: React.FC = () => {
   return (
@@ -9,12 +12,32 @@ export const Navigation: React.FC = () => {
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           Vocabulary Lab
         </Typography>
-        <Button color="inherit" component={Link} to="/">
-          Home
-        </Button>
-        <Button color="inherit" component={Link} to="/settings">
-          Settings
-        </Button>
+        <Box sx={{ display: 'flex' }}>
+          <Button 
+            color="inherit" 
+            component={Link} 
+            to="/"
+            startIcon={<HomeIcon />}
+          >
+            Home
+          </Button>
+          <Button 
+            color="inherit" 
+            component={Link} 
+            to="/explore"
+            startIcon={<ExploreIcon />}
+          >
+            Explore
+          </Button>
+          <Button 
+            color="inherit" 
+            component={Link} 
+            to="/settings"
+            startIcon={<SettingsIcon />}
+          >
+            Settings
+          </Button>
+        </Box>
       </Toolbar>
     </AppBar>
   );

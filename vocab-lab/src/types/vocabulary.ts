@@ -62,4 +62,27 @@ export interface Word {
 
 export interface SelectedWord extends Word {
   position: number; // Position in the sentence
-} 
+}
+
+export interface VocabularyItem {
+  id: string;
+  term: string;
+  definition: string;
+  type: string;
+  difficulty: 'easy' | 'medium' | 'hard';
+  frequency: number;
+  category: string;
+  example: string;
+  interviewImportance: 'low' | 'medium' | 'high';
+  description: string;
+  relatedTerms: string[];
+  codeExample: string;
+  commonQuestions: string[];
+}
+
+export interface VocabularyTypeInfo {
+  name: string;
+  count: number;
+}
+
+export type VocabularyImportance = 'low' | 'medium' | 'high'; 

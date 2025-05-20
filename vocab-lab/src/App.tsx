@@ -6,6 +6,7 @@ import { HomePage } from './components/pages/HomePage/HomePage';
 import { SettingsPage } from './components/pages/SettingsPage/SettingsPage';
 import { LoadingSpinner } from './components/atoms/LoadingSpinner/LoadingSpinner';
 import { ErrorDisplay } from './components/atoms/ErrorDisplay/ErrorDisplay';
+import VocabularyByType from './components/VocabularyByType';
 import { useVocabulary } from './hooks/useVocabulary';
 
 function App() {
@@ -18,28 +19,20 @@ function App() {
 
 function AppContent() {
   const {
-    selectedWords,
     loading,
     error,
-    vocabularyByType,
-    availableTypes = [], // Provide default empty array
-    currentTypeFilter,
+    vocabulary,
+    allVocabulary,
+    availableTypes,
+    selectedWords,
     handleWordSelect,
     handleRemoveWord,
     setCurrentTypeFilter,
-    refreshVocabulary
+    refreshData,
+    vocabularyByType
   } = useVocabulary();
 
-  // Log state for debugging
-  useEffect(() => {
-    console.log('Current state:', {
-      availableTypes,
-      currentTypeFilter,
-      vocabularyTypes: Object.keys(vocabularyByType || {})
-    });
-  }, [availableTypes, currentTypeFilter, vocabularyByType]);
-
-  if (loading) {
+  if (loading && !vocabulary.length) {
     return <LoadingSpinner />;
   }
 
@@ -57,15 +50,16 @@ function AppContent() {
               <HomePage
                 selectedWords={selectedWords || []}
                 vocabularyByType={vocabularyByType || {}}
-                availableTypes={availableTypes}
-                currentTypeFilter={currentTypeFilter}
+                availableTypes={availableTypes.map(t => t.name)}
+                currentTypeFilter={null}
                 handleWordSelect={handleWordSelect}
                 handleRemoveWord={handleRemoveWord}
                 setCurrentTypeFilter={setCurrentTypeFilter}
-                refreshVocabulary={refreshVocabulary}
+                refreshVocabulary={refreshData}
               />
             } 
           />
+          <Route path="/explore" element={<VocabularyByType />} />
           <Route path="/settings" element={<SettingsPage />} />
         </Routes>
       </MainLayout>
