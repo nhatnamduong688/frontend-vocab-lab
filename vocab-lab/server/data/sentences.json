@@ -1,0 +1,99 @@
+{
+  "sentences": [
+    {
+      "id": "j3ghb8tps2",
+      "text": "Authenticate API Endpoint Event",
+      "words": [
+        {
+          "id": "v5",
+          "term": "Authenticate",
+          "definition": "To verify the identity of a user or system",
+          "type": "verb",
+          "difficulty": "medium",
+          "frequency": 88,
+          "category": "Security",
+          "example": "Authenticate user credentials",
+          "interviewImportance": "high",
+          "description": "Critical for application security",
+          "relatedTerms": [
+            "Authorization",
+            "Security",
+            "Login"
+          ],
+          "codeExample": "const token = jwt.sign({ userId: user.id }, 'secret')",
+          "commonQuestions": [
+            "What is JWT?",
+            "How to implement OAuth?"
+          ]
+        },
+        {
+          "id": "n4",
+          "term": "API",
+          "definition": "Application Programming Interface for software communication",
+          "type": "noun",
+          "difficulty": "medium",
+          "frequency": 95,
+          "category": "Web Development",
+          "example": "REST API endpoints for data exchange",
+          "interviewImportance": "high",
+          "description": "Interface for different software systems to communicate",
+          "relatedTerms": [
+            "REST",
+            "Endpoint",
+            "HTTP"
+          ],
+          "codeExample": "fetch('/api/users').then(response => response.json())",
+          "commonQuestions": [
+            "What is RESTful API?",
+            "How to handle API errors?"
+          ]
+        },
+        {
+          "id": "n18",
+          "term": "Endpoint",
+          "definition": "URL where API service can be accessed",
+          "type": "noun",
+          "difficulty": "easy",
+          "frequency": 92,
+          "category": "Web Development",
+          "example": "REST API endpoint",
+          "interviewImportance": "high",
+          "description": "Interface point for API communication",
+          "relatedTerms": [
+            "API",
+            "Route",
+            "URL"
+          ],
+          "codeExample": "app.get('/api/users', handler)",
+          "commonQuestions": [
+            "RESTful endpoints?",
+            "Endpoint security?"
+          ]
+        },
+        {
+          "id": "n15",
+          "term": "Event",
+          "definition": "Action or occurrence detected by program",
+          "type": "noun",
+          "difficulty": "medium",
+          "frequency": 90,
+          "category": "Programming Concepts",
+          "example": "Click event in web applications",
+          "interviewImportance": "high",
+          "description": "Core concept in event-driven programming",
+          "relatedTerms": [
+            "Listener",
+            "Handler",
+            "Callback"
+          ],
+          "codeExample": "element.addEventListener('click', handler)",
+          "commonQuestions": [
+            "Event bubbling?",
+            "Event delegation?"
+          ]
+        }
+      ],
+      "timestamp": 1747756010486
+    }
+  ]
+}

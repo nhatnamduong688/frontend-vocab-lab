@@ -1,9 +1,11 @@
 import React, { useState, useCallback, memo } from 'react';
-import { Box, Paper, Typography, Stack, Button, Snackbar, Alert, ButtonGroup, IconButton, Tooltip } from '@mui/material';
+import { Box, Paper, Typography, Stack, Button, Snackbar, Alert, ButtonGroup, IconButton, Tooltip, CircularProgress } from '@mui/material';
+import { Link } from 'react-router-dom';
 import SaveIcon from '@mui/icons-material/Save';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import DescriptionIcon from '@mui/icons-material/Description';
 import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';
+import BookmarkIcon from '@mui/icons-material/Bookmark';
 import { Vocabulary } from '../../../types/vocabulary';
 import { WordChip } from '../../atoms/WordChip/WordChip';
 import { saveSentence, exportSentencesToFile, displaySentencesAsMarkdown } from '../../../services/sentenceService';
@@ -28,7 +30,7 @@ export const SelectedWords: React.FC<SelectedWordsProps> = ({
   const [isProcessing, setIsProcessing] = useState(false);
 
   // Xử lý khi click nút lưu - sử dụng useCallback để tránh tạo hàm mới mỗi khi render
-  const handleSaveSentence = useCallback(() => {
+  const handleSaveSentence = useCallback(async () => {
     if (words.length < 2) {
       setSnackbarMessage('Vui lòng chọn ít nhất 2 từ để tạo câu.');
       setSnackbarSeverity('info');
@@ -40,10 +42,11 @@ export const SelectedWords: React.FC<SelectedWordsProps> = ({
     setIsProcessing(true);
 
     try {
-      saveSentence(words);
+      await saveSentence(words);
       setSnackbarMessage('Câu đã được lưu thành công!');
       setSnackbarSeverity('success');
     } catch (error) {
+      console.error('Error saving sentence:', error);
       setSnackbarMessage('Có lỗi xảy ra khi lưu câu.');
       setSnackbarSeverity('error');
     } finally {
@@ -53,42 +56,40 @@ export const SelectedWords: React.FC<SelectedWordsProps> = ({
   }, [words]);
 
   // Xử lý khi click nút export
-  const handleExportSentences = useCallback(() => {
+  const handleExportSentences = useCallback(async () => {
     // Thêm chỉ báo đang xử lý
     setIsProcessing(true);
 
-    setTimeout(() => {
-      try {
-        exportSentencesToFile();
-        setSnackbarMessage('File đã được tải xuống.');
-        setSnackbarSeverity('success');
-      } catch (error) {
-        setSnackbarMessage('Có lỗi xảy ra khi xuất file.');
-        setSnackbarSeverity('error');
-      } finally {
-        setIsProcessing(false);
-        setSnackbarOpen(true);
-      }
-    }, 0); // Sử dụng setTimeout để không chặn UI thread
+    try {
+      await exportSentencesToFile();
+      setSnackbarMessage('File đã được tải xuống.');
+      setSnackbarSeverity('success');
+    } catch (error) {
+      console.error('Error exporting file:', error);
+      setSnackbarMessage('Có lỗi xảy ra khi xuất file.');
+      setSnackbarSeverity('error');
+    } finally {
+      setIsProcessing(false);
+      setSnackbarOpen(true);
+    }
   }, []);
 
   // Xử lý khi click nút hiển thị markdown
-  const handleShowMarkdown = useCallback(() => {
+  const handleShowMarkdown = useCallback(async () => {
     setIsProcessing(true);
 
-    setTimeout(() => {
-      try {
-        displaySentencesAsMarkdown();
-        setSnackbarMessage('Markdown đã được hiển thị trong cửa sổ mới.');
-        setSnackbarSeverity('success');
-      } catch (error) {
-        setSnackbarMessage('Có lỗi xảy ra khi tạo markdown.');
-        setSnackbarSeverity('error');
-      } finally {
-        setIsProcessing(false);
-        setSnackbarOpen(true);
-      }
-    }, 0);
+    try {
+      await displaySentencesAsMarkdown();
+      setSnackbarMessage('Markdown đã được hiển thị trong cửa sổ mới.');
+      setSnackbarSeverity('success');
+    } catch (error) {
+      console.error('Error displaying markdown:', error);
+      setSnackbarMessage('Có lỗi xảy ra khi tạo markdown.');
+      setSnackbarSeverity('error');
+    } finally {
+      setIsProcessing(false);
+      setSnackbarOpen(true);
+    }
   }, []);
 
   // Xử lý khi đóng snackbar
@@ -143,6 +144,22 @@ export const SelectedWords: React.FC<SelectedWordsProps> = ({
         >
           Sentence Formation
         </Typography>
+        
+        <Button
+          component={Link}
+          to="/saved-sentences"
+          color="inherit"
+          size="small"
+          startIcon={<BookmarkIcon />}
+          sx={{
+            textTransform: 'none',
+            '&:hover': {
+              backgroundColor: 'rgba(255, 255, 255, 0.1)',
+            }
+          }}
+        >
+          View Saved Sentences
+        </Button>
       </Box>
 
       {/* Content */}
@@ -166,8 +183,30 @@ export const SelectedWords: React.FC<SelectedWordsProps> = ({
               minHeight: '100px',
               bgcolor: 'background.default',
               borderRadius: 1,
+              position: 'relative'
             }}
           >
+            {/* Processing Indicator */}
+            {isProcessing && (
+              <Box 
+                sx={{ 
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  backgroundColor: 'rgba(255, 255, 255, 0.7)',
+                  zIndex: 1,
+                  borderRadius: 1
+                }}
+              >
+                <CircularProgress size={40} />
+              </Box>
+            )}
+            
             {/* Words Container */}
             <Box 
               sx={{ 

@@ -7,17 +7,25 @@ interface SavedSentence {
   timestamp: number;
 }
 
-interface SavedSentencesData {
+export interface SavedSentencesData {
   sentences: SavedSentence[];
 }
+
+// API URL - có thể thay đổi trong file .env
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001/api';
+
+// Khóa lưu trữ trong localStorage (dùng làm cache và fallback)
+const STORAGE_KEY = 'saved_sentences';
+// Tên file mặc định khi xuất
+const DEFAULT_EXPORT_FILENAME = 'vocabulary-sentences';
 
 // Tạo ID ngẫu nhiên
 const generateId = (): string => {
   return Math.random().toString(36).substring(2, 12);
 };
 
-// Lưu câu vào localStorage
-export const saveSentence = (words: Vocabulary[]): SavedSentence => {
+// Lưu câu vào file thông qua API và localStorage làm backup
+export const saveSentence = async (words: Vocabulary[]): Promise<SavedSentence> => {
   const sentence: SavedSentence = {
     id: generateId(),
     text: words.map(word => word.term).join(' '),
@@ -25,51 +33,145 @@ export const saveSentence = (words: Vocabulary[]): SavedSentence => {
     timestamp: Date.now()
   };
 
-  // Lấy dữ liệu đã lưu
-  const savedData = localStorage.getItem('saved_sentences');
-  let sentencesData: SavedSentencesData;
+  try {
+    // Gửi dữ liệu lên API
+    const response = await fetch(`${API_URL}/sentences`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(sentence),
+    });
 
-  if (savedData) {
-    sentencesData = JSON.parse(savedData);
-    sentencesData.sentences.push(sentence);
-  } else {
-    sentencesData = {
-      sentences: [sentence]
-    };
+    if (!response.ok) {
+      throw new Error(`API error: ${response.status}`);
+    }
+
+    // Nếu API thành công, cũng lưu vào localStorage làm cache
+    const savedData = localStorage.getItem(STORAGE_KEY);
+    let sentencesData: SavedSentencesData;
+
+    if (savedData) {
+      sentencesData = JSON.parse(savedData);
+      sentencesData.sentences.push(sentence);
+    } else {
+      sentencesData = {
+        sentences: [sentence]
+      };
+    }
+
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(sentencesData));
+    return sentence;
+  } catch (error) {
+    console.error('Failed to save sentence to API, saving to localStorage only:', error);
+    
+    // Fallback: lưu vào localStorage nếu API thất bại
+    const savedData = localStorage.getItem(STORAGE_KEY);
+    let sentencesData: SavedSentencesData;
+
+    if (savedData) {
+      sentencesData = JSON.parse(savedData);
+      sentencesData.sentences.push(sentence);
+    } else {
+      sentencesData = {
+        sentences: [sentence]
+      };
+    }
+
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(sentencesData));
+    return sentence;
   }
-
-  // Lưu lại vào localStorage
-  localStorage.setItem('saved_sentences', JSON.stringify(sentencesData));
-
-  return sentence;
 };
 
-// Lấy tất cả câu đã lưu
-export const getSavedSentences = (): SavedSentence[] => {
-  const savedData = localStorage.getItem('saved_sentences');
-  if (!savedData) {
-    return [];
-  }
+// Lấy tất cả câu đã lưu từ API, fallback về localStorage nếu API thất bại
+export const getSavedSentences = async (): Promise<SavedSentence[]> => {
+  try {
+    // Lấy dữ liệu từ API
+    const response = await fetch(`${API_URL}/sentences`);
+    
+    if (!response.ok) {
+      throw new Error(`API error: ${response.status}`);
+    }
+    
+    const data = await response.json() as SavedSentencesData;
+    
+    // Cập nhật lại localStorage với dữ liệu từ API
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    
+    return data.sentences;
+  } catch (error) {
+    console.error('Failed to load sentences from API, using localStorage:', error);
+    
+    // Fallback: sử dụng localStorage nếu API thất bại
+    const savedData = localStorage.getItem(STORAGE_KEY);
+    if (!savedData) {
+      return [];
+    }
 
-  const sentencesData: SavedSentencesData = JSON.parse(savedData);
-  return sentencesData.sentences;
+    const sentencesData: SavedSentencesData = JSON.parse(savedData);
+    return sentencesData.sentences;
+  }
 };
 
-// Xóa một câu đã lưu
-export const deleteSentence = (id: string): void => {
-  const savedData = localStorage.getItem('saved_sentences');
-  if (!savedData) {
-    return;
-  }
+// Xóa một câu đã lưu qua API, fallback về localStorage nếu API thất bại
+export const deleteSentence = async (id: string): Promise<void> => {
+  try {
+    // Xóa qua API
+    const response = await fetch(`${API_URL}/sentences/${id}`, {
+      method: 'DELETE',
+    });
 
-  const sentencesData: SavedSentencesData = JSON.parse(savedData);
-  sentencesData.sentences = sentencesData.sentences.filter(sentence => sentence.id !== id);
-  localStorage.setItem('saved_sentences', JSON.stringify(sentencesData));
+    if (!response.ok) {
+      throw new Error(`API error: ${response.status}`);
+    }
+
+    // Nếu API thành công, cũng xóa khỏi localStorage
+    const savedData = localStorage.getItem(STORAGE_KEY);
+    if (savedData) {
+      const sentencesData: SavedSentencesData = JSON.parse(savedData);
+      sentencesData.sentences = sentencesData.sentences.filter(sentence => sentence.id !== id);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(sentencesData));
+    }
+  } catch (error) {
+    console.error('Failed to delete sentence from API, using localStorage only:', error);
+    
+    // Fallback: chỉ xóa từ localStorage nếu API thất bại
+    const savedData = localStorage.getItem(STORAGE_KEY);
+    if (!savedData) {
+      return;
+    }
+
+    const sentencesData: SavedSentencesData = JSON.parse(savedData);
+    sentencesData.sentences = sentencesData.sentences.filter(sentence => sentence.id !== id);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(sentencesData));
+  }
+};
+
+// Xóa tất cả câu đã lưu qua API, fallback về localStorage nếu API thất bại
+export const clearAllSentences = async (): Promise<void> => {
+  try {
+    // Xóa qua API
+    const response = await fetch(`${API_URL}/sentences`, {
+      method: 'DELETE',
+    });
+
+    if (!response.ok) {
+      throw new Error(`API error: ${response.status}`);
+    }
+
+    // Nếu API thành công, cũng xóa khỏi localStorage
+    localStorage.removeItem(STORAGE_KEY);
+  } catch (error) {
+    console.error('Failed to clear sentences from API, using localStorage only:', error);
+    
+    // Fallback: chỉ xóa từ localStorage nếu API thất bại
+    localStorage.removeItem(STORAGE_KEY);
+  }
 };
 
 // Tạo nội dung Markdown cho các câu đã lưu
-export const createSentencesMarkdown = (): string => {
-  const sentences = getSavedSentences();
+export const createSentencesMarkdown = async (): Promise<string> => {
+  const sentences = await getSavedSentences();
   if (sentences.length === 0) {
     return '';
   }
@@ -102,8 +204,8 @@ export const createSentencesMarkdown = (): string => {
 };
 
 // Tạo cửa sổ mới và hiển thị markdown
-export const displaySentencesAsMarkdown = (): void => {
-  const markdown = createSentencesMarkdown();
+export const displaySentencesAsMarkdown = async (): Promise<void> => {
+  const markdown = await createSentencesMarkdown();
   if (!markdown) {
     return;
   }
@@ -168,9 +270,9 @@ export const displaySentencesAsMarkdown = (): void => {
   }
 };
 
-// Xuất các câu đã lưu ra file
-export const exportSentencesToFile = (): void => {
-  const sentences = getSavedSentences();
+// Xuất các câu đã lưu ra file JSON
+export const exportSentencesToFile = async (filename = DEFAULT_EXPORT_FILENAME): Promise<void> => {
+  const sentences = await getSavedSentences();
   if (sentences.length === 0) {
     return;
   }
@@ -198,7 +300,28 @@ export const exportSentencesToFile = (): void => {
   // Tạo link để download
   const a = document.createElement('a');
   a.href = url;
-  a.download = `saved-sentences-${new Date().toISOString().split('T')[0]}.json`;
+  a.download = `${filename}-${new Date().toISOString().split('T')[0]}.json`;
+  a.click();
+  
+  // Cleanup
+  URL.revokeObjectURL(url);
+};
+
+// Xuất các câu đã lưu ra file Markdown
+export const exportSentencesToMarkdownFile = async (filename = DEFAULT_EXPORT_FILENAME): Promise<void> => {
+  const markdown = await createSentencesMarkdown();
+  if (!markdown) {
+    return;
+  }
+
+  // Tạo Blob và tải xuống file
+  const blob = new Blob([markdown], { type: 'text/markdown' });
+  const url = URL.createObjectURL(blob);
+  
+  // Tạo link để download
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `${filename}-${new Date().toISOString().split('T')[0]}.md`;
   a.click();
   
   // Cleanup

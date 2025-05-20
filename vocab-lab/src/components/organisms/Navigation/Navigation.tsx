@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import HomeIcon from '@mui/icons-material/Home';
 import ExploreIcon from '@mui/icons-material/Explore';
 import SettingsIcon from '@mui/icons-material/Settings';
+import BookmarkIcon from '@mui/icons-material/Bookmark';
 
 export const Navigation: React.FC = () => {
   return (
@@ -28,6 +29,14 @@ export const Navigation: React.FC = () => {
             startIcon={<ExploreIcon />}
           >
             Explore
+          </Button>
+          <Button 
+            color="inherit" 
+            component={Link} 
+            to="/saved-sentences"
+            startIcon={<BookmarkIcon />}
+          >
+            Saved Sentences
           </Button>
           <Button 
             color="inherit" 
