@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2025-05-20T14:02:23.262Z",
+    "totalTerms": 1,
+    "categories": [
+      "Programming Concepts",
+      "Data Structures",
+      "Development Process",
+      "Web Development",
+      "Software Architecture",
+      "Frontend Frameworks",
+      "CSS Concepts",
+      "TypeScript",
+      "Performance",
+      "Browser APIs",
+      "UI Components",
+      "Navigation Components",
+      "Layout Components",
+      "Feedback Components",
+      "Data Display Components"
+    ],
+    "type": "library"
+  },
+  "vocabulary": [
+    {
+      "id": "gxyxz5yrvv",
+      "frequency": 9,
+      "description": "A predictable state container for JavaScript apps, often used with React for managing application state.",
+      "relatedTerms": [],
+      "codeExample": "",
+      "commonQuestions": [],
+      "createdAt": 1747749383708,
+      "term": "Redux",
+      "definition": "A predictable state container for JavaScript apps, often used with React for managing application state.",
+      "type": "library",
+      "difficulty": "hard",
+      "category": "Frontend Frameworks",
+      "example": "Redux maintains the state of an entire application in a single immutable state tree.",
+      "interviewImportance": "high"
+    }
+  ]
+}

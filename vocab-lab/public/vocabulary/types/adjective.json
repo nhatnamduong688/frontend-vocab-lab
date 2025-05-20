@@ -1,14 +1,24 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "lastUpdated": "2024-03-20",
+    "lastUpdated": "2025-05-20T14:02:23.262Z",
     "totalTerms": 12,
     "categories": [
       "Programming Concepts",
       "Data Structures",
       "Development Process",
       "Web Development",
-      "Software Architecture"
+      "Software Architecture",
+      "Frontend Frameworks",
+      "CSS Concepts",
+      "TypeScript",
+      "Performance",
+      "Browser APIs",
+      "UI Components",
+      "Navigation Components",
+      "Layout Components",
+      "Feedback Components",
+      "Data Display Components"
     ],
     "type": "adjective"
   },

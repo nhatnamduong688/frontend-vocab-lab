@@ -1,0 +1,59 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2025-05-20T14:02:23.262Z",
+    "totalTerms": 2,
+    "categories": [
+      "Programming Concepts",
+      "Data Structures",
+      "Development Process",
+      "Web Development",
+      "Software Architecture",
+      "Frontend Frameworks",
+      "CSS Concepts",
+      "TypeScript",
+      "Performance",
+      "Browser APIs",
+      "UI Components",
+      "Navigation Components",
+      "Layout Components",
+      "Feedback Components",
+      "Data Display Components"
+    ],
+    "type": "technology"
+  },
+  "vocabulary": [
+    {
+      "id": "51n1rnqzm9",
+      "frequency": 35,
+      "description": "A strongly typed programming language that builds on JavaScript, adding static type definitions.",
+      "relatedTerms": [],
+      "codeExample": "",
+      "commonQuestions": [],
+      "createdAt": 1747749383708,
+      "term": "TypeScript",
+      "definition": "A strongly typed programming language that builds on JavaScript, adding static type definitions.",
+      "type": "technology",
+      "difficulty": "medium",
+      "category": "TypeScript",
+      "example": "TypeScript helps catch errors during development through type checking and code completion.",
+      "interviewImportance": "high"
+    },
+    {
+      "id": "atd27uytaz",
+      "frequency": 40,
+      "description": "A set of web platform APIs that allow you to create new custom, reusable, encapsulated HTML tags.",
+      "relatedTerms": [],
+      "codeExample": "",
+      "commonQuestions": [],
+      "createdAt": 1747749383708,
+      "term": "Web Components",
+      "definition": "A set of web platform APIs that allow you to create new custom, reusable, encapsulated HTML tags.",
+      "type": "technology",
+      "difficulty": "medium",
+      "category": "Web Development",
+      "example": "Web Components consist of Custom Elements, Shadow DOM, and HTML Templates.",
+      "interviewImportance": "low"
+    }
+  ]
+}

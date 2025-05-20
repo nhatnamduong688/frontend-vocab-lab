@@ -1,14 +1,24 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "lastUpdated": "2024-03-20",
-    "totalTerms": 100,
+    "lastUpdated": "2025-05-20T14:02:23.262Z",
+    "totalTerms": 140,
     "categories": [
       "Programming Concepts",
       "Data Structures",
       "Development Process",
       "Web Development",
-      "Software Architecture"
+      "Software Architecture",
+      "Frontend Frameworks",
+      "CSS Concepts",
+      "TypeScript",
+      "Performance",
+      "Browser APIs",
+      "UI Components",
+      "Navigation Components",
+      "Layout Components",
+      "Feedback Components",
+      "Data Display Components"
     ],
     "types": [
       {
@@ -22,6 +32,50 @@
       {
         "name": "adjective",
         "count": 12
+      },
+      {
+        "name": "framework",
+        "count": 3
+      },
+      {
+        "name": "technique",
+        "count": 5
+      },
+      {
+        "name": "library",
+        "count": 1
+      },
+      {
+        "name": "technology",
+        "count": 2
+      },
+      {
+        "name": "tool",
+        "count": 1
+      },
+      {
+        "name": "API",
+        "count": 3
+      },
+      {
+        "name": "concept",
+        "count": 2
+      },
+      {
+        "name": "pattern",
+        "count": 1
+      },
+      {
+        "name": "best practice",
+        "count": 1
+      },
+      {
+        "name": "protocol",
+        "count": 1
+      },
+      {
+        "name": "component",
+        "count": 73
       }
     ]
   }

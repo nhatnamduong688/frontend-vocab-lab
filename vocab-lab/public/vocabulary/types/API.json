@@ -1,0 +1,75 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2025-05-20T14:02:23.262Z",
+    "totalTerms": 3,
+    "categories": [
+      "Programming Concepts",
+      "Data Structures",
+      "Development Process",
+      "Web Development",
+      "Software Architecture",
+      "Frontend Frameworks",
+      "CSS Concepts",
+      "TypeScript",
+      "Performance",
+      "Browser APIs",
+      "UI Components",
+      "Navigation Components",
+      "Layout Components",
+      "Feedback Components",
+      "Data Display Components"
+    ],
+    "type": "API"
+  },
+  "vocabulary": [
+    {
+      "id": "mvbslvel6g",
+      "frequency": 55,
+      "description": "An architectural style for designing networked applications using HTTP requests to access and manipulate data.",
+      "relatedTerms": [],
+      "codeExample": "",
+      "commonQuestions": [],
+      "createdAt": 1747749383708,
+      "term": "REST API",
+      "definition": "An architectural style for designing networked applications using HTTP requests to access and manipulate data.",
+      "type": "API",
+      "difficulty": "medium",
+      "category": "Web Development",
+      "example": "RESTful APIs use HTTP methods like GET, POST, PUT, and DELETE to perform CRUD operations.",
+      "interviewImportance": "high"
+    },
+    {
+      "id": "oz3uz2qrdf",
+      "frequency": 91,
+      "description": "A query language for APIs and a runtime for executing those queries with existing data.",
+      "relatedTerms": [],
+      "codeExample": "",
+      "commonQuestions": [],
+      "createdAt": 1747749383708,
+      "term": "GraphQL",
+      "definition": "A query language for APIs and a runtime for executing those queries with existing data.",
+      "type": "API",
+      "difficulty": "hard",
+      "category": "Web Development",
+      "example": "GraphQL allows clients to request exactly what they need, making API responses more efficient.",
+      "interviewImportance": "medium"
+    },
+    {
+      "id": "d26xdx276t",
+      "frequency": 18,
+      "description": "Browser API that provides a way to asynchronously observe changes in the intersection of a target element with an ancestor element.",
+      "relatedTerms": [],
+      "codeExample": "",
+      "commonQuestions": [],
+      "createdAt": 1747749383708,
+      "term": "Intersection Observer",
+      "definition": "Browser API that provides a way to asynchronously observe changes in the intersection of a target element with an ancestor element.",
+      "type": "API",
+      "difficulty": "medium",
+      "category": "Browser APIs",
+      "example": "Intersection Observer is commonly used for lazy loading images and implementing infinite scroll.",
+      "interviewImportance": "low"
+    }
+  ]
+}
