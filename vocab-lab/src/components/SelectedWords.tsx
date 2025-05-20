@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, Paper, Typography, Chip, Stack } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Vocabulary } from '../types/vocabulary';
+import { useTheme } from '../context/ThemeContext';
 
 interface SelectedWordsProps {
   selectedWords: Vocabulary[];
@@ -12,6 +13,8 @@ const SelectedWords: React.FC<SelectedWordsProps> = ({
   selectedWords,
   onRemoveWord,
 }) => {
+  const { themeSettings } = useTheme();
+
   return (
     <Paper 
       elevation={2}
@@ -95,16 +98,17 @@ const SelectedWords: React.FC<SelectedWordsProps> = ({
                     sx={{
                       fontSize: '1rem',
                       py: 2.5,
-                      bgcolor: 'primary.light',
-                      color: 'white',
+                      bgcolor: themeSettings.selectedWordBgColor,
+                      color: themeSettings.selectedWordTextColor,
                       '&:hover': {
-                        bgcolor: 'primary.main',
+                        bgcolor: themeSettings.selectedWordBgColor,
+                        filter: 'brightness(90%)',
                       },
                       '& .MuiChip-label': {
                         px: 2,
                       },
                       '& .MuiChip-deleteIcon': {
-                        color: 'white',
+                        color: themeSettings.selectedWordTextColor,
                       }
                     }}
                   />
