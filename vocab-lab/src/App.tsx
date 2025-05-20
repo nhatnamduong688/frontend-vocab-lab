@@ -10,6 +10,7 @@ import { LoadingSpinner } from './components/atoms/LoadingSpinner/LoadingSpinner
 import { ErrorDisplay } from './components/atoms/ErrorDisplay/ErrorDisplay';
 import VocabularyByType from './components/VocabularyByType';
 import { useVocabulary } from './hooks/useVocabulary';
+import FlashcardPage from './components/pages/FlashcardPage/FlashcardPage';
 
 function App() {
   return (
@@ -66,6 +67,7 @@ function AppContent() {
             } 
           />
           <Route path="/explore" element={<VocabularyByType />} />
+          <Route path="/flashcards" element={<FlashcardPage />} />
           <Route path="/settings" element={<SettingsPage />} />
           <Route path="/saved-sentences" element={<SavedSentencesPage />} />
         </Routes>

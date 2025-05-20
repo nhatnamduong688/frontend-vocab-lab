@@ -85,4 +85,38 @@ export interface VocabularyTypeInfo {
   count: number;
 }
 
-export type VocabularyImportance = 'low' | 'medium' | 'high'; 
+export type VocabularyImportance = 'low' | 'medium' | 'high';
+
+export type FlashcardMode = 'term-to-definition' | 'definition-to-term' | 'mixed';
+
+export interface FlashcardSettings {
+  mode: FlashcardMode;
+  showExamples: boolean;
+  showCodeExamples: boolean;
+  filterByTypes?: string[];
+  filterByDifficulty?: DifficultyLevel[];
+  limitCount?: number;
+}
+
+export interface Flashcard {
+  id: string;
+  term: string;
+  definition: string;
+  example?: string;
+  codeExample?: string;
+  type: string;
+  difficulty: DifficultyLevel;
+}
+
+export interface FlashcardSession {
+  id: string;
+  date: string;
+  settings: FlashcardSettings;
+  cards: Flashcard[];
+  currentIndex: number;
+  correctCount: number;
+  incorrectCount: number;
+  completedCardIds: string[];
+}
+
+export type FlashcardStatus = 'correct' | 'incorrect' | 'skipped' | 'not-answered'; 

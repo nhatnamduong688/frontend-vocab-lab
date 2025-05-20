@@ -10,26 +10,27 @@ app.use(cors());
 app.use(express.json({ limit: "10mb" }));
 app.use(express.static(path.join(__dirname, "../build")));
 
-// Đường dẫn đến file lưu trữ câu
-const DATA_FILE = path.join(__dirname, "data", "sentences.json");
+// Đường dẫn đến file lưu trữ câu và type
+const DATA_DIR = path.join(__dirname, "data");
+const SENTENCES_FILE = path.join(DATA_DIR, "sentences.json");
+const TYPES_FILE = path.join(DATA_DIR, "vocabulary-types.json");
 
 // Đảm bảo thư mục data tồn tại
 const ensureDataDirectory = () => {
-  const dataDir = path.join(__dirname, "data");
-  if (!fs.existsSync(dataDir)) {
-    fs.mkdirSync(dataDir, { recursive: true });
+  if (!fs.existsSync(DATA_DIR)) {
+    fs.mkdirSync(DATA_DIR, { recursive: true });
   }
 };
 
 // Đọc dữ liệu từ file
 const readSentencesFromFile = () => {
   ensureDataDirectory();
-  if (!fs.existsSync(DATA_FILE)) {
+  if (!fs.existsSync(SENTENCES_FILE)) {
     return { sentences: [] };
   }
 
   try {
-    const data = fs.readFileSync(DATA_FILE, "utf8");
+    const data = fs.readFileSync(SENTENCES_FILE, "utf8");
     return JSON.parse(data);
   } catch (error) {
     console.error("Error reading sentences file:", error);
@@ -41,10 +42,61 @@ const readSentencesFromFile = () => {
 const saveSentencesToFile = (data) => {
   ensureDataDirectory();
   try {
-    fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2), "utf8");
+    fs.writeFileSync(SENTENCES_FILE, JSON.stringify(data, null, 2), "utf8");
     return true;
   } catch (error) {
     console.error("Error saving sentences to file:", error);
+    return false;
+  }
+};
+
+// Đọc dữ liệu types từ file
+const readTypesFromFile = () => {
+  ensureDataDirectory();
+  if (!fs.existsSync(TYPES_FILE)) {
+    // Tạo file mặc định nếu chưa tồn tại
+    const defaultTypes = {
+      metadata: {
+        version: "1.0.0",
+        lastUpdated: new Date().toISOString(),
+        types: [
+          { name: "noun", count: 0 },
+          { name: "verb", count: 0 },
+          { name: "adjective", count: 0 },
+          { name: "adverb", count: 0 },
+          { name: "framework", count: 0 },
+          { name: "library", count: 0 },
+          { name: "concept", count: 0 },
+          { name: "pattern", count: 0 },
+          { name: "api", count: 0 },
+          { name: "property", count: 0 },
+          { name: "method", count: 0 },
+          { name: "component", count: 0 },
+        ],
+      },
+      vocabulary: {},
+    };
+    saveTypesToFile(defaultTypes);
+    return defaultTypes;
+  }
+
+  try {
+    const data = fs.readFileSync(TYPES_FILE, "utf8");
+    return JSON.parse(data);
+  } catch (error) {
+    console.error("Error reading types file:", error);
+    return { metadata: { types: [] }, vocabulary: {} };
+  }
+};
+
+// Lưu dữ liệu types vào file
+const saveTypesToFile = (data) => {
+  ensureDataDirectory();
+  try {
+    fs.writeFileSync(TYPES_FILE, JSON.stringify(data, null, 2), "utf8");
+    return true;
+  } catch (error) {
+    console.error("Error saving types to file:", error);
     return false;
   }
 };
@@ -124,6 +176,183 @@ app.delete("/api/sentences", (req, res) => {
   }
 });
 
+// ===== VOCABULARY TYPES API ENDPOINTS =====
+
+// Endpoint để lấy tất cả types
+app.get("/api/types", (req, res) => {
+  try {
+    const data = readTypesFromFile();
+    res.json(data.metadata.types);
+  } catch (error) {
+    console.error("Error getting types:", error);
+    res.status(500).json({ error: "Failed to retrieve types" });
+  }
+});
+
+// Endpoint để lấy metadata và tất cả types
+app.get("/api/types/metadata", (req, res) => {
+  try {
+    const data = readTypesFromFile();
+    res.json(data.metadata);
+  } catch (error) {
+    console.error("Error getting types metadata:", error);
+    res.status(500).json({ error: "Failed to retrieve types metadata" });
+  }
+});
+
+// Endpoint để lấy từ vựng theo type
+app.get("/api/types/:typeName", (req, res) => {
+  try {
+    const data = readTypesFromFile();
+    const { typeName } = req.params;
+
+    if (!data.vocabulary[typeName]) {
+      return res.status(404).json({ error: `Type '${typeName}' not found` });
+    }
+
+    res.json({
+      type: typeName,
+      items: data.vocabulary[typeName],
+    });
+  } catch (error) {
+    console.error("Error getting vocabulary by type:", error);
+    res.status(500).json({ error: "Failed to retrieve vocabulary" });
+  }
+});
+
+// Endpoint để thêm mới hoặc cập nhật một type
+app.post("/api/types", (req, res) => {
+  try {
+    const data = readTypesFromFile();
+    const { name, description } = req.body;
+
+    if (!name) {
+      return res.status(400).json({ error: "Type name is required" });
+    }
+
+    // Kiểm tra xem type đã tồn tại chưa
+    const existingTypeIndex = data.metadata.types.findIndex(
+      (t) => t.name === name
+    );
+
+    if (existingTypeIndex >= 0) {
+      // Cập nhật type nếu đã tồn tại
+      data.metadata.types[existingTypeIndex] = {
+        ...data.metadata.types[existingTypeIndex],
+        description,
+        lastUpdated: new Date().toISOString(),
+      };
+    } else {
+      // Thêm mới nếu chưa tồn tại
+      data.metadata.types.push({
+        name,
+        description,
+        count: 0,
+        lastUpdated: new Date().toISOString(),
+      });
+
+      // Đảm bảo có mảng cho type mới
+      if (!data.vocabulary[name]) {
+        data.vocabulary[name] = [];
+      }
+    }
+
+    // Cập nhật metadata
+    data.metadata.lastUpdated = new Date().toISOString();
+
+    if (saveTypesToFile(data)) {
+      res.status(201).json(data.metadata.types.find((t) => t.name === name));
+    } else {
+      res.status(500).json({ error: "Failed to save type" });
+    }
+  } catch (error) {
+    console.error("Error saving type:", error);
+    res.status(500).json({ error: "Failed to save type" });
+  }
+});
+
+// Endpoint để thêm từ vựng vào một type
+app.post("/api/types/:typeName/vocabulary", (req, res) => {
+  try {
+    const data = readTypesFromFile();
+    const { typeName } = req.params;
+    const newItem = req.body;
+
+    // Kiểm tra xem type có tồn tại không
+    const typeExists = data.metadata.types.some((t) => t.name === typeName);
+    if (!typeExists) {
+      return res.status(404).json({ error: `Type '${typeName}' not found` });
+    }
+
+    // Đảm bảo mảng tồn tại
+    if (!data.vocabulary[typeName]) {
+      data.vocabulary[typeName] = [];
+    }
+
+    // Thêm ID nếu chưa có
+    if (!newItem.id) {
+      newItem.id = `${typeName}_${Date.now()}`;
+    }
+
+    // Thêm từ vựng mới
+    data.vocabulary[typeName].push(newItem);
+
+    // Cập nhật số lượng
+    const typeIndex = data.metadata.types.findIndex((t) => t.name === typeName);
+    data.metadata.types[typeIndex].count = data.vocabulary[typeName].length;
+    data.metadata.lastUpdated = new Date().toISOString();
+
+    if (saveTypesToFile(data)) {
+      res.status(201).json(newItem);
+    } else {
+      res.status(500).json({ error: "Failed to save vocabulary item" });
+    }
+  } catch (error) {
+    console.error("Error saving vocabulary item:", error);
+    res.status(500).json({ error: "Failed to save vocabulary item" });
+  }
+});
+
+// Endpoint để xóa một từ vựng khỏi type
+app.delete("/api/types/:typeName/vocabulary/:itemId", (req, res) => {
+  try {
+    const data = readTypesFromFile();
+    const { typeName, itemId } = req.params;
+
+    // Kiểm tra xem type có tồn tại không
+    if (!data.vocabulary[typeName]) {
+      return res.status(404).json({ error: `Type '${typeName}' not found` });
+    }
+
+    const initialLength = data.vocabulary[typeName].length;
+    data.vocabulary[typeName] = data.vocabulary[typeName].filter(
+      (item) => item.id !== itemId
+    );
+
+    if (data.vocabulary[typeName].length === initialLength) {
+      return res
+        .status(404)
+        .json({
+          error: `Item with ID '${itemId}' not found in type '${typeName}'`,
+        });
+    }
+
+    // Cập nhật metadata
+    const typeIndex = data.metadata.types.findIndex((t) => t.name === typeName);
+    data.metadata.types[typeIndex].count = data.vocabulary[typeName].length;
+    data.metadata.lastUpdated = new Date().toISOString();
+
+    if (saveTypesToFile(data)) {
+      res.json({ success: true });
+    } else {
+      res.status(500).json({ error: "Failed to delete vocabulary item" });
+    }
+  } catch (error) {
+    console.error("Error deleting vocabulary item:", error);
+    res.status(500).json({ error: "Failed to delete vocabulary item" });
+  }
+});
+
 // Xử lý các route không tìm thấy - Phục vụ React app
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../build", "index.html"));
@@ -133,5 +362,6 @@ app.get("*", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
   ensureDataDirectory();
-  console.log(`Data will be stored in: ${DATA_FILE}`);
+  console.log(`Sentences will be stored in: ${SENTENCES_FILE}`);
+  console.log(`Vocabulary types will be stored in: ${TYPES_FILE}`);
 });
