@@ -1,6 +1,7 @@
 import React from 'react';
-import { Chip } from '@mui/material';
+import { Chip, Tooltip } from '@mui/material';
 import { Vocabulary } from '../../../types/vocabulary';
+import { useTheme } from '../../../context/ThemeContext';
 
 interface VocabularyChipProps {
   word: Vocabulary;
@@ -8,39 +9,43 @@ interface VocabularyChipProps {
   onClick: () => void;
 }
 
-const getDifficultyColor = (difficulty: string) => {
-  switch (difficulty) {
-    case 'easy':
-      return '#4caf50';
-    case 'medium':
-      return '#ff9800';
-    case 'hard':
-      return '#f44336';
-    default:
-      return '#2196f3';
-  }
-};
-
 export const VocabularyChip: React.FC<VocabularyChipProps> = ({
   word,
   isSelected,
   onClick,
 }) => {
+  const { themeSettings } = useTheme();
+  
+  const getChipColor = () => {
+    const colorMap = themeSettings.difficultyColors;
+    return colorMap[word.difficulty] || themeSettings.defaultColor;
+  };
+
   return (
-    <Chip
-      label={word.term}
-      onClick={onClick}
-      sx={{
-        m: 0.5,
-        opacity: isSelected ? 0.5 : 1,
-        bgcolor: getDifficultyColor(word.difficulty),
-        color: 'white',
-        '&:hover': {
-          bgcolor: getDifficultyColor(word.difficulty),
-          filter: 'brightness(90%)',
-        },
-        transition: 'all 0.2s ease',
-      }}
-    />
+    <Tooltip 
+      title={word.definition} 
+      arrow
+      placement="top"
+    >
+      <Chip
+        label={word.term}
+        onClick={onClick}
+        sx={{
+          m: 0.5,
+          opacity: isSelected ? 0.5 : 1,
+          bgcolor: getChipColor(),
+          color: themeSettings.selectedWordTextColor,
+          '&:hover': {
+            bgcolor: getChipColor(),
+            filter: 'brightness(90%)',
+            transform: 'translateY(-2px)',
+          },
+          transition: 'all 0.2s ease',
+          borderRadius: '16px',
+          fontSize: '0.9rem',
+          boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
+        }}
+      />
+    </Tooltip>
   );
 }; 
