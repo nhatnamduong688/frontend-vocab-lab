@@ -5,7 +5,9 @@ export interface Vocabulary {
   id: string;
   term: string;
   definition: string;
-  type: VocabularyType;
+  level?: string;
+  createdAt?: number;
+  type: string;
   example?: string;
   category: string;
   difficulty: DifficultyLevel;
