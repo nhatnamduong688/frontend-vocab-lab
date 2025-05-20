@@ -1,8 +1,9 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useCallback, useMemo, memo } from 'react';
 import { 
+  Box, 
   Paper, 
-  Typography, 
-  Box,
+  Typography,
+  useTheme,
 } from '@mui/material';
 import { Vocabulary } from '../../../types/vocabulary';
 import { SearchBar } from '../../molecules/SearchBar/SearchBar';
@@ -16,18 +17,49 @@ interface VocabularyColumnProps {
   onWordSelect: (word: Vocabulary) => void;
 }
 
+// Tối ưu chip từ vựng với memo để tránh re-render không cần thiết
+const MemoizedVocabularyChip = memo(({ 
+  word, 
+  isSelected, 
+  onClick 
+}: { 
+  word: Vocabulary;
+  isSelected: boolean;
+  onClick: () => void;
+}) => (
+  <VocabularyChip
+    word={word}
+    isSelected={isSelected}
+    onClick={onClick}
+  />
+), (prevProps, nextProps) => {
+  return prevProps.word.id === nextProps.word.id && 
+         prevProps.isSelected === nextProps.isSelected;
+});
+
+MemoizedVocabularyChip.displayName = 'MemoizedVocabularyChip';
+
 export const VocabularyColumn: React.FC<VocabularyColumnProps> = ({
   title,
   words,
   selectedWords,
   onWordSelect,
 }) => {
+  const theme = useTheme();
   const [searchTerm, setSearchTerm] = useState('');
   const [sortBy, setSortBy] = useState<SortOption>('alphabetical');
 
-  const isWordSelected = (word: Vocabulary) => {
-    return selectedWords.some(selected => selected.term === word.term);
-  };
+  // Sử dụng useMemo để tối ưu việc kiểm tra từ nào đã được chọn
+  const selectedWordIds = useMemo(() => {
+    return new Set(selectedWords.map(word => word.id));
+  }, [selectedWords]);
+
+  // Tối ưu hàm xử lý khi click vào từ
+  const handleWordClick = useCallback((word: Vocabulary) => {
+    return () => {
+      onWordSelect(word);
+    };
+  }, [onWordSelect]);
 
   const filteredAndSortedWords = useMemo(() => {
     let result = [...words];
@@ -58,27 +90,26 @@ export const VocabularyColumn: React.FC<VocabularyColumnProps> = ({
   }, [words, searchTerm, sortBy]);
 
   return (
-    <Paper 
+    <Paper
       elevation={2}
-      sx={{ 
+      sx={{
         width: '100%',
         height: '100%',
-        bgcolor: 'background.paper',
-        borderRadius: 2,
         overflow: 'hidden',
         display: 'flex',
         flexDirection: 'column',
+        borderRadius: 2,
+        bgcolor: 'background.paper',
       }}
     >
-      {/* Header */}
-      <Box 
-        sx={{ 
-          bgcolor: 'primary.main',
-          color: 'white',
+      <Box
+        sx={{
           py: 2,
           px: 3,
           borderBottom: '1px solid',
-          borderColor: 'divider'
+          borderColor: 'divider',
+          bgcolor: 'primary.main',
+          color: 'white',
         }}
       >
         <Typography 
@@ -104,7 +135,7 @@ export const VocabularyColumn: React.FC<VocabularyColumnProps> = ({
         onChange={setSortBy}
       />
 
-      {/* Words Grid with Scroll */}
+      {/* Words Grid with Scroll - Keep the grid layout but optimize it */}
       <Box 
         sx={{ 
           p: 2,
@@ -131,11 +162,11 @@ export const VocabularyColumn: React.FC<VocabularyColumnProps> = ({
         }}
       >
         {filteredAndSortedWords.map((word) => (
-          <VocabularyChip
+          <MemoizedVocabularyChip
             key={word.id}
             word={word}
-            isSelected={isWordSelected(word)}
-            onClick={() => !isWordSelected(word) && onWordSelect(word)}
+            isSelected={selectedWordIds.has(word.id)}
+            onClick={handleWordClick(word)}
           />
         ))}
       </Box>

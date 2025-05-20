@@ -28,6 +28,7 @@ interface HomePageProps {
   handleRemoveWord: (term: string) => void;
   setCurrentTypeFilter: (type: string | null) => void;
   refreshVocabulary: () => void;
+  clearWords?: () => void;
 }
 
 export const HomePage: React.FC<HomePageProps> = ({
@@ -39,6 +40,7 @@ export const HomePage: React.FC<HomePageProps> = ({
   handleRemoveWord,
   setCurrentTypeFilter,
   refreshVocabulary,
+  clearWords
 }) => {
   const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
   const [showFilterPanel, setShowFilterPanel] = useState(false);
@@ -91,6 +93,7 @@ export const HomePage: React.FC<HomePageProps> = ({
       <SelectedWords
         words={selectedWords}
         onRemoveWord={handleRemoveWord}
+        onClearWords={clearWords}
       />
       
       <Box sx={{ 

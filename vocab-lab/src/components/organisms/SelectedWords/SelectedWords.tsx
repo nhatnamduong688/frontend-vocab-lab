@@ -1,17 +1,111 @@
-import React from 'react';
-import { Box, Paper, Typography, Stack } from '@mui/material';
+import React, { useState, useCallback, memo } from 'react';
+import { Box, Paper, Typography, Stack, Button, Snackbar, Alert, ButtonGroup, IconButton, Tooltip } from '@mui/material';
+import SaveIcon from '@mui/icons-material/Save';
+import FileDownloadIcon from '@mui/icons-material/FileDownload';
+import DescriptionIcon from '@mui/icons-material/Description';
+import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';
 import { Vocabulary } from '../../../types/vocabulary';
 import { WordChip } from '../../atoms/WordChip/WordChip';
+import { saveSentence, exportSentencesToFile, displaySentencesAsMarkdown } from '../../../services/sentenceService';
 
 interface SelectedWordsProps {
   words: Vocabulary[];
   onRemoveWord: (term: string) => void;
+  onClearWords?: () => void;
 }
+
+// Tạo một memo component để tránh render lại WordChip không cần thiết
+const MemoizedWordChip = memo(WordChip);
 
 export const SelectedWords: React.FC<SelectedWordsProps> = ({
   words,
   onRemoveWord,
+  onClearWords,
 }) => {
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
+  const [snackbarSeverity, setSnackbarSeverity] = useState<'success' | 'error' | 'info'>('success');
+  const [isProcessing, setIsProcessing] = useState(false);
+
+  // Xử lý khi click nút lưu - sử dụng useCallback để tránh tạo hàm mới mỗi khi render
+  const handleSaveSentence = useCallback(() => {
+    if (words.length < 2) {
+      setSnackbarMessage('Vui lòng chọn ít nhất 2 từ để tạo câu.');
+      setSnackbarSeverity('info');
+      setSnackbarOpen(true);
+      return;
+    }
+
+    // Thêm chỉ báo đang xử lý
+    setIsProcessing(true);
+
+    try {
+      saveSentence(words);
+      setSnackbarMessage('Câu đã được lưu thành công!');
+      setSnackbarSeverity('success');
+    } catch (error) {
+      setSnackbarMessage('Có lỗi xảy ra khi lưu câu.');
+      setSnackbarSeverity('error');
+    } finally {
+      setIsProcessing(false);
+      setSnackbarOpen(true);
+    }
+  }, [words]);
+
+  // Xử lý khi click nút export
+  const handleExportSentences = useCallback(() => {
+    // Thêm chỉ báo đang xử lý
+    setIsProcessing(true);
+
+    setTimeout(() => {
+      try {
+        exportSentencesToFile();
+        setSnackbarMessage('File đã được tải xuống.');
+        setSnackbarSeverity('success');
+      } catch (error) {
+        setSnackbarMessage('Có lỗi xảy ra khi xuất file.');
+        setSnackbarSeverity('error');
+      } finally {
+        setIsProcessing(false);
+        setSnackbarOpen(true);
+      }
+    }, 0); // Sử dụng setTimeout để không chặn UI thread
+  }, []);
+
+  // Xử lý khi click nút hiển thị markdown
+  const handleShowMarkdown = useCallback(() => {
+    setIsProcessing(true);
+
+    setTimeout(() => {
+      try {
+        displaySentencesAsMarkdown();
+        setSnackbarMessage('Markdown đã được hiển thị trong cửa sổ mới.');
+        setSnackbarSeverity('success');
+      } catch (error) {
+        setSnackbarMessage('Có lỗi xảy ra khi tạo markdown.');
+        setSnackbarSeverity('error');
+      } finally {
+        setIsProcessing(false);
+        setSnackbarOpen(true);
+      }
+    }, 0);
+  }, []);
+
+  // Xử lý khi đóng snackbar
+  const handleCloseSnackbar = useCallback(() => {
+    setSnackbarOpen(false);
+  }, []);
+
+  // Xử lý khi click nút clear
+  const handleClearWords = useCallback(() => {
+    if (onClearWords) {
+      onClearWords();
+    }
+  }, [onClearWords]);
+
+  // Tạo chuỗi câu từ các từ đã chọn - tính toán trước để tránh tính toán lại khi render
+  const sentenceText = words.length > 0 ? words.map(word => word.term).join(' ') : '';
+
   return (
     <Paper 
       elevation={2}
@@ -32,7 +126,10 @@ export const SelectedWords: React.FC<SelectedWordsProps> = ({
           py: 2,
           px: 3,
           borderBottom: '1px solid',
-          borderColor: 'divider'
+          borderColor: 'divider',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center'
         }}
       >
         <Typography 
@@ -40,7 +137,8 @@ export const SelectedWords: React.FC<SelectedWordsProps> = ({
           component="h2"
           sx={{ 
             fontWeight: 500,
-            textAlign: 'center'
+            textAlign: 'center',
+            flexGrow: 1
           }}
         >
           Sentence Formation
@@ -87,7 +185,7 @@ export const SelectedWords: React.FC<SelectedWordsProps> = ({
                 </Typography>
               ) : (
                 words.map((word) => (
-                  <WordChip
+                  <MemoizedWordChip
                     key={word.id}
                     word={word}
                     onDelete={() => onRemoveWord(word.term)}
@@ -113,13 +211,86 @@ export const SelectedWords: React.FC<SelectedWordsProps> = ({
                     textAlign: 'center'
                   }}
                 >
-                  {words.map(word => word.term).join(' ')}
+                  {sentenceText}
                 </Typography>
               </Box>
             )}
+            
+            {/* Action Buttons */}
+            <Box sx={{ 
+              display: 'flex', 
+              justifyContent: 'center',
+              mt: 3,
+              gap: 2
+            }}>
+              <ButtonGroup variant="contained" aria-label="sentence actions">
+                <Button 
+                  startIcon={<SaveIcon />}
+                  onClick={handleSaveSentence}
+                  disabled={words.length < 2 || isProcessing}
+                  color="primary"
+                >
+                  Save Sentence
+                </Button>
+                
+                <Tooltip title="Show as Markdown">
+                  <span>
+                    <IconButton 
+                      onClick={handleShowMarkdown} 
+                      color="primary"
+                      disabled={isProcessing}
+                      sx={{ borderRadius: 0 }}
+                    >
+                      <DescriptionIcon />
+                    </IconButton>
+                  </span>
+                </Tooltip>
+                
+                <Tooltip title="Export as JSON">
+                  <span>
+                    <IconButton 
+                      onClick={handleExportSentences} 
+                      color="primary"
+                      disabled={isProcessing}
+                      sx={{ borderRadius: 0 }}
+                    >
+                      <FileDownloadIcon />
+                    </IconButton>
+                  </span>
+                </Tooltip>
+              </ButtonGroup>
+              
+              <Tooltip title="Clear all words">
+                <span> {/* Wrap in span to allow tooltip on disabled button */}
+                  <IconButton
+                    onClick={handleClearWords}
+                    disabled={words.length === 0 || isProcessing}
+                    color="error"
+                  >
+                    <DeleteSweepIcon />
+                  </IconButton>
+                </span>
+              </Tooltip>
+            </Box>
           </Paper>
         </Stack>
       </Box>
+      
+      {/* Notification */}
+      <Snackbar 
+        open={snackbarOpen} 
+        autoHideDuration={4000} 
+        onClose={handleCloseSnackbar}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      >
+        <Alert 
+          onClose={handleCloseSnackbar} 
+          severity={snackbarSeverity} 
+          sx={{ width: '100%' }}
+        >
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
     </Paper>
   );
 }; 

@@ -27,6 +27,7 @@ function AppContent() {
     selectedWords,
     handleWordSelect,
     handleRemoveWord,
+    clearWords,
     setCurrentTypeFilter,
     refreshData,
     vocabularyByType
@@ -56,6 +57,7 @@ function AppContent() {
                 handleRemoveWord={handleRemoveWord}
                 setCurrentTypeFilter={setCurrentTypeFilter}
                 refreshVocabulary={refreshData}
+                clearWords={clearWords}
               />
             } 
           />

@@ -133,11 +133,22 @@ export function useVocabulary() {
 
   // Các hàm xử lý cần thiết cho HomePage cũ
   const handleWordSelect = useCallback((word: Vocabulary) => {
-    setSelectedWords(prev => [...prev, word]);
+    // Kiểm tra nếu từ đã được chọn thì không thêm vào nữa
+    setSelectedWords(prev => {
+      // Kiểm tra nếu từ đã tồn tại trong danh sách
+      const exists = prev.some(item => item.id === word.id);
+      if (exists) return prev;
+      return [...prev, word];
+    });
   }, []);
 
   const handleRemoveWord = useCallback((term: string) => {
     setSelectedWords(prev => prev.filter(word => word.term !== term));
+  }, []);
+
+  // Xóa tất cả các từ đã chọn
+  const clearWords = useCallback(() => {
+    setSelectedWords([]);
   }, []);
 
   // Nhóm từ vựng theo loại (cần thiết cho HomePage cũ)
@@ -178,6 +189,7 @@ export function useVocabulary() {
     selectedWords,
     handleWordSelect,
     handleRemoveWord,
+    clearWords,
     setCurrentTypeFilter,
     vocabularyByType,
     currentTypeFilter
