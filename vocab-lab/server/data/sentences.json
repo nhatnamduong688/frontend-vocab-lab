@@ -94,6 +94,123 @@
         }
       ],
       "timestamp": 1747756010486
+    },
+    {
+      "id": "1hss42n4nk",
+      "text": "Compile Mock Iterate Inject Algorithm",
+      "words": [
+        {
+          "id": "v2",
+          "term": "Compile",
+          "definition": "To convert source code into machine-readable format",
+          "type": "verb",
+          "difficulty": "medium",
+          "frequency": 85,
+          "category": "Development Process",
+          "example": "Compile the TypeScript code to JavaScript",
+          "interviewImportance": "medium",
+          "description": "Process of transforming code for execution",
+          "relatedTerms": [
+            "Build",
+            "Transform",
+            "Execute"
+          ],
+          "codeExample": "tsc app.ts",
+          "commonQuestions": [
+            "What is the compilation process?",
+            "What are compiler errors?"
+          ]
+        },
+        {
+          "id": "v15",
+          "term": "Mock",
+          "definition": "Create simulated objects for testing",
+          "type": "verb",
+          "difficulty": "medium",
+          "frequency": 85,
+          "category": "Testing",
+          "example": "Mock database connection",
+          "interviewImportance": "high",
+          "description": "Important for unit testing",
+          "relatedTerms": [
+            "Test",
+            "Stub",
+            "Spy"
+          ],
+          "codeExample": "jest.mock('./database')",
+          "commonQuestions": [
+            "Mock vs Stub?",
+            "When to use mocks?"
+          ]
+        },
+        {
+          "id": "v8",
+          "term": "Iterate",
+          "definition": "To perform repeatedly through a sequence",
+          "type": "verb",
+          "difficulty": "easy",
+          "frequency": 95,
+          "category": "Programming Basics",
+          "example": "Iterate through array elements",
+          "interviewImportance": "high",
+          "description": "Basic programming concept for loops",
+          "relatedTerms": [
+            "Loop",
+            "For",
+            "While"
+          ],
+          "codeExample": "for (let item of items) { ... }",
+          "commonQuestions": [
+            "Different types of loops?",
+            "When to use forEach vs for-of?"
+          ]
+        },
+        {
+          "id": "v10",
+          "term": "Inject",
+          "definition": "Provide dependencies to a component",
+          "type": "verb",
+          "difficulty": "hard",
+          "frequency": 80,
+          "category": "Software Design",
+          "example": "Dependency injection in Angular",
+          "interviewImportance": "medium",
+          "description": "Important for loose coupling",
+          "relatedTerms": [
+            "Dependency",
+            "IoC",
+            "Service"
+          ],
+          "codeExample": "@Injectable() class Service { }",
+          "commonQuestions": [
+            "What is DI?",
+            "Benefits of dependency injection?"
+          ]
+        },
+        {
+          "id": "n1",
+          "term": "Algorithm",
+          "definition": "A step-by-step procedure or formula for solving a problem",
+          "type": "noun",
+          "difficulty": "medium",
+          "frequency": 95,
+          "category": "Programming Concepts",
+          "example": "A sorting algorithm arranges elements in a specific order",
+          "interviewImportance": "high",
+          "description": "Fundamental concept in computer science and programming",
+          "relatedTerms": [
+            "Function",
+            "Logic",
+            "Procedure"
+          ],
+          "codeExample": "function bubbleSort(arr) { ... }",
+          "commonQuestions": [
+            "What is time complexity?",
+            "How to optimize algorithms?"
+          ]
+        }
+      ],
+      "timestamp": 1747756334057
     }
   ]
 }
