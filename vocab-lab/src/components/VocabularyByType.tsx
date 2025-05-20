@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Box, 
   Typography, 
   CircularProgress, 
-  Tabs, 
-  Tab, 
   TextField,
   InputAdornment,
   FormControl,
@@ -13,7 +11,11 @@ import {
   MenuItem,
   Chip,
   Grid,
-  SelectChangeEvent
+  SelectChangeEvent,
+  FormGroup,
+  FormControlLabel,
+  Checkbox,
+  Paper
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { useVocabulary } from '../hooks/useVocabulary';
@@ -31,18 +33,47 @@ const VocabularyByType: React.FC = () => {
   } = useVocabulary();
 
   const [searchText, setSearchText] = useState('');
-  const [selectedTab, setSelectedTab] = useState<string>('');
+  const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
 
-  // Xử lý thay đổi tab loại từ
-  const handleTypeChange = (_event: React.SyntheticEvent, newValue: string) => {
-    setSelectedTab(newValue);
-    
-    if (newValue === '') {
-      // Nếu chọn "All", xóa bộ lọc loại
-      updateFilters({ types: undefined });
+  // Khởi tạo selectedTypes với tất cả các loại được chọn
+  useEffect(() => {
+    if (availableTypes.length > 0 && selectedTypes.length === 0) {
+      // Mặc định chọn tất cả các loại
+      setSelectedTypes(availableTypes.map(type => type.name));
+    }
+  }, [availableTypes, selectedTypes.length]);
+
+  // Xử lý khi checkbox thay đổi
+  const handleTypeToggle = (typeName: string) => {
+    setSelectedTypes(prevSelectedTypes => {
+      let newSelectedTypes: string[];
+      
+      if (prevSelectedTypes.includes(typeName)) {
+        // Nếu đã chọn, bỏ chọn
+        newSelectedTypes = prevSelectedTypes.filter(t => t !== typeName);
+      } else {
+        // Nếu chưa chọn, thêm vào
+        newSelectedTypes = [...prevSelectedTypes, typeName];
+      }
+      
+      // Cập nhật filters
+      updateFilters({ 
+        types: newSelectedTypes.length > 0 ? newSelectedTypes as VocabularyType[] : undefined 
+      });
+      
+      return newSelectedTypes;
+    });
+  };
+
+  // Select/Deselect All
+  const handleSelectAllTypes = (selectAll: boolean) => {
+    if (selectAll) {
+      const allTypes = availableTypes.map(type => type.name);
+      setSelectedTypes(allTypes);
+      updateFilters({ types: allTypes as VocabularyType[] });
     } else {
-      // Nếu chọn một loại, đặt bộ lọc cho loại đó
-      updateFilters({ types: [newValue as VocabularyType] });
+      setSelectedTypes([]);
+      updateFilters({ types: [] });
     }
   };
 
@@ -119,48 +150,52 @@ const VocabularyByType: React.FC = () => {
         </Grid>
       </Box>
 
-      {/* Type Tabs */}
-      <Box mb={4}>
-        <Tabs
-          value={selectedTab}
-          onChange={handleTypeChange}
-          indicatorColor="primary"
-          textColor="primary"
-          variant="scrollable"
-          scrollButtons="auto"
-        >
-          <Tab label="All Types" value="" />
+      {/* Type Selection with Checkboxes */}
+      <Paper elevation={2} sx={{ p: 2, mb: 4 }}>
+        <Typography variant="h6" gutterBottom>Filter by Type</Typography>
+        
+        <Box mb={1}>
+          <FormControlLabel
+            control={
+              <Checkbox 
+                checked={selectedTypes.length === availableTypes.length} 
+                indeterminate={selectedTypes.length > 0 && selectedTypes.length < availableTypes.length}
+                onChange={(e) => handleSelectAllTypes(e.target.checked)}
+              />
+            }
+            label={<Typography fontWeight="bold">Select All</Typography>}
+          />
+        </Box>
+        
+        <FormGroup row>
           {availableTypes.map((typeInfo) => (
-            <Tab 
-              key={typeInfo.name} 
-              label={`${typeInfo.name} (${typeInfo.count})`} 
-              value={typeInfo.name} 
+            <FormControlLabel
+              key={typeInfo.name}
+              control={
+                <Checkbox 
+                  checked={selectedTypes.includes(typeInfo.name)} 
+                  onChange={() => handleTypeToggle(typeInfo.name)}
+                />
+              }
+              label={`${typeInfo.name} (${typeInfo.count})`}
+              sx={{ width: { xs: '100%', sm: '50%', md: '33%', lg: '25%' } }}
             />
           ))}
-        </Tabs>
-      </Box>
+        </FormGroup>
+      </Paper>
 
       {/* Results Info */}
       <Box mb={2} display="flex" justifyContent="space-between" alignItems="center">
         <Typography variant="subtitle1">
           Showing {vocabulary.length} results
         </Typography>
-        {filters.types && filters.types.length > 0 && (
-          <Box>
-            {filters.types.map(type => (
-              <Chip 
-                key={type} 
-                label={type} 
-                onDelete={() => {
-                  setSelectedTab('');
-                  updateFilters({ types: undefined });
-                }}
-                color="primary"
-                sx={{ mr: 1 }}
-              />
-            ))}
-          </Box>
-        )}
+        <Box>
+          {selectedTypes.length > 0 && selectedTypes.length < availableTypes.length && (
+            <Typography variant="body2" color="text.secondary">
+              Filtered by {selectedTypes.length} types
+            </Typography>
+          )}
+        </Box>
       </Box>
 
       {/* Vocabulary Cards */}

@@ -1,15 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Box, 
   Grid, 
-  Tabs, 
-  Tab, 
   Button, 
   Typography,
-  Chip
+  Paper,
+  FormGroup,
+  FormControlLabel,
+  Checkbox,
+  Collapse,
+  IconButton
 } from '@mui/material';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import FilterListIcon from '@mui/icons-material/FilterList';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { VocabularyColumn } from '../../organisms/VocabularyColumn/VocabularyColumn';
 import { SelectedWords } from '../../organisms/SelectedWords/SelectedWords';
 import { Vocabulary } from '../../../types/vocabulary';
@@ -35,21 +40,33 @@ export const HomePage: React.FC<HomePageProps> = ({
   setCurrentTypeFilter,
   refreshVocabulary,
 }) => {
-  const [showAllTypes, setShowAllTypes] = useState(true);
+  const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
+  const [showFilterPanel, setShowFilterPanel] = useState(false);
 
-  const handleTypeFilterChange = (type: string | null) => {
-    setCurrentTypeFilter(type);
-    // When selecting a specific type, automatically show that type only
-    if (type) {
-      setShowAllTypes(false);
+  // Khởi tạo selectedTypes với tất cả các loại được chọn
+  useEffect(() => {
+    if (availableTypes.length > 0 && selectedTypes.length === 0) {
+      setSelectedTypes([...availableTypes]);
     }
+  }, [availableTypes, selectedTypes.length]);
+
+  const handleTypeToggle = (typeName: string) => {
+    setSelectedTypes(prevSelectedTypes => {
+      if (prevSelectedTypes.includes(typeName)) {
+        // Nếu đã chọn, bỏ chọn
+        return prevSelectedTypes.filter(t => t !== typeName);
+      } else {
+        // Nếu chưa chọn, thêm vào
+        return [...prevSelectedTypes, typeName];
+      }
+    });
   };
 
-  const handleToggleAllTypes = () => {
-    setShowAllTypes(prev => !prev);
-    if (!showAllTypes) {
-      // If switching to show all types, clear the type filter
-      setCurrentTypeFilter(null);
+  const handleSelectAllTypes = (selectAll: boolean) => {
+    if (selectAll) {
+      setSelectedTypes([...availableTypes]);
+    } else {
+      setSelectedTypes([]);
     }
   };
 
@@ -57,21 +74,17 @@ export const HomePage: React.FC<HomePageProps> = ({
     refreshVocabulary();
   };
 
-  // Determine which vocabulary data to display based on filters
-  const getDisplayedVocabulary = () => {
-    if (showAllTypes) {
-      return vocabularyByType;
-    }
-    
-    if (currentTypeFilter && vocabularyByType[currentTypeFilter]) {
-      return { [currentTypeFilter]: vocabularyByType[currentTypeFilter] };
-    }
-    
-    return vocabularyByType;
+  const toggleFilterPanel = () => {
+    setShowFilterPanel(prev => !prev);
   };
 
   // Get the filtered vocabulary data
-  const displayedVocabulary = getDisplayedVocabulary();
+  const displayedVocabulary = Object.entries(vocabularyByType)
+    .filter(([type]) => selectedTypes.includes(type))
+    .reduce((acc, [type, words]) => {
+      acc[type] = words;
+      return acc;
+    }, {} as Record<string, Vocabulary[]>);
 
   return (
     <Box sx={{ py: 3 }}>
@@ -94,12 +107,12 @@ export const HomePage: React.FC<HomePageProps> = ({
         <Box sx={{ display: 'flex', gap: 2 }}>
           <Button 
             size="small"
-            startIcon={<FilterListIcon />}
-            onClick={handleToggleAllTypes}
-            variant={showAllTypes ? "contained" : "outlined"}
+            startIcon={showFilterPanel ? <ExpandLessIcon /> : <FilterListIcon />}
+            onClick={toggleFilterPanel}
+            variant={showFilterPanel ? "contained" : "outlined"}
             color="primary"
           >
-            {showAllTypes ? "Showing All Types" : "Showing Selected Type"}
+            Filter Types
           </Button>
           
           <Button 
@@ -113,25 +126,43 @@ export const HomePage: React.FC<HomePageProps> = ({
         </Box>
       </Box>
       
-      {!showAllTypes && (
-        <Box sx={{ mb: 3, mt: 2 }}>
-          <Tabs
-            value={currentTypeFilter || "all"}
-            onChange={(_, value) => handleTypeFilterChange(value === "all" ? null : value)}
-            variant="scrollable"
-            scrollButtons="auto"
-          >
-            <Tab label="All Types" value="all" />
-            {availableTypes.map(type => (
-              <Tab 
-                key={type} 
-                label={type.charAt(0).toUpperCase() + type.slice(1)} 
-                value={type} 
+      <Collapse in={showFilterPanel}>
+        <Paper elevation={2} sx={{ p: 2, mb: 3 }}>
+          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+            <Typography variant="subtitle1" fontWeight="bold">Select Types to Display</Typography>
+            <Box>
+              <FormControlLabel
+                control={
+                  <Checkbox 
+                    checked={selectedTypes.length === availableTypes.length} 
+                    indeterminate={selectedTypes.length > 0 && selectedTypes.length < availableTypes.length}
+                    onChange={(e) => handleSelectAllTypes(e.target.checked)}
+                    size="small"
+                  />
+                }
+                label="Select All"
+              />
+            </Box>
+          </Box>
+          
+          <FormGroup row>
+            {availableTypes.map((type) => (
+              <FormControlLabel
+                key={type}
+                control={
+                  <Checkbox 
+                    checked={selectedTypes.includes(type)} 
+                    onChange={() => handleTypeToggle(type)}
+                    size="small"
+                  />
+                }
+                label={type.charAt(0).toUpperCase() + type.slice(1)}
+                sx={{ width: { xs: '50%', sm: '33%', md: '25%' } }}
               />
             ))}
-          </Tabs>
-        </Box>
-      )}
+          </FormGroup>
+        </Paper>
+      </Collapse>
       
       <Grid 
         container 
@@ -148,8 +179,8 @@ export const HomePage: React.FC<HomePageProps> = ({
             item 
             xs={12} 
             sm={6} 
-            md={showAllTypes ? 4 : 6}
-            lg={showAllTypes ? 4 : 6}
+            md={4}
+            lg={4}
             key={type}
             sx={{
               display: 'flex',
@@ -164,6 +195,16 @@ export const HomePage: React.FC<HomePageProps> = ({
             />
           </Grid>
         ))}
+        
+        {Object.keys(displayedVocabulary).length === 0 && (
+          <Grid item xs={12}>
+            <Paper sx={{ p: 3, textAlign: 'center' }}>
+              <Typography variant="h6" color="text.secondary">
+                No vocabulary types selected. Please select at least one type to display.
+              </Typography>
+            </Paper>
+          </Grid>
+        )}
       </Grid>
     </Box>
   );
