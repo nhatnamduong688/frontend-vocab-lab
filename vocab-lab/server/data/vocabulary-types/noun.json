@@ -1,0 +1,445 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2025-05-20T14:02:23.262Z",
+    "totalTerms": 19,
+    "categories": [
+      "Programming Concepts",
+      "Data Structures",
+      "Development Process",
+      "Web Development",
+      "Software Architecture",
+      "Frontend Frameworks",
+      "CSS Concepts",
+      "TypeScript",
+      "Performance",
+      "Browser APIs",
+      "UI Components",
+      "Navigation Components",
+      "Layout Components",
+      "Feedback Components",
+      "Data Display Components"
+    ],
+    "type": "noun"
+  },
+  "vocabulary": [
+    {
+      "id": "n1",
+      "term": "Algorithm",
+      "definition": "A step-by-step procedure or formula for solving a problem",
+      "type": "noun",
+      "difficulty": "medium",
+      "frequency": 95,
+      "category": "Programming Concepts",
+      "example": "A sorting algorithm arranges elements in a specific order",
+      "interviewImportance": "high",
+      "description": "Fundamental concept in computer science and programming",
+      "relatedTerms": [
+        "Function",
+        "Logic",
+        "Procedure"
+      ],
+      "codeExample": "function bubbleSort(arr) { ... }",
+      "commonQuestions": [
+        "What is time complexity?",
+        "How to optimize algorithms?"
+      ]
+    },
+    {
+      "id": "n2",
+      "term": "Array",
+      "definition": "A data structure that stores a collection of elements in a specific order",
+      "type": "noun",
+      "difficulty": "easy",
+      "frequency": 100,
+      "category": "Data Structures",
+      "example": "const numbers = [1, 2, 3, 4, 5]",
+      "interviewImportance": "high",
+      "description": "Basic data structure used in most programming languages",
+      "relatedTerms": [
+        "List",
+        "Collection",
+        "Index"
+      ],
+      "codeExample": "let fruits = ['apple', 'banana', 'orange']",
+      "commonQuestions": [
+        "How to iterate through an array?",
+        "What is array indexing?"
+      ]
+    },
+    {
+      "id": "n3",
+      "term": "Database",
+      "definition": "An organized collection of structured information or data",
+      "type": "noun",
+      "difficulty": "medium",
+      "frequency": 90,
+      "category": "Data Storage",
+      "example": "MySQL is a popular relational database",
+      "interviewImportance": "high",
+      "description": "Essential for storing and managing application data",
+      "relatedTerms": [
+        "SQL",
+        "Query",
+        "Table"
+      ],
+      "codeExample": "SELECT * FROM users WHERE age > 18",
+      "commonQuestions": [
+        "What is CRUD?",
+        "How to optimize database queries?"
+      ]
+    },
+    {
+      "id": "n4",
+      "term": "API",
+      "definition": "Application Programming Interface for software communication",
+      "type": "noun",
+      "difficulty": "medium",
+      "frequency": 95,
+      "category": "Web Development",
+      "example": "REST API endpoints for data exchange",
+      "interviewImportance": "high",
+      "description": "Interface for different software systems to communicate",
+      "relatedTerms": [
+        "REST",
+        "Endpoint",
+        "HTTP"
+      ],
+      "codeExample": "fetch('/api/users').then(response => response.json())",
+      "commonQuestions": [
+        "What is RESTful API?",
+        "How to handle API errors?"
+      ]
+    },
+    {
+      "id": "n5",
+      "term": "Framework",
+      "definition": "A platform for developing software applications",
+      "type": "noun",
+      "difficulty": "medium",
+      "frequency": 92,
+      "category": "Software Development",
+      "example": "React is a popular JavaScript framework",
+      "interviewImportance": "high",
+      "description": "Provides structure and tools for development",
+      "relatedTerms": [
+        "Library",
+        "Tool",
+        "Platform"
+      ],
+      "codeExample": "import { useState } from 'react'",
+      "commonQuestions": [
+        "Framework vs Library?",
+        "How to choose a framework?"
+      ]
+    },
+    {
+      "id": "n6",
+      "term": "Cache",
+      "definition": "Temporary storage for quick data access",
+      "type": "noun",
+      "difficulty": "medium",
+      "frequency": 85,
+      "category": "Performance",
+      "example": "Browser cache stores static assets",
+      "interviewImportance": "medium",
+      "description": "Improves application performance",
+      "relatedTerms": [
+        "Memory",
+        "Storage",
+        "Buffer"
+      ],
+      "codeExample": "localStorage.setItem('user', JSON.stringify(userData))",
+      "commonQuestions": [
+        "What is cache invalidation?",
+        "Types of caching?"
+      ]
+    },
+    {
+      "id": "n7",
+      "term": "Middleware",
+      "definition": "Software that acts as a bridge between systems",
+      "type": "noun",
+      "difficulty": "hard",
+      "frequency": 82,
+      "category": "Software Architecture",
+      "example": "Authentication middleware checks user tokens",
+      "interviewImportance": "medium",
+      "description": "Connects different parts of an application",
+      "relatedTerms": [
+        "Express",
+        "Router",
+        "Handler"
+      ],
+      "codeExample": "app.use(auth.authenticate())",
+      "commonQuestions": [
+        "What is middleware chain?",
+        "When to use middleware?"
+      ]
+    },
+    {
+      "id": "n8",
+      "term": "Repository",
+      "definition": "A storage location for code and version history",
+      "type": "noun",
+      "difficulty": "easy",
+      "frequency": 90,
+      "category": "Version Control",
+      "example": "Git repository stores project code",
+      "interviewImportance": "high",
+      "description": "Central location for code management",
+      "relatedTerms": [
+        "Git",
+        "Version Control",
+        "Branch"
+      ],
+      "codeExample": "git clone https://github.com/user/repo.git",
+      "commonQuestions": [
+        "What is Git?",
+        "How to manage branches?"
+      ]
+    },
+    {
+      "id": "n9",
+      "term": "Interface",
+      "definition": "A contract that defines a type structure",
+      "type": "noun",
+      "difficulty": "medium",
+      "frequency": 88,
+      "category": "Type Systems",
+      "example": "TypeScript interface defines object shape",
+      "interviewImportance": "high",
+      "description": "Used for type checking and code organization",
+      "relatedTerms": [
+        "Type",
+        "Class",
+        "Contract"
+      ],
+      "codeExample": "interface User { id: string; name: string; }",
+      "commonQuestions": [
+        "Interface vs Type?",
+        "When to use interfaces?"
+      ]
+    },
+    {
+      "id": "n10",
+      "term": "Promise",
+      "definition": "Object representing eventual completion of async operation",
+      "type": "noun",
+      "difficulty": "hard",
+      "frequency": 92,
+      "category": "Asynchronous Programming",
+      "example": "Promise handles async data fetching",
+      "interviewImportance": "high",
+      "description": "Essential for async JavaScript programming",
+      "relatedTerms": [
+        "Async/Await",
+        "Callback",
+        "Then"
+      ],
+      "codeExample": "new Promise((resolve, reject) => { ... })",
+      "commonQuestions": [
+        "Promise vs Callback?",
+        "How to handle Promise errors?"
+      ]
+    },
+    {
+      "id": "n11",
+      "term": "Stack",
+      "definition": "Last-In-First-Out (LIFO) data structure",
+      "type": "noun",
+      "difficulty": "medium",
+      "frequency": 85,
+      "category": "Data Structures",
+      "example": "Call stack in program execution",
+      "interviewImportance": "high",
+      "description": "Fundamental data structure",
+      "relatedTerms": [
+        "Queue",
+        "Array",
+        "LIFO"
+      ],
+      "codeExample": "const stack = []; stack.push(item); stack.pop();",
+      "commonQuestions": [
+        "Stack vs Queue?",
+        "Common stack operations?"
+      ]
+    },
+    {
+      "id": "n12",
+      "term": "Pattern",
+      "definition": "Reusable solution to a common problem",
+      "type": "noun",
+      "difficulty": "hard",
+      "frequency": 85,
+      "category": "Software Design",
+      "example": "Singleton pattern for single instance",
+      "interviewImportance": "high",
+      "description": "Standard solutions to common problems",
+      "relatedTerms": [
+        "Design Pattern",
+        "Architecture",
+        "Solution"
+      ],
+      "codeExample": "class Singleton { private static instance; }",
+      "commonQuestions": [
+        "Common design patterns?",
+        "When to use patterns?"
+      ]
+    },
+    {
+      "id": "n13",
+      "term": "Thread",
+      "definition": "Smallest unit of programmed instructions",
+      "type": "noun",
+      "difficulty": "hard",
+      "frequency": 78,
+      "category": "Concurrency",
+      "example": "Multi-threaded application",
+      "interviewImportance": "medium",
+      "description": "Basic unit of CPU utilization",
+      "relatedTerms": [
+        "Process",
+        "Concurrent",
+        "Parallel"
+      ],
+      "codeExample": "new Thread(() => { /* work */ }).start()",
+      "commonQuestions": [
+        "Thread vs Process?",
+        "Thread safety?"
+      ]
+    },
+    {
+      "id": "n14",
+      "term": "Queue",
+      "definition": "First-In-First-Out (FIFO) data structure",
+      "type": "noun",
+      "difficulty": "medium",
+      "frequency": 85,
+      "category": "Data Structures",
+      "example": "Message queue for task processing",
+      "interviewImportance": "high",
+      "description": "Fundamental data structure for ordered processing",
+      "relatedTerms": [
+        "Stack",
+        "Array",
+        "FIFO"
+      ],
+      "codeExample": "const queue = []; queue.push(item); queue.shift();",
+      "commonQuestions": [
+        "Queue operations?",
+        "When to use Queue?"
+      ]
+    },
+    {
+      "id": "n15",
+      "term": "Event",
+      "definition": "Action or occurrence detected by program",
+      "type": "noun",
+      "difficulty": "medium",
+      "frequency": 90,
+      "category": "Programming Concepts",
+      "example": "Click event in web applications",
+      "interviewImportance": "high",
+      "description": "Core concept in event-driven programming",
+      "relatedTerms": [
+        "Listener",
+        "Handler",
+        "Callback"
+      ],
+      "codeExample": "element.addEventListener('click', handler)",
+      "commonQuestions": [
+        "Event bubbling?",
+        "Event delegation?"
+      ]
+    },
+    {
+      "id": "n16",
+      "term": "Protocol",
+      "definition": "Set of rules for data communication",
+      "type": "noun",
+      "difficulty": "medium",
+      "frequency": 85,
+      "category": "Networking",
+      "example": "HTTP protocol for web communication",
+      "interviewImportance": "high",
+      "description": "Standards for system communication",
+      "relatedTerms": [
+        "HTTP",
+        "TCP",
+        "API"
+      ],
+      "codeExample": "https://api.example.com/data",
+      "commonQuestions": [
+        "Common protocols?",
+        "Protocol layers?"
+      ]
+    },
+    {
+      "id": "n17",
+      "term": "Token",
+      "definition": "Authentication credential or identifier",
+      "type": "noun",
+      "difficulty": "medium",
+      "frequency": 88,
+      "category": "Security",
+      "example": "JWT token for authentication",
+      "interviewImportance": "high",
+      "description": "Used for secure communication",
+      "relatedTerms": [
+        "JWT",
+        "Authentication",
+        "Bearer"
+      ],
+      "codeExample": "Authorization: Bearer eyJhbGciOiJIUzI1NiIs...",
+      "commonQuestions": [
+        "Token types?",
+        "Token security best practices?"
+      ]
+    },
+    {
+      "id": "n18",
+      "term": "Endpoint",
+      "definition": "URL where API service can be accessed",
+      "type": "noun",
+      "difficulty": "easy",
+      "frequency": 92,
+      "category": "Web Development",
+      "example": "REST API endpoint",
+      "interviewImportance": "high",
+      "description": "Interface point for API communication",
+      "relatedTerms": [
+        "API",
+        "Route",
+        "URL"
+      ],
+      "codeExample": "app.get('/api/users', handler)",
+      "commonQuestions": [
+        "RESTful endpoints?",
+        "Endpoint security?"
+      ]
+    },
+    {
+      "id": "n19",
+      "term": "Middleware",
+      "definition": "Software that connects components or applications",
+      "type": "noun",
+      "difficulty": "medium",
+      "frequency": 88,
+      "category": "Software Architecture",
+      "example": "Authentication middleware",
+      "interviewImportance": "high",
+      "description": "Common in web frameworks",
+      "relatedTerms": [
+        "Express",
+        "Pipeline",
+        "Handler"
+      ],
+      "codeExample": "app.use(authMiddleware)",
+      "commonQuestions": [
+        "Common middleware uses?",
+        "Middleware chain?"
+      ]
+    }
+  ]
+}

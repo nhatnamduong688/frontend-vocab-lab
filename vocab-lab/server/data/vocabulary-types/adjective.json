@@ -1,0 +1,291 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2025-05-20T14:02:23.262Z",
+    "totalTerms": 12,
+    "categories": [
+      "Programming Concepts",
+      "Data Structures",
+      "Development Process",
+      "Web Development",
+      "Software Architecture",
+      "Frontend Frameworks",
+      "CSS Concepts",
+      "TypeScript",
+      "Performance",
+      "Browser APIs",
+      "UI Components",
+      "Navigation Components",
+      "Layout Components",
+      "Feedback Components",
+      "Data Display Components"
+    ],
+    "type": "adjective"
+  },
+  "vocabulary": [
+    {
+      "id": "a1",
+      "term": "Asynchronous",
+      "definition": "Operations that can run independently of other operations",
+      "type": "adjective",
+      "difficulty": "hard",
+      "frequency": 80,
+      "category": "Programming Concepts",
+      "example": "Asynchronous API calls using async/await",
+      "interviewImportance": "high",
+      "description": "Important concept for handling non-blocking operations",
+      "relatedTerms": [
+        "Promise",
+        "Callback",
+        "Event Loop"
+      ],
+      "codeExample": "async function fetchData() { ... }",
+      "commonQuestions": [
+        "What is the difference between async and sync?",
+        "How to handle promises?"
+      ]
+    },
+    {
+      "id": "a2",
+      "term": "Static",
+      "definition": "Belonging to the class itself rather than instances of the class",
+      "type": "adjective",
+      "difficulty": "medium",
+      "frequency": 85,
+      "category": "Programming Concepts",
+      "example": "Static methods can be called without creating an instance",
+      "interviewImportance": "medium",
+      "description": "Used for class-level properties and methods",
+      "relatedTerms": [
+        "Class",
+        "Method",
+        "Instance"
+      ],
+      "codeExample": "static getInstance() { ... }",
+      "commonQuestions": [
+        "When to use static methods?",
+        "What are static variables?"
+      ]
+    },
+    {
+      "id": "a3",
+      "term": "Responsive",
+      "definition": "Adapting to different screen sizes and devices",
+      "type": "adjective",
+      "difficulty": "medium",
+      "frequency": 88,
+      "category": "Web Development",
+      "example": "Responsive design works on both mobile and desktop",
+      "interviewImportance": "high",
+      "description": "Important for modern web development",
+      "relatedTerms": [
+        "Mobile-first",
+        "Media Queries",
+        "Flexible"
+      ],
+      "codeExample": "@media screen and (max-width: 768px) { ... }",
+      "commonQuestions": [
+        "What are breakpoints?",
+        "How to test responsive design?"
+      ]
+    },
+    {
+      "id": "a4",
+      "term": "Scalable",
+      "definition": "Able to handle growing amounts of work",
+      "type": "adjective",
+      "difficulty": "hard",
+      "frequency": 80,
+      "category": "System Design",
+      "example": "A scalable architecture can handle millions of users",
+      "interviewImportance": "high",
+      "description": "Important for growing applications",
+      "relatedTerms": [
+        "Performance",
+        "Load Balancing",
+        "Distributed"
+      ],
+      "codeExample": "const cluster = require('cluster')",
+      "commonQuestions": [
+        "Vertical vs Horizontal scaling?",
+        "How to design scalable systems?"
+      ]
+    },
+    {
+      "id": "a5",
+      "term": "Modular",
+      "definition": "Composed of separate, independent units",
+      "type": "adjective",
+      "difficulty": "medium",
+      "frequency": 85,
+      "category": "Code Organization",
+      "example": "Modular code is easier to maintain",
+      "interviewImportance": "medium",
+      "description": "Helps in organizing and maintaining code",
+      "relatedTerms": [
+        "Component",
+        "Module",
+        "Encapsulation"
+      ],
+      "codeExample": "import { Module } from '@nestjs/common'",
+      "commonQuestions": [
+        "Benefits of modularity?",
+        "How to design modular systems?"
+      ]
+    },
+    {
+      "id": "a6",
+      "term": "Recursive",
+      "definition": "Involving a function that calls itself",
+      "type": "adjective",
+      "difficulty": "hard",
+      "frequency": 75,
+      "category": "Programming Concepts",
+      "example": "Recursive function to traverse tree",
+      "interviewImportance": "high",
+      "description": "Used for solving complex problems",
+      "relatedTerms": [
+        "Stack",
+        "Iteration",
+        "Base Case"
+      ],
+      "codeExample": "function factorial(n) { return n <= 1 ? 1 : n * factorial(n-1); }",
+      "commonQuestions": [
+        "What is base case?",
+        "Recursion vs Iteration?"
+      ]
+    },
+    {
+      "id": "a7",
+      "term": "Immutable",
+      "definition": "Cannot be changed after creation",
+      "type": "adjective",
+      "difficulty": "medium",
+      "frequency": 88,
+      "category": "Programming Concepts",
+      "example": "Immutable state in Redux",
+      "interviewImportance": "high",
+      "description": "Important for predictable code",
+      "relatedTerms": [
+        "Mutable",
+        "State",
+        "Pure"
+      ],
+      "codeExample": "const frozen = Object.freeze({x: 1})",
+      "commonQuestions": [
+        "Benefits of immutability?",
+        "How to enforce immutability?"
+      ]
+    },
+    {
+      "id": "a8",
+      "term": "Declarative",
+      "definition": "Expressing what should happen, not how",
+      "type": "adjective",
+      "difficulty": "medium",
+      "frequency": 85,
+      "category": "Programming Paradigms",
+      "example": "SQL is declarative language",
+      "interviewImportance": "medium",
+      "description": "Modern programming approach",
+      "relatedTerms": [
+        "Imperative",
+        "Functional",
+        "React"
+      ],
+      "codeExample": "const adults = people.filter(p => p.age >= 18)",
+      "commonQuestions": [
+        "Declarative vs Imperative?",
+        "Benefits of declarative programming?"
+      ]
+    },
+    {
+      "id": "a9",
+      "term": "Synchronous",
+      "definition": "Operations that execute in sequence",
+      "type": "adjective",
+      "difficulty": "medium",
+      "frequency": 85,
+      "category": "Programming Concepts",
+      "example": "Synchronous function blocks execution",
+      "interviewImportance": "high",
+      "description": "Basic execution model in programming",
+      "relatedTerms": [
+        "Asynchronous",
+        "Blocking",
+        "Sequential"
+      ],
+      "codeExample": "const result = database.query()",
+      "commonQuestions": [
+        "Sync vs Async?",
+        "When to use sync operations?"
+      ]
+    },
+    {
+      "id": "a10",
+      "term": "Concurrent",
+      "definition": "Multiple computations executing simultaneously",
+      "type": "adjective",
+      "difficulty": "hard",
+      "frequency": 80,
+      "category": "System Design",
+      "example": "Concurrent request handling",
+      "interviewImportance": "high",
+      "description": "Important for system scalability",
+      "relatedTerms": [
+        "Parallel",
+        "Async",
+        "Thread"
+      ],
+      "codeExample": "Promise.all([task1(), task2()])",
+      "commonQuestions": [
+        "Concurrency vs Parallelism?",
+        "Concurrency challenges?"
+      ]
+    },
+    {
+      "id": "a11",
+      "term": "Polymorphic",
+      "definition": "Having multiple forms or implementations",
+      "type": "adjective",
+      "difficulty": "hard",
+      "frequency": 78,
+      "category": "Object-Oriented Programming",
+      "example": "Polymorphic method behavior",
+      "interviewImportance": "high",
+      "description": "Core concept in OOP",
+      "relatedTerms": [
+        "Inheritance",
+        "Override",
+        "Interface"
+      ],
+      "codeExample": "class Animal { speak() {} } class Dog extends Animal { speak() { return 'Woof'; } }",
+      "commonQuestions": [
+        "Types of polymorphism?",
+        "When to use polymorphism?"
+      ]
+    },
+    {
+      "id": "a12",
+      "term": "Idempotent",
+      "definition": "Operation that produces same result when repeated",
+      "type": "adjective",
+      "difficulty": "hard",
+      "frequency": 75,
+      "category": "API Design",
+      "example": "GET requests are idempotent",
+      "interviewImportance": "medium",
+      "description": "Important for API reliability",
+      "relatedTerms": [
+        "REST",
+        "HTTP",
+        "Safe"
+      ],
+      "codeExample": "PUT /api/users/123 { name: 'John' }",
+      "commonQuestions": [
+        "Idempotent methods?",
+        "Why is idempotency important?"
+      ]
+    }
+  ]
+}

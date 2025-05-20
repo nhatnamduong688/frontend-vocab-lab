@@ -1,0 +1,32 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2024-03-20",
+    "totalTerms": 100,
+    "categories": [
+      "Programming Concepts",
+      "Data Structures",
+      "Development Process",
+      "Web Development",
+      "Software Architecture"
+    ]
+  },
+  "availableTypes": [
+    {
+      "type": "noun",
+      "count": 19,
+      "file": "types/noun.json"
+    },
+    {
+      "type": "verb",
+      "count": 16,
+      "file": "types/verb.json"
+    },
+    {
+      "type": "adjective",
+      "count": 12,
+      "file": "types/adjective.json"
+    }
+  ],
+  "allWordsFile": "all.json"
+}

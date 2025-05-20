@@ -211,6 +211,315 @@
         }
       ],
       "timestamp": 1747756334057
+    },
+    {
+      "id": "cgfr8w6vjr",
+      "text": "React Vue Event Middleware Inject Mock Compile ColorPicker DateRangePicker Drawer Flex NumberInput PasswordField Popover ProgressCircle Alert Backdrop",
+      "words": [
+        {
+          "id": "af9m2d9ldf",
+          "frequency": 20,
+          "description": "A JavaScript library for building user interfaces, particularly single-page applications.",
+          "relatedTerms": [],
+          "codeExample": "",
+          "commonQuestions": [],
+          "createdAt": 1747749383708,
+          "term": "React",
+          "definition": "A JavaScript library for building user interfaces, particularly single-page applications.",
+          "type": "framework",
+          "difficulty": "medium",
+          "category": "Frontend Frameworks",
+          "example": "React components are reusable pieces of code that return React elements describing what should appear on the screen.",
+          "interviewImportance": "high"
+        },
+        {
+          "id": "pyp1ml7jk0",
+          "frequency": 91,
+          "description": "A progressive JavaScript framework for building user interfaces with a focus on declarative rendering and component composition.",
+          "relatedTerms": [],
+          "codeExample": "",
+          "commonQuestions": [],
+          "createdAt": 1747749383708,
+          "term": "Vue",
+          "definition": "A progressive JavaScript framework for building user interfaces with a focus on declarative rendering and component composition.",
+          "type": "framework",
+          "difficulty": "medium",
+          "category": "Frontend Frameworks",
+          "example": "Vue combines the best aspects of Angular and React while being more lightweight and flexible.",
+          "interviewImportance": "medium"
+        },
+        {
+          "id": "n15",
+          "term": "Event",
+          "definition": "Action or occurrence detected by program",
+          "type": "noun",
+          "difficulty": "medium",
+          "frequency": 90,
+          "category": "Programming Concepts",
+          "example": "Click event in web applications",
+          "interviewImportance": "high",
+          "description": "Core concept in event-driven programming",
+          "relatedTerms": [
+            "Listener",
+            "Handler",
+            "Callback"
+          ],
+          "codeExample": "element.addEventListener('click', handler)",
+          "commonQuestions": [
+            "Event bubbling?",
+            "Event delegation?"
+          ]
+        },
+        {
+          "id": "n7",
+          "term": "Middleware",
+          "definition": "Software that acts as a bridge between systems",
+          "type": "noun",
+          "difficulty": "hard",
+          "frequency": 82,
+          "category": "Software Architecture",
+          "example": "Authentication middleware checks user tokens",
+          "interviewImportance": "medium",
+          "description": "Connects different parts of an application",
+          "relatedTerms": [
+            "Express",
+            "Router",
+            "Handler"
+          ],
+          "codeExample": "app.use(auth.authenticate())",
+          "commonQuestions": [
+            "What is middleware chain?",
+            "When to use middleware?"
+          ]
+        },
+        {
+          "id": "v10",
+          "term": "Inject",
+          "definition": "Provide dependencies to a component",
+          "type": "verb",
+          "difficulty": "hard",
+          "frequency": 80,
+          "category": "Software Design",
+          "example": "Dependency injection in Angular",
+          "interviewImportance": "medium",
+          "description": "Important for loose coupling",
+          "relatedTerms": [
+            "Dependency",
+            "IoC",
+            "Service"
+          ],
+          "codeExample": "@Injectable() class Service { }",
+          "commonQuestions": [
+            "What is DI?",
+            "Benefits of dependency injection?"
+          ]
+        },
+        {
+          "id": "v15",
+          "term": "Mock",
+          "definition": "Create simulated objects for testing",
+          "type": "verb",
+          "difficulty": "medium",
+          "frequency": 85,
+          "category": "Testing",
+          "example": "Mock database connection",
+          "interviewImportance": "high",
+          "description": "Important for unit testing",
+          "relatedTerms": [
+            "Test",
+            "Stub",
+            "Spy"
+          ],
+          "codeExample": "jest.mock('./database')",
+          "commonQuestions": [
+            "Mock vs Stub?",
+            "When to use mocks?"
+          ]
+        },
+        {
+          "id": "v2",
+          "term": "Compile",
+          "definition": "To convert source code into machine-readable format",
+          "type": "verb",
+          "difficulty": "medium",
+          "frequency": 85,
+          "category": "Development Process",
+          "example": "Compile the TypeScript code to JavaScript",
+          "interviewImportance": "medium",
+          "description": "Process of transforming code for execution",
+          "relatedTerms": [
+            "Build",
+            "Transform",
+            "Execute"
+          ],
+          "codeExample": "tsc app.ts",
+          "commonQuestions": [
+            "What is the compilation process?",
+            "What are compiler errors?"
+          ]
+        },
+        {
+          "id": "tcuqjrhfif",
+          "type": "component",
+          "difficulty": "medium",
+          "frequency": 79,
+          "interviewImportance": "high",
+          "description": "A component that allows users to select a color from a palette.",
+          "relatedTerms": [],
+          "codeExample": "<ColorPicker color={color} onChange={handleColorChange} />",
+          "commonQuestions": [],
+          "createdAt": 1747749738250,
+          "term": "ColorPicker",
+          "definition": "A component that allows users to select a color from a palette.",
+          "category": "UI Components",
+          "example": "<ColorPicker color={color} onChange={handleColorChange} />"
+        },
+        {
+          "id": "no8jkungx8",
+          "type": "component",
+          "difficulty": "medium",
+          "frequency": 28,
+          "interviewImportance": "medium",
+          "description": "A component that allows users to select a start and end date.",
+          "relatedTerms": [],
+          "codeExample": "<DateRangePicker startDate={start} endDate={end} onChange={handleDateChange} />",
+          "commonQuestions": [],
+          "createdAt": 1747749738250,
+          "term": "DateRangePicker",
+          "definition": "A component that allows users to select a start and end date.",
+          "category": "UI Components",
+          "example": "<DateRangePicker startDate={start} endDate={end} onChange={handleDateChange} />"
+        },
+        {
+          "id": "tehkf0qckh",
+          "type": "component",
+          "difficulty": "easy",
+          "frequency": 78,
+          "interviewImportance": "high",
+          "description": "A panel that slides in from the edge of the screen, often used for navigation on mobile.",
+          "relatedTerms": [],
+          "codeExample": "<Drawer open={isOpen} onClose={handleClose}></Drawer>",
+          "commonQuestions": [],
+          "createdAt": 1747749738250,
+          "term": "Drawer",
+          "definition": "A panel that slides in from the edge of the screen, often used for navigation on mobile.",
+          "category": "Navigation Components",
+          "example": "<Drawer open={isOpen} onClose={handleClose}></Drawer>"
+        },
+        {
+          "id": "8pch5qfcmd",
+          "type": "component",
+          "difficulty": "easy",
+          "frequency": 61,
+          "interviewImportance": "high",
+          "description": "A layout component that uses CSS flexbox for flexible layouts.",
+          "relatedTerms": [],
+          "codeExample": "<Flex direction='row' justify='space-between'><Box>1</Box><Box>2</Box></Flex>",
+          "commonQuestions": [],
+          "createdAt": 1747749738250,
+          "term": "Flex",
+          "definition": "A layout component that uses CSS flexbox for flexible layouts.",
+          "category": "Layout Components",
+          "example": "<Flex direction='row' justify='space-between'><Box>1</Box><Box>2</Box></Flex>"
+        },
+        {
+          "id": "2s3wodt6vg",
+          "type": "component",
+          "difficulty": "hard",
+          "frequency": 44,
+          "interviewImportance": "low",
+          "description": "A specialized input for numerical values with increment/decrement controls.",
+          "relatedTerms": [],
+          "codeExample": "<NumberInput value={quantity} min={1} max={10} onChange={handleChange} />",
+          "commonQuestions": [],
+          "createdAt": 1747749738250,
+          "term": "NumberInput",
+          "definition": "A specialized input for numerical values with increment/decrement controls.",
+          "category": "UI Components",
+          "example": "<NumberInput value={quantity} min={1} max={10} onChange={handleChange} />"
+        },
+        {
+          "id": "ii17r7k5ve",
+          "type": "component",
+          "difficulty": "medium",
+          "frequency": 13,
+          "interviewImportance": "medium",
+          "description": "A text field component designed for password input with show/hide functionality.",
+          "relatedTerms": [],
+          "codeExample": "<PasswordField value={password} onChange={handleChange} />",
+          "commonQuestions": [],
+          "createdAt": 1747749738250,
+          "term": "PasswordField",
+          "definition": "A text field component designed for password input with show/hide functionality.",
+          "category": "UI Components",
+          "example": "<PasswordField value={password} onChange={handleChange} />"
+        },
+        {
+          "id": "4zibiz6gw4",
+          "type": "component",
+          "difficulty": "medium",
+          "frequency": 39,
+          "interviewImportance": "low",
+          "description": "A component that displays floating content next to a trigger element.",
+          "relatedTerms": [],
+          "codeExample": "<Popover open={open} anchorEl={anchorEl}><Paper>Popover content</Paper></Popover>",
+          "commonQuestions": [],
+          "createdAt": 1747749738250,
+          "term": "Popover",
+          "definition": "A component that displays floating content next to a trigger element.",
+          "category": "Feedback Components",
+          "example": "<Popover open={open} anchorEl={anchorEl}><Paper>Popover content</Paper></Popover>"
+        },
+        {
+          "id": "uaadtn2e8z",
+          "type": "component",
+          "difficulty": "medium",
+          "frequency": 56,
+          "interviewImportance": "high",
+          "description": "A circular progress indicator that shows completion percentage.",
+          "relatedTerms": [],
+          "codeExample": "<ProgressCircle value={75} size={40} />",
+          "commonQuestions": [],
+          "createdAt": 1747749738250,
+          "term": "ProgressCircle",
+          "definition": "A circular progress indicator that shows completion percentage.",
+          "category": "Feedback Components",
+          "example": "<ProgressCircle value={75} size={40} />"
+        },
+        {
+          "id": "vgie1c9h8s",
+          "type": "component",
+          "difficulty": "hard",
+          "frequency": 37,
+          "interviewImportance": "high",
+          "description": "A component that displays a short, important message to get the user's attention.",
+          "relatedTerms": [],
+          "codeExample": "<Alert severity='success'>Operation successful!</Alert>",
+          "commonQuestions": [],
+          "createdAt": 1747749738250,
+          "term": "Alert",
+          "definition": "A component that displays a short, important message to get the user's attention.",
+          "category": "Feedback Components",
+          "example": "<Alert severity='success'>Operation successful!</Alert>"
+        },
+        {
+          "id": "t1ufy4mk5s",
+          "type": "component",
+          "difficulty": "medium",
+          "frequency": 59,
+          "interviewImportance": "high",
+          "description": "A component that covers the entire screen to focus attention on a foreground element.",
+          "relatedTerms": [],
+          "codeExample": "<Backdrop open={loading}><CircularProgress /></Backdrop>",
+          "commonQuestions": [],
+          "createdAt": 1747749738250,
+          "term": "Backdrop",
+          "definition": "A component that covers the entire screen to focus attention on a foreground element.",
+          "category": "Feedback Components",
+          "example": "<Backdrop open={loading}><CircularProgress /></Backdrop>"
+        }
+      ],
+      "timestamp": 1747760051034
     }
   ]
 }

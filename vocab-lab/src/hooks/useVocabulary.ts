@@ -10,6 +10,11 @@ import * as vocabularyService from '../services/vocabularyService';
 
 interface VocabularyHookState {
   loading: boolean;
+  loadingInfo: {
+    types: boolean;
+    vocabulary: boolean;
+    message: string;
+  };
   error: string | null;
   vocabularyData: VocabularyItem[];
   availableTypes: VocabularyTypeInfo[];
@@ -25,6 +30,11 @@ interface VocabularyHookFilters {
 export function useVocabulary() {
   const [state, setState] = useState<VocabularyHookState>({
     loading: true,
+    loadingInfo: {
+      types: true,
+      vocabulary: true,
+      message: 'Loading vocabulary data...'
+    },
     error: null,
     vocabularyData: [],
     availableTypes: [],
@@ -43,27 +53,69 @@ export function useVocabulary() {
   // Tải danh sách loại từ vựng có sẵn
   const loadAvailableTypes = useCallback(async () => {
     try {
+      setState(prevState => ({
+        ...prevState,
+        loadingInfo: {
+          ...prevState.loadingInfo,
+          types: true,
+          message: 'Loading vocabulary types...'
+        },
+        loading: true
+      }));
+
       const types = await vocabularyService.getAvailableTypes();
+      
       setState(prevState => ({
         ...prevState,
         availableTypes: types,
+        loadingInfo: {
+          ...prevState.loadingInfo,
+          types: false,
+          message: prevState.loadingInfo.vocabulary 
+            ? 'Loading vocabulary data...' 
+            : 'Ready'
+        },
+        loading: prevState.loadingInfo.vocabulary
       }));
     } catch (error) {
       console.error('Failed to load available types:', error);
       setState(prevState => ({
         ...prevState,
         error: 'Failed to load vocabulary types',
+        loadingInfo: {
+          ...prevState.loadingInfo,
+          types: false,
+          message: 'Error loading types'
+        },
+        loading: prevState.loadingInfo.vocabulary
       }));
     }
   }, []);
 
   // Tải dữ liệu từ vựng
   const loadVocabularyData = useCallback(async () => {
-    setState(prevState => ({ ...prevState, loading: true, error: null }));
+    setState(prevState => ({ 
+      ...prevState, 
+      loading: true, 
+      error: null,
+      loadingInfo: {
+        ...prevState.loadingInfo,
+        vocabulary: true,
+        message: 'Loading vocabulary data...'
+      }
+    }));
     
     try {
       // Nếu có chỉ định loại cụ thể
       if (filters.types && filters.types.length > 0) {
+        setState(prevState => ({
+          ...prevState,
+          loadingInfo: {
+            ...prevState.loadingInfo,
+            message: `Loading vocabulary for ${filters.types?.length} types...`
+          }
+        }));
+
         const typePromises = filters.types.map(type => 
           vocabularyService.getVocabularyByType(type)
         );
@@ -73,15 +125,33 @@ export function useVocabulary() {
         setState(prevState => ({
           ...prevState,
           loading: false,
+          loadingInfo: {
+            ...prevState.loadingInfo,
+            vocabulary: false,
+            message: 'Ready'
+          },
           vocabularyData: combinedData,
           filteredData: applyFilters(combinedData, filters),
         }));
       } else {
         // Tải tất cả các loại
+        setState(prevState => ({
+          ...prevState,
+          loadingInfo: {
+            ...prevState.loadingInfo,
+            message: 'Loading all vocabulary data...'
+          }
+        }));
+
         const allData = await vocabularyService.getAllVocabulary();
         setState(prevState => ({
           ...prevState,
           loading: false,
+          loadingInfo: {
+            ...prevState.loadingInfo,
+            vocabulary: false,
+            message: 'Ready'
+          },
           vocabularyData: allData,
           filteredData: applyFilters(allData, filters),
         }));
@@ -91,6 +161,11 @@ export function useVocabulary() {
       setState(prevState => ({
         ...prevState,
         loading: false,
+        loadingInfo: {
+          ...prevState.loadingInfo,
+          vocabulary: false,
+          message: 'Error loading vocabulary'
+        },
         error: 'Failed to load vocabulary data',
       }));
     }
@@ -178,6 +253,7 @@ export function useVocabulary() {
 
   return {
     loading: state.loading,
+    loadingInfo: state.loadingInfo,
     error: state.error,
     vocabulary: state.filteredData,
     allVocabulary: state.vocabularyData,

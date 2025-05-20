@@ -15,7 +15,9 @@ import {
   FormGroup,
   FormControlLabel,
   Checkbox,
-  Paper
+  Paper,
+  Backdrop,
+  Fade
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { useVocabulary } from '../hooks/useVocabulary';
@@ -25,11 +27,13 @@ import VocabularyCard from './VocabularyCard';
 const VocabularyByType: React.FC = () => {
   const { 
     loading, 
+    loadingInfo,
     error, 
     vocabulary, 
     availableTypes, 
     filters,
-    updateFilters 
+    updateFilters,
+    refreshData 
   } = useVocabulary();
 
   const [searchText, setSearchText] = useState('');
@@ -89,10 +93,14 @@ const VocabularyByType: React.FC = () => {
     updateFilters({ searchText: event.target.value });
   };
 
+  // Hiển thị full-screen loading khi chưa có dữ liệu
   if (loading && !vocabulary.length) {
     return (
-      <Box display="flex" justifyContent="center" alignItems="center" height="50vh">
+      <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" height="50vh">
         <CircularProgress />
+        <Typography variant="body1" sx={{ mt: 2 }}>
+          {loadingInfo.message}
+        </Typography>
       </Box>
     );
   }
@@ -103,12 +111,55 @@ const VocabularyByType: React.FC = () => {
         <Typography color="error" variant="h6">
           Error: {error}
         </Typography>
+        <Box mt={2}>
+          <Typography variant="body2" gutterBottom>
+            Unable to load vocabulary data. Please try again.
+          </Typography>
+          <Box 
+            component="button" 
+            onClick={() => refreshData()} 
+            sx={{ 
+              mt: 2, 
+              border: '1px solid', 
+              borderColor: 'primary.main', 
+              borderRadius: 1,
+              px: 2,
+              py: 1,
+              bgcolor: 'transparent',
+              color: 'primary.main',
+              cursor: 'pointer',
+              '&:hover': {
+                bgcolor: 'primary.50'
+              }
+            }}
+          >
+            Try Again
+          </Box>
+        </Box>
       </Box>
     );
   }
 
   return (
-    <Box p={3}>
+    <Box p={3} position="relative">
+      {/* Backdrop loading overlay khi đang tải lại dữ liệu */}
+      <Backdrop
+        sx={{
+          position: 'absolute',
+          color: '#fff',
+          zIndex: (theme) => theme.zIndex.drawer + 1,
+          backgroundColor: 'rgba(0, 0, 0, 0.4)'
+        }}
+        open={loading && vocabulary.length > 0}
+      >
+        <Box display="flex" flexDirection="column" alignItems="center">
+          <CircularProgress color="inherit" />
+          <Typography variant="body1" sx={{ mt: 2, color: 'white' }}>
+            {loadingInfo.message}
+          </Typography>
+        </Box>
+      </Backdrop>
+
       <Typography variant="h4" gutterBottom>
         Vocabulary Explorer
       </Typography>
@@ -122,12 +173,23 @@ const VocabularyByType: React.FC = () => {
               placeholder="Search for terms or definitions..."
               value={searchText}
               onChange={handleSearch}
+              disabled={loading && !vocabulary.length}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
                     <SearchIcon />
                   </InputAdornment>
                 ),
+                endAdornment: loading && (
+                  <InputAdornment position="end">
+                    <Box display="flex" alignItems="center">
+                      <Typography variant="caption" sx={{ mr: 1, color: 'text.secondary' }}>
+                        {loadingInfo.message}
+                      </Typography>
+                      <CircularProgress size={20} />
+                    </Box>
+                  </InputAdornment>
+                )
               }}
             />
           </Grid>
@@ -139,6 +201,8 @@ const VocabularyByType: React.FC = () => {
                 value={filters.difficulty || ''}
                 onChange={handleDifficultyChange}
                 displayEmpty
+                disabled={loading && !vocabulary.length}
+                endAdornment={loading && <CircularProgress size={20} sx={{ mr: 2 }} />}
               >
                 <MenuItem value="">All Difficulties</MenuItem>
                 <MenuItem value="easy">Easy</MenuItem>
@@ -152,7 +216,17 @@ const VocabularyByType: React.FC = () => {
 
       {/* Type Selection with Checkboxes */}
       <Paper elevation={2} sx={{ p: 2, mb: 4 }}>
-        <Typography variant="h6" gutterBottom>Filter by Type</Typography>
+        <Box display="flex" justifyContent="space-between" alignItems="center">
+          <Typography variant="h6" gutterBottom>Filter by Type</Typography>
+          {loading && (
+            <Box display="flex" alignItems="center">
+              <Typography variant="caption" sx={{ mr: 1, color: 'text.secondary' }}>
+                {loadingInfo.types ? 'Loading types...' : ''}
+              </Typography>
+              <CircularProgress size={24} />
+            </Box>
+          )}
+        </Box>
         
         <Box mb={1}>
           <FormControlLabel
@@ -161,6 +235,7 @@ const VocabularyByType: React.FC = () => {
                 checked={selectedTypes.length === availableTypes.length} 
                 indeterminate={selectedTypes.length > 0 && selectedTypes.length < availableTypes.length}
                 onChange={(e) => handleSelectAllTypes(e.target.checked)}
+                disabled={loading && !vocabulary.length}
               />
             }
             label={<Typography fontWeight="bold">Select All</Typography>}
@@ -175,6 +250,7 @@ const VocabularyByType: React.FC = () => {
                 <Checkbox 
                   checked={selectedTypes.includes(typeInfo.name)} 
                   onChange={() => handleTypeToggle(typeInfo.name)}
+                  disabled={loading && !vocabulary.length}
                 />
               }
               label={`${typeInfo.name} (${typeInfo.count})`}
@@ -189,7 +265,15 @@ const VocabularyByType: React.FC = () => {
         <Typography variant="subtitle1">
           Showing {vocabulary.length} results
         </Typography>
-        <Box>
+        <Box display="flex" alignItems="center">
+          {loading && (
+            <>
+              <CircularProgress size={16} sx={{ mr: 1 }} />
+              <Typography variant="caption" sx={{ mr: 2, color: 'text.secondary' }}>
+                {loadingInfo.message}
+              </Typography>
+            </>
+          )}
           {selectedTypes.length > 0 && selectedTypes.length < availableTypes.length && (
             <Typography variant="body2" color="text.secondary">
               Filtered by {selectedTypes.length} types

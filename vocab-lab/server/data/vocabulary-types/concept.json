@@ -1,0 +1,59 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2025-05-20T14:02:23.262Z",
+    "totalTerms": 2,
+    "categories": [
+      "Programming Concepts",
+      "Data Structures",
+      "Development Process",
+      "Web Development",
+      "Software Architecture",
+      "Frontend Frameworks",
+      "CSS Concepts",
+      "TypeScript",
+      "Performance",
+      "Browser APIs",
+      "UI Components",
+      "Navigation Components",
+      "Layout Components",
+      "Feedback Components",
+      "Data Display Components"
+    ],
+    "type": "concept"
+  },
+  "vocabulary": [
+    {
+      "id": "evoguuxz8g",
+      "frequency": 27,
+      "description": "Web applications that use modern web capabilities to deliver app-like experiences to users.",
+      "relatedTerms": [],
+      "codeExample": "",
+      "commonQuestions": [],
+      "createdAt": 1747749383708,
+      "term": "Progressive Web App",
+      "definition": "Web applications that use modern web capabilities to deliver app-like experiences to users.",
+      "type": "concept",
+      "difficulty": "medium",
+      "category": "Web Development",
+      "example": "PWAs can work offline, send push notifications, and can be installed on home screens.",
+      "interviewImportance": "medium"
+    },
+    {
+      "id": "6hblime8ph",
+      "frequency": 46,
+      "description": "A modern web development architecture based on client-side JavaScript, reusable APIs, and prebuilt Markup.",
+      "relatedTerms": [],
+      "codeExample": "",
+      "commonQuestions": [],
+      "createdAt": 1747749383708,
+      "term": "JAMstack",
+      "definition": "A modern web development architecture based on client-side JavaScript, reusable APIs, and prebuilt Markup.",
+      "type": "concept",
+      "difficulty": "medium",
+      "category": "Software Architecture",
+      "example": "JAMstack websites deliver better performance, higher security, and lower cost of scaling.",
+      "interviewImportance": "low"
+    }
+  ]
+}

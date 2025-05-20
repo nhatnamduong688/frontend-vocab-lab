@@ -15,10 +15,22 @@ const DATA_DIR = path.join(__dirname, "data");
 const SENTENCES_FILE = path.join(DATA_DIR, "sentences.json");
 const TYPES_FILE = path.join(DATA_DIR, "vocabulary-types.json");
 
+// Đường dẫn đến các file vocabulary
+const VOCABULARY_ALL_FILE = path.join(DATA_DIR, "vocabulary-all.json");
+const VOCABULARY_INDEX_FILE = path.join(DATA_DIR, "vocabulary-index.json");
+const VOCABULARY_TYPES_DIR = path.join(DATA_DIR, "vocabulary-types");
+
 // Đảm bảo thư mục data tồn tại
 const ensureDataDirectory = () => {
   if (!fs.existsSync(DATA_DIR)) {
     fs.mkdirSync(DATA_DIR, { recursive: true });
+  }
+};
+
+// Đảm bảo thư mục vocabulary-types tồn tại
+const ensureVocabularyTypesDirectory = () => {
+  if (!fs.existsSync(VOCABULARY_TYPES_DIR)) {
+    fs.mkdirSync(VOCABULARY_TYPES_DIR, { recursive: true });
   }
 };
 
@@ -330,11 +342,9 @@ app.delete("/api/types/:typeName/vocabulary/:itemId", (req, res) => {
     );
 
     if (data.vocabulary[typeName].length === initialLength) {
-      return res
-        .status(404)
-        .json({
-          error: `Item with ID '${itemId}' not found in type '${typeName}'`,
-        });
+      return res.status(404).json({
+        error: `Item with ID '${itemId}' not found in type '${typeName}'`,
+      });
     }
 
     // Cập nhật metadata
@@ -350,6 +360,456 @@ app.delete("/api/types/:typeName/vocabulary/:itemId", (req, res) => {
   } catch (error) {
     console.error("Error deleting vocabulary item:", error);
     res.status(500).json({ error: "Failed to delete vocabulary item" });
+  }
+});
+
+// ===== VOCABULARY API ENDPOINTS =====
+
+// Khởi tạo từ public folder nếu chưa có dữ liệu
+const initializeVocabularyFromPublic = () => {
+  ensureDataDirectory();
+  ensureVocabularyTypesDirectory();
+
+  const publicVocabDir = path.join(__dirname, "../public/vocabulary");
+  const publicAllFile = path.join(publicVocabDir, "all.json");
+  const publicIndexFile = path.join(publicVocabDir, "index.json");
+  const publicTypesDir = path.join(publicVocabDir, "types");
+
+  // Kiểm tra xem đã có file vocabulary-all.json trong data chưa
+  if (!fs.existsSync(VOCABULARY_ALL_FILE) && fs.existsSync(publicAllFile)) {
+    // Copy all.json từ public vào data
+    fs.copyFileSync(publicAllFile, VOCABULARY_ALL_FILE);
+    console.log("Copied vocabulary-all.json from public folder");
+  }
+
+  // Kiểm tra xem đã có file vocabulary-index.json trong data chưa
+  if (!fs.existsSync(VOCABULARY_INDEX_FILE) && fs.existsSync(publicIndexFile)) {
+    // Copy index.json từ public vào data
+    fs.copyFileSync(publicIndexFile, VOCABULARY_INDEX_FILE);
+    console.log("Copied vocabulary-index.json from public folder");
+  }
+
+  // Copy các file types
+  if (fs.existsSync(publicTypesDir)) {
+    const typeFiles = fs.readdirSync(publicTypesDir);
+    typeFiles.forEach((file) => {
+      const srcPath = path.join(publicTypesDir, file);
+      const destPath = path.join(VOCABULARY_TYPES_DIR, file);
+
+      if (!fs.existsSync(destPath) && fs.statSync(srcPath).isFile()) {
+        fs.copyFileSync(srcPath, destPath);
+        console.log(`Copied ${file} from public types folder`);
+      }
+    });
+  }
+};
+
+// Đọc dữ liệu vocabulary từ file all.json
+const readAllVocabularyFromFile = () => {
+  ensureDataDirectory();
+
+  if (!fs.existsSync(VOCABULARY_ALL_FILE)) {
+    initializeVocabularyFromPublic();
+
+    if (!fs.existsSync(VOCABULARY_ALL_FILE)) {
+      return {
+        metadata: { version: "1.0.0", lastUpdated: new Date().toISOString() },
+        vocabulary: [],
+      };
+    }
+  }
+
+  try {
+    const data = fs.readFileSync(VOCABULARY_ALL_FILE, "utf8");
+    return JSON.parse(data);
+  } catch (error) {
+    console.error("Error reading vocabulary file:", error);
+    return {
+      metadata: { version: "1.0.0", lastUpdated: new Date().toISOString() },
+      vocabulary: [],
+    };
+  }
+};
+
+// Lưu dữ liệu vocabulary vào file all.json
+const saveAllVocabularyToFile = (data) => {
+  ensureDataDirectory();
+  try {
+    fs.writeFileSync(
+      VOCABULARY_ALL_FILE,
+      JSON.stringify(data, null, 2),
+      "utf8"
+    );
+    return true;
+  } catch (error) {
+    console.error("Error saving vocabulary to file:", error);
+    return false;
+  }
+};
+
+// Đọc dữ liệu vocabulary index
+const readVocabularyIndexFromFile = () => {
+  ensureDataDirectory();
+
+  if (!fs.existsSync(VOCABULARY_INDEX_FILE)) {
+    initializeVocabularyFromPublic();
+
+    if (!fs.existsSync(VOCABULARY_INDEX_FILE)) {
+      return {
+        metadata: {
+          version: "1.0.0",
+          lastUpdated: new Date().toISOString(),
+          totalTerms: 0,
+          categories: [],
+        },
+        availableTypes: [],
+      };
+    }
+  }
+
+  try {
+    const data = fs.readFileSync(VOCABULARY_INDEX_FILE, "utf8");
+    return JSON.parse(data);
+  } catch (error) {
+    console.error("Error reading vocabulary index file:", error);
+    return {
+      metadata: {
+        version: "1.0.0",
+        lastUpdated: new Date().toISOString(),
+        totalTerms: 0,
+        categories: [],
+      },
+      availableTypes: [],
+    };
+  }
+};
+
+// Lưu dữ liệu vocabulary index
+const saveVocabularyIndexToFile = (data) => {
+  ensureDataDirectory();
+  try {
+    fs.writeFileSync(
+      VOCABULARY_INDEX_FILE,
+      JSON.stringify(data, null, 2),
+      "utf8"
+    );
+    return true;
+  } catch (error) {
+    console.error("Error saving vocabulary index to file:", error);
+    return false;
+  }
+};
+
+// Đọc dữ liệu từ file type riêng biệt
+const readVocabularyTypeFromFile = (typeName) => {
+  ensureVocabularyTypesDirectory();
+  const typeFile = path.join(VOCABULARY_TYPES_DIR, `${typeName}.json`);
+
+  if (!fs.existsSync(typeFile)) {
+    initializeVocabularyFromPublic();
+
+    if (!fs.existsSync(typeFile)) {
+      return {
+        type: typeName,
+        terms: [],
+      };
+    }
+  }
+
+  try {
+    const data = fs.readFileSync(typeFile, "utf8");
+    return JSON.parse(data);
+  } catch (error) {
+    console.error(`Error reading vocabulary type file ${typeName}:`, error);
+    return {
+      type: typeName,
+      terms: [],
+    };
+  }
+};
+
+// Lưu dữ liệu cho một loại từ vựng
+const saveVocabularyTypeToFile = (typeName, data) => {
+  ensureVocabularyTypesDirectory();
+  const typeFile = path.join(VOCABULARY_TYPES_DIR, `${typeName}.json`);
+
+  try {
+    fs.writeFileSync(typeFile, JSON.stringify(data, null, 2), "utf8");
+    return true;
+  } catch (error) {
+    console.error(`Error saving vocabulary type ${typeName} to file:`, error);
+    return false;
+  }
+};
+
+// Endpoint để lấy tất cả từ vựng
+app.get("/api/vocabulary", (req, res) => {
+  try {
+    const data = readAllVocabularyFromFile();
+    res.json(data);
+  } catch (error) {
+    console.error("Error getting vocabulary:", error);
+    res.status(500).json({ error: "Failed to retrieve vocabulary" });
+  }
+});
+
+// Endpoint để lấy thông tin index (metadata và available types)
+app.get("/api/vocabulary/index", (req, res) => {
+  try {
+    const data = readVocabularyIndexFromFile();
+    res.json(data);
+  } catch (error) {
+    console.error("Error getting vocabulary index:", error);
+    res.status(500).json({ error: "Failed to retrieve vocabulary index" });
+  }
+});
+
+// Endpoint để lấy từ vựng theo loại
+app.get("/api/vocabulary/types/:typeName", (req, res) => {
+  try {
+    const { typeName } = req.params;
+    const data = readVocabularyTypeFromFile(typeName);
+    res.json(data);
+  } catch (error) {
+    console.error(
+      `Error getting vocabulary for type ${req.params.typeName}:`,
+      error
+    );
+    res
+      .status(500)
+      .json({
+        error: `Failed to retrieve vocabulary for type ${req.params.typeName}`,
+      });
+  }
+});
+
+// Endpoint để thêm từ vựng mới
+app.post("/api/vocabulary", (req, res) => {
+  try {
+    const data = readAllVocabularyFromFile();
+    const newTerm = req.body;
+
+    // Đảm bảo dữ liệu hợp lệ
+    if (!newTerm.id || !newTerm.term || !newTerm.definition || !newTerm.type) {
+      return res.status(400).json({ error: "Invalid vocabulary data" });
+    }
+
+    // Kiểm tra xem ID đã tồn tại chưa
+    const existingIndex = data.vocabulary.findIndex(
+      (item) => item.id === newTerm.id
+    );
+    if (existingIndex >= 0) {
+      data.vocabulary[existingIndex] = newTerm;
+    } else {
+      data.vocabulary.push(newTerm);
+    }
+
+    // Cập nhật metadata
+    data.metadata.lastUpdated = new Date().toISOString();
+
+    if (saveAllVocabularyToFile(data)) {
+      // Cập nhật file type tương ứng
+      const typeData = readVocabularyTypeFromFile(newTerm.type);
+
+      const existingTypeIndex = typeData.terms.findIndex(
+        (item) => item.id === newTerm.id
+      );
+      if (existingTypeIndex >= 0) {
+        typeData.terms[existingTypeIndex] = newTerm;
+      } else {
+        typeData.terms.push(newTerm);
+      }
+
+      saveVocabularyTypeToFile(newTerm.type, typeData);
+
+      // Cập nhật index file
+      const indexData = readVocabularyIndexFromFile();
+      const typeIndex = indexData.availableTypes.findIndex(
+        (type) => type.type === newTerm.type
+      );
+
+      if (typeIndex >= 0) {
+        indexData.availableTypes[typeIndex].count = typeData.terms.length;
+      } else {
+        indexData.availableTypes.push({
+          type: newTerm.type,
+          count: 1,
+          file: `types/${newTerm.type}.json`,
+        });
+      }
+
+      indexData.metadata.totalTerms = data.vocabulary.length;
+      indexData.metadata.lastUpdated = new Date().toISOString();
+
+      // Đảm bảo categories có chứa tất cả các category hiện có
+      if (
+        newTerm.category &&
+        !indexData.metadata.categories.includes(newTerm.category)
+      ) {
+        indexData.metadata.categories.push(newTerm.category);
+      }
+
+      saveVocabularyIndexToFile(indexData);
+
+      res.status(201).json(newTerm);
+    } else {
+      res.status(500).json({ error: "Failed to save vocabulary term" });
+    }
+  } catch (error) {
+    console.error("Error saving vocabulary term:", error);
+    res.status(500).json({ error: "Failed to save vocabulary term" });
+  }
+});
+
+// Endpoint để cập nhật từ vựng
+app.put("/api/vocabulary/:id", (req, res) => {
+  try {
+    const { id } = req.params;
+    const data = readAllVocabularyFromFile();
+    const updatedTerm = req.body;
+
+    // Đảm bảo dữ liệu hợp lệ
+    if (!updatedTerm.term || !updatedTerm.definition || !updatedTerm.type) {
+      return res.status(400).json({ error: "Invalid vocabulary data" });
+    }
+
+    // Tìm từ vựng cần cập nhật
+    const index = data.vocabulary.findIndex((item) => item.id === id);
+    if (index === -1) {
+      return res.status(404).json({ error: "Vocabulary term not found" });
+    }
+
+    const oldType = data.vocabulary[index].type;
+    const newType = updatedTerm.type;
+
+    // Cập nhật từ trong all.json
+    updatedTerm.id = id; // Đảm bảo ID không bị thay đổi
+    data.vocabulary[index] = updatedTerm;
+    data.metadata.lastUpdated = new Date().toISOString();
+
+    if (saveAllVocabularyToFile(data)) {
+      // Nếu type thay đổi, cập nhật cả hai file type
+      if (oldType !== newType) {
+        // Xóa từ file type cũ
+        const oldTypeData = readVocabularyTypeFromFile(oldType);
+        oldTypeData.terms = oldTypeData.terms.filter((item) => item.id !== id);
+        saveVocabularyTypeToFile(oldType, oldTypeData);
+
+        // Thêm vào file type mới
+        const newTypeData = readVocabularyTypeFromFile(newType);
+        newTypeData.terms.push(updatedTerm);
+        saveVocabularyTypeToFile(newType, newTypeData);
+      } else {
+        // Cập nhật file type hiện tại
+        const typeData = readVocabularyTypeFromFile(newType);
+        const typeIndex = typeData.terms.findIndex((item) => item.id === id);
+
+        if (typeIndex >= 0) {
+          typeData.terms[typeIndex] = updatedTerm;
+        } else {
+          typeData.terms.push(updatedTerm);
+        }
+
+        saveVocabularyTypeToFile(newType, typeData);
+      }
+
+      // Cập nhật index file
+      const indexData = readVocabularyIndexFromFile();
+
+      // Cập nhật count cho các type
+      if (oldType !== newType) {
+        const oldTypeIndex = indexData.availableTypes.findIndex(
+          (type) => type.type === oldType
+        );
+        const newTypeIndex = indexData.availableTypes.findIndex(
+          (type) => type.type === newType
+        );
+
+        if (oldTypeIndex >= 0) {
+          const oldTypeData = readVocabularyTypeFromFile(oldType);
+          indexData.availableTypes[oldTypeIndex].count =
+            oldTypeData.terms.length;
+        }
+
+        if (newTypeIndex >= 0) {
+          const newTypeData = readVocabularyTypeFromFile(newType);
+          indexData.availableTypes[newTypeIndex].count =
+            newTypeData.terms.length;
+        } else {
+          indexData.availableTypes.push({
+            type: newType,
+            count: 1,
+            file: `types/${newType}.json`,
+          });
+        }
+      }
+
+      // Đảm bảo categories có chứa tất cả các category hiện có
+      if (
+        updatedTerm.category &&
+        !indexData.metadata.categories.includes(updatedTerm.category)
+      ) {
+        indexData.metadata.categories.push(updatedTerm.category);
+      }
+
+      indexData.metadata.lastUpdated = new Date().toISOString();
+      saveVocabularyIndexToFile(indexData);
+
+      res.json(updatedTerm);
+    } else {
+      res.status(500).json({ error: "Failed to update vocabulary term" });
+    }
+  } catch (error) {
+    console.error("Error updating vocabulary term:", error);
+    res.status(500).json({ error: "Failed to update vocabulary term" });
+  }
+});
+
+// Endpoint để xóa từ vựng
+app.delete("/api/vocabulary/:id", (req, res) => {
+  try {
+    const { id } = req.params;
+    const data = readAllVocabularyFromFile();
+
+    // Tìm từ vựng cần xóa
+    const index = data.vocabulary.findIndex((item) => item.id === id);
+    if (index === -1) {
+      return res.status(404).json({ error: "Vocabulary term not found" });
+    }
+
+    const termType = data.vocabulary[index].type;
+
+    // Xóa từ all.json
+    data.vocabulary.splice(index, 1);
+    data.metadata.lastUpdated = new Date().toISOString();
+
+    if (saveAllVocabularyToFile(data)) {
+      // Xóa từ file type tương ứng
+      const typeData = readVocabularyTypeFromFile(termType);
+      typeData.terms = typeData.terms.filter((item) => item.id !== id);
+      saveVocabularyTypeToFile(termType, typeData);
+
+      // Cập nhật index file
+      const indexData = readVocabularyIndexFromFile();
+      const typeIndex = indexData.availableTypes.findIndex(
+        (type) => type.type === termType
+      );
+
+      if (typeIndex >= 0) {
+        indexData.availableTypes[typeIndex].count = typeData.terms.length;
+      }
+
+      indexData.metadata.totalTerms = data.vocabulary.length;
+      indexData.metadata.lastUpdated = new Date().toISOString();
+      saveVocabularyIndexToFile(indexData);
+
+      res.json({ success: true });
+    } else {
+      res.status(500).json({ error: "Failed to delete vocabulary term" });
+    }
+  } catch (error) {
+    console.error("Error deleting vocabulary term:", error);
+    res.status(500).json({ error: "Failed to delete vocabulary term" });
   }
 });
 

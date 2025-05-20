@@ -1,0 +1,57 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2025-05-20T16:32:10.536Z",
+    "types": [
+      {
+        "name": "noun",
+        "count": 0
+      },
+      {
+        "name": "verb",
+        "count": 0
+      },
+      {
+        "name": "adjective",
+        "count": 0
+      },
+      {
+        "name": "adverb",
+        "count": 0
+      },
+      {
+        "name": "framework",
+        "count": 0
+      },
+      {
+        "name": "library",
+        "count": 0
+      },
+      {
+        "name": "concept",
+        "count": 0
+      },
+      {
+        "name": "pattern",
+        "count": 0
+      },
+      {
+        "name": "api",
+        "count": 0
+      },
+      {
+        "name": "property",
+        "count": 0
+      },
+      {
+        "name": "method",
+        "count": 0
+      },
+      {
+        "name": "component",
+        "count": 0
+      }
+    ]
+  },
+  "vocabulary": {}
+}

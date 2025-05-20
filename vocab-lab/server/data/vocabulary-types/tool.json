@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2025-05-20T14:02:23.262Z",
+    "totalTerms": 1,
+    "categories": [
+      "Programming Concepts",
+      "Data Structures",
+      "Development Process",
+      "Web Development",
+      "Software Architecture",
+      "Frontend Frameworks",
+      "CSS Concepts",
+      "TypeScript",
+      "Performance",
+      "Browser APIs",
+      "UI Components",
+      "Navigation Components",
+      "Layout Components",
+      "Feedback Components",
+      "Data Display Components"
+    ],
+    "type": "tool"
+  },
+  "vocabulary": [
+    {
+      "id": "x6bch9wjf7",
+      "frequency": 90,
+      "description": "A static module bundler for modern JavaScript applications that processes applications with a dependency graph.",
+      "relatedTerms": [],
+      "codeExample": "",
+      "commonQuestions": [],
+      "createdAt": 1747749383708,
+      "term": "Webpack",
+      "definition": "A static module bundler for modern JavaScript applications that processes applications with a dependency graph.",
+      "type": "tool",
+      "difficulty": "hard",
+      "category": "Development Process",
+      "example": "Webpack can handle not only JavaScript but also assets like HTML, CSS, and images with appropriate loaders.",
+      "interviewImportance": "medium"
+    }
+  ]
+}

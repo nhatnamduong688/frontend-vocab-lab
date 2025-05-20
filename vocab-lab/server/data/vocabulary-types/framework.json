@@ -1,0 +1,75 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2025-05-20T14:02:23.262Z",
+    "totalTerms": 3,
+    "categories": [
+      "Programming Concepts",
+      "Data Structures",
+      "Development Process",
+      "Web Development",
+      "Software Architecture",
+      "Frontend Frameworks",
+      "CSS Concepts",
+      "TypeScript",
+      "Performance",
+      "Browser APIs",
+      "UI Components",
+      "Navigation Components",
+      "Layout Components",
+      "Feedback Components",
+      "Data Display Components"
+    ],
+    "type": "framework"
+  },
+  "vocabulary": [
+    {
+      "id": "af9m2d9ldf",
+      "frequency": 20,
+      "description": "A JavaScript library for building user interfaces, particularly single-page applications.",
+      "relatedTerms": [],
+      "codeExample": "",
+      "commonQuestions": [],
+      "createdAt": 1747749383708,
+      "term": "React",
+      "definition": "A JavaScript library for building user interfaces, particularly single-page applications.",
+      "type": "framework",
+      "difficulty": "medium",
+      "category": "Frontend Frameworks",
+      "example": "React components are reusable pieces of code that return React elements describing what should appear on the screen.",
+      "interviewImportance": "high"
+    },
+    {
+      "id": "pyp1ml7jk0",
+      "frequency": 91,
+      "description": "A progressive JavaScript framework for building user interfaces with a focus on declarative rendering and component composition.",
+      "relatedTerms": [],
+      "codeExample": "",
+      "commonQuestions": [],
+      "createdAt": 1747749383708,
+      "term": "Vue",
+      "definition": "A progressive JavaScript framework for building user interfaces with a focus on declarative rendering and component composition.",
+      "type": "framework",
+      "difficulty": "medium",
+      "category": "Frontend Frameworks",
+      "example": "Vue combines the best aspects of Angular and React while being more lightweight and flexible.",
+      "interviewImportance": "medium"
+    },
+    {
+      "id": "mzos1kbtxd",
+      "frequency": 85,
+      "description": "A platform and framework for building single-page client applications using HTML and TypeScript.",
+      "relatedTerms": [],
+      "codeExample": "",
+      "commonQuestions": [],
+      "createdAt": 1747749383708,
+      "term": "Angular",
+      "definition": "A platform and framework for building single-page client applications using HTML and TypeScript.",
+      "type": "framework",
+      "difficulty": "hard",
+      "category": "Frontend Frameworks",
+      "example": "Angular provides built-in features like routing, form validation, and HTTP client.",
+      "interviewImportance": "medium"
+    }
+  ]
+}

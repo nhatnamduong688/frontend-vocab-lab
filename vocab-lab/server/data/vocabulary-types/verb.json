@@ -1,0 +1,379 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2025-05-20T14:02:23.262Z",
+    "totalTerms": 16,
+    "categories": [
+      "Programming Concepts",
+      "Data Structures",
+      "Development Process",
+      "Web Development",
+      "Software Architecture",
+      "Frontend Frameworks",
+      "CSS Concepts",
+      "TypeScript",
+      "Performance",
+      "Browser APIs",
+      "UI Components",
+      "Navigation Components",
+      "Layout Components",
+      "Feedback Components",
+      "Data Display Components"
+    ],
+    "type": "verb"
+  },
+  "vocabulary": [
+    {
+      "id": "v1",
+      "term": "Debug",
+      "definition": "To identify and fix errors in a program",
+      "type": "verb",
+      "difficulty": "medium",
+      "frequency": 90,
+      "category": "Development Process",
+      "example": "Use console.log to debug the function",
+      "interviewImportance": "high",
+      "description": "Essential skill for maintaining and improving code",
+      "relatedTerms": [
+        "Error",
+        "Testing",
+        "Logging"
+      ],
+      "codeExample": "console.log('Debugging value:', variable)",
+      "commonQuestions": [
+        "What are common debugging techniques?",
+        "How to use breakpoints?"
+      ]
+    },
+    {
+      "id": "v2",
+      "term": "Compile",
+      "definition": "To convert source code into machine-readable format",
+      "type": "verb",
+      "difficulty": "medium",
+      "frequency": 85,
+      "category": "Development Process",
+      "example": "Compile the TypeScript code to JavaScript",
+      "interviewImportance": "medium",
+      "description": "Process of transforming code for execution",
+      "relatedTerms": [
+        "Build",
+        "Transform",
+        "Execute"
+      ],
+      "codeExample": "tsc app.ts",
+      "commonQuestions": [
+        "What is the compilation process?",
+        "What are compiler errors?"
+      ]
+    },
+    {
+      "id": "v3",
+      "term": "Deploy",
+      "definition": "To make software available for use",
+      "type": "verb",
+      "difficulty": "medium",
+      "frequency": 85,
+      "category": "DevOps",
+      "example": "Deploy the application to production servers",
+      "interviewImportance": "medium",
+      "description": "Process of releasing software to users",
+      "relatedTerms": [
+        "Release",
+        "Production",
+        "Deployment"
+      ],
+      "codeExample": "git push heroku main",
+      "commonQuestions": [
+        "What is continuous deployment?",
+        "How to rollback deployments?"
+      ]
+    },
+    {
+      "id": "v4",
+      "term": "Optimize",
+      "definition": "To make something as efficient as possible",
+      "type": "verb",
+      "difficulty": "hard",
+      "frequency": 82,
+      "category": "Performance",
+      "example": "Optimize the code for better performance",
+      "interviewImportance": "high",
+      "description": "Critical for improving application performance",
+      "relatedTerms": [
+        "Performance",
+        "Efficiency",
+        "Speed"
+      ],
+      "codeExample": "const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b])",
+      "commonQuestions": [
+        "How to measure performance?",
+        "What are optimization techniques?"
+      ]
+    },
+    {
+      "id": "v5",
+      "term": "Authenticate",
+      "definition": "To verify the identity of a user or system",
+      "type": "verb",
+      "difficulty": "medium",
+      "frequency": 88,
+      "category": "Security",
+      "example": "Authenticate user credentials",
+      "interviewImportance": "high",
+      "description": "Critical for application security",
+      "relatedTerms": [
+        "Authorization",
+        "Security",
+        "Login"
+      ],
+      "codeExample": "const token = jwt.sign({ userId: user.id }, 'secret')",
+      "commonQuestions": [
+        "What is JWT?",
+        "How to implement OAuth?"
+      ]
+    },
+    {
+      "id": "v6",
+      "term": "Refactor",
+      "definition": "To restructure code without changing its behavior",
+      "type": "verb",
+      "difficulty": "hard",
+      "frequency": 78,
+      "category": "Code Quality",
+      "example": "Refactor the function to improve readability",
+      "interviewImportance": "high",
+      "description": "Important for maintaining code quality",
+      "relatedTerms": [
+        "Clean Code",
+        "Maintenance",
+        "Technical Debt"
+      ],
+      "codeExample": "// Before: function doStuff() { ... }\n// After: function calculateTotal() { ... }",
+      "commonQuestions": [
+        "When to refactor?",
+        "What are refactoring patterns?"
+      ]
+    },
+    {
+      "id": "v7",
+      "term": "Serialize",
+      "definition": "Convert data structure to a format for storage/transmission",
+      "type": "verb",
+      "difficulty": "medium",
+      "frequency": 82,
+      "category": "Data Processing",
+      "example": "Serialize object to JSON string",
+      "interviewImportance": "medium",
+      "description": "Important for data storage and transfer",
+      "relatedTerms": [
+        "JSON",
+        "Parse",
+        "Encode"
+      ],
+      "codeExample": "JSON.stringify(object)",
+      "commonQuestions": [
+        "What is serialization?",
+        "JSON vs XML?"
+      ]
+    },
+    {
+      "id": "v8",
+      "term": "Iterate",
+      "definition": "To perform repeatedly through a sequence",
+      "type": "verb",
+      "difficulty": "easy",
+      "frequency": 95,
+      "category": "Programming Basics",
+      "example": "Iterate through array elements",
+      "interviewImportance": "high",
+      "description": "Basic programming concept for loops",
+      "relatedTerms": [
+        "Loop",
+        "For",
+        "While"
+      ],
+      "codeExample": "for (let item of items) { ... }",
+      "commonQuestions": [
+        "Different types of loops?",
+        "When to use forEach vs for-of?"
+      ]
+    },
+    {
+      "id": "v9",
+      "term": "Encapsulate",
+      "definition": "Hide internal details and provide an interface",
+      "type": "verb",
+      "difficulty": "medium",
+      "frequency": 82,
+      "category": "Object-Oriented Programming",
+      "example": "Encapsulate data within a class",
+      "interviewImportance": "medium",
+      "description": "Fundamental OOP principle",
+      "relatedTerms": [
+        "Private",
+        "Public",
+        "Interface"
+      ],
+      "codeExample": "class User { private password; public login() { ... } }",
+      "commonQuestions": [
+        "What is encapsulation?",
+        "How to implement in JavaScript?"
+      ]
+    },
+    {
+      "id": "v10",
+      "term": "Inject",
+      "definition": "Provide dependencies to a component",
+      "type": "verb",
+      "difficulty": "hard",
+      "frequency": 80,
+      "category": "Software Design",
+      "example": "Dependency injection in Angular",
+      "interviewImportance": "medium",
+      "description": "Important for loose coupling",
+      "relatedTerms": [
+        "Dependency",
+        "IoC",
+        "Service"
+      ],
+      "codeExample": "@Injectable() class Service { }",
+      "commonQuestions": [
+        "What is DI?",
+        "Benefits of dependency injection?"
+      ]
+    },
+    {
+      "id": "v11",
+      "term": "Validate",
+      "definition": "Check if data meets specified criteria",
+      "type": "verb",
+      "difficulty": "easy",
+      "frequency": 92,
+      "category": "Data Processing",
+      "example": "Validate user input before processing",
+      "interviewImportance": "high",
+      "description": "Essential for data integrity",
+      "relatedTerms": [
+        "Verification",
+        "Check",
+        "Sanitize"
+      ],
+      "codeExample": "function validateEmail(email) { return email.includes('@'); }",
+      "commonQuestions": [
+        "Common validation techniques?",
+        "Client vs Server validation?"
+      ]
+    },
+    {
+      "id": "v12",
+      "term": "Subscribe",
+      "definition": "Register to receive updates or notifications",
+      "type": "verb",
+      "difficulty": "medium",
+      "frequency": 85,
+      "category": "Programming Patterns",
+      "example": "Subscribe to data stream updates",
+      "interviewImportance": "medium",
+      "description": "Common in reactive programming",
+      "relatedTerms": [
+        "Observer",
+        "Publisher",
+        "Event"
+      ],
+      "codeExample": "observable.subscribe(data => console.log(data))",
+      "commonQuestions": [
+        "Observer pattern?",
+        "Memory leaks in subscriptions?"
+      ]
+    },
+    {
+      "id": "v13",
+      "term": "Parse",
+      "definition": "Convert data from one format to another",
+      "type": "verb",
+      "difficulty": "medium",
+      "frequency": 88,
+      "category": "Data Processing",
+      "example": "Parse JSON string to object",
+      "interviewImportance": "high",
+      "description": "Essential for data processing",
+      "relatedTerms": [
+        "JSON",
+        "XML",
+        "Deserialize"
+      ],
+      "codeExample": "JSON.parse(jsonString)",
+      "commonQuestions": [
+        "Parsing techniques?",
+        "Error handling in parsing?"
+      ]
+    },
+    {
+      "id": "v14",
+      "term": "Encrypt",
+      "definition": "Convert data into a secure format",
+      "type": "verb",
+      "difficulty": "hard",
+      "frequency": 82,
+      "category": "Security",
+      "example": "Encrypt sensitive data",
+      "interviewImportance": "high",
+      "description": "Essential for data security",
+      "relatedTerms": [
+        "Decrypt",
+        "Cryptography",
+        "Hash"
+      ],
+      "codeExample": "crypto.encrypt(data, key)",
+      "commonQuestions": [
+        "Encryption types?",
+        "When to encrypt data?"
+      ]
+    },
+    {
+      "id": "v15",
+      "term": "Mock",
+      "definition": "Create simulated objects for testing",
+      "type": "verb",
+      "difficulty": "medium",
+      "frequency": 85,
+      "category": "Testing",
+      "example": "Mock database connection",
+      "interviewImportance": "high",
+      "description": "Important for unit testing",
+      "relatedTerms": [
+        "Test",
+        "Stub",
+        "Spy"
+      ],
+      "codeExample": "jest.mock('./database')",
+      "commonQuestions": [
+        "Mock vs Stub?",
+        "When to use mocks?"
+      ]
+    },
+    {
+      "id": "v16",
+      "term": "Deploy",
+      "definition": "Release software to production environment",
+      "type": "verb",
+      "difficulty": "medium",
+      "frequency": 85,
+      "category": "DevOps",
+      "example": "Deploy application to cloud",
+      "interviewImportance": "high",
+      "description": "Critical for software delivery",
+      "relatedTerms": [
+        "CI/CD",
+        "Release",
+        "Production"
+      ],
+      "codeExample": "git push heroku main",
+      "commonQuestions": [
+        "Deployment strategies?",
+        "Deployment automation?"
+      ]
+    }
+  ]
+}

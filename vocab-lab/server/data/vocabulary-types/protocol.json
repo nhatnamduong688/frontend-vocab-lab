@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2025-05-20T14:02:23.262Z",
+    "totalTerms": 1,
+    "categories": [
+      "Programming Concepts",
+      "Data Structures",
+      "Development Process",
+      "Web Development",
+      "Software Architecture",
+      "Frontend Frameworks",
+      "CSS Concepts",
+      "TypeScript",
+      "Performance",
+      "Browser APIs",
+      "UI Components",
+      "Navigation Components",
+      "Layout Components",
+      "Feedback Components",
+      "Data Display Components"
+    ],
+    "type": "protocol"
+  },
+  "vocabulary": [
+    {
+      "id": "pytlgk6cr0",
+      "frequency": 78,
+      "description": "A communication protocol that provides full-duplex communication channels over a single TCP connection.",
+      "relatedTerms": [],
+      "codeExample": "",
+      "commonQuestions": [],
+      "createdAt": 1747749383708,
+      "term": "Web Sockets",
+      "definition": "A communication protocol that provides full-duplex communication channels over a single TCP connection.",
+      "type": "protocol",
+      "difficulty": "medium",
+      "category": "Web Development",
+      "example": "Web Sockets are commonly used for real-time applications like chat and live notifications.",
+      "interviewImportance": "medium"
+    }
+  ]
+}
