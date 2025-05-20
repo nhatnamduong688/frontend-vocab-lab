@@ -1,11 +1,14 @@
+export type DifficultyLevel = 'easy' | 'medium' | 'hard';
+export type VocabularyType = 'noun' | 'verb' | 'adjective' | 'adverb' | 'other';
+
 export interface Vocabulary {
   id: string;
   term: string;
   definition: string;
-  type: string;
+  type: VocabularyType;
   example?: string;
   category: string;
-  difficulty: 'easy' | 'medium' | 'hard';
+  difficulty: DifficultyLevel;
   frequency: number;
   interviewImportance: string;
   description: string;
@@ -24,6 +27,25 @@ export interface VocabularyMetadata {
 export interface VocabularyData {
   metadata: VocabularyMetadata;
   vocabulary: Vocabulary[];
+}
+
+export interface SearchOptions {
+  term?: string;
+  type?: VocabularyType;
+  difficulty?: DifficultyLevel;
+  category?: string;
+}
+
+export interface VocabularyStats {
+  totalWords: number;
+  byDifficulty: Record<DifficultyLevel, number>;
+  byType: Record<VocabularyType, number>;
+  averageFrequency: number;
+}
+
+export interface VocabularySortOptions {
+  field: keyof Vocabulary;
+  direction: 'asc' | 'desc';
 }
 
 export interface Word {

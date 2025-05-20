@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Paper,
   Typography,
@@ -16,6 +16,7 @@ import {
 import InfoIcon from '@mui/icons-material/Info';
 import SearchIcon from '@mui/icons-material/Search';
 import { Vocabulary } from '../types/vocabulary';
+import { useVocabularySearch } from '../hooks/useVocabularySearch';
 
 interface VocabularyColumnProps {
   title: string;
@@ -30,12 +31,7 @@ const VocabularyColumn: React.FC<VocabularyColumnProps> = ({
   onWordSelect,
   selectedWords
 }) => {
-  const [searchTerm, setSearchTerm] = useState('');
-
-  const filteredWords = words.filter(word =>
-    word.term.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    word.definition.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const { searchTerm, setSearchTerm, filteredWords } = useVocabularySearch(words);
 
   const isWordSelected = (word: Vocabulary) => 
     selectedWords.some(selected => selected.id === word.id);

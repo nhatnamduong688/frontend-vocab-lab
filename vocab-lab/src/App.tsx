@@ -1,79 +1,35 @@
-import React, { useState, useEffect } from 'react';
-import { Container, Grid, Box, Typography, ThemeProvider, createTheme, CssBaseline } from '@mui/material';
+import React from 'react';
+import { Container, Grid, Box, Typography, ThemeProvider, CssBaseline } from '@mui/material';
 import VocabularyColumn from './components/VocabularyColumn';
 import SelectedWords from './components/SelectedWords';
-import { Vocabulary } from './types/vocabulary';
-
-// Create a theme with better spacing and colors
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#1976d2',
-      light: '#42a5f5',
-      dark: '#1565c0',
-    },
-    background: {
-      default: '#f5f5f5',
-      paper: '#ffffff',
-    }
-  },
-  typography: {
-    h4: {
-      fontWeight: 600,
-      color: '#1976d2',
-    },
-    h6: {
-      fontWeight: 500,
-    }
-  },
-  components: {
-    MuiPaper: {
-      styleOverrides: {
-        root: {
-          borderRadius: 8,
-        },
-      },
-    },
-  },
-});
+import { useVocabulary } from './hooks/useVocabulary';
+import { theme } from './theme';
 
 const App: React.FC = () => {
-  const [vocabulary, setVocabulary] = useState<Vocabulary[]>([]);
-  const [selectedWords, setSelectedWords] = useState<Vocabulary[]>([]);
+  const {
+    selectedWords,
+    loading,
+    error,
+    vocabularyByType,
+    handleWordSelect,
+    handleRemoveWord,
+  } = useVocabulary();
 
-  useEffect(() => {
-    fetch('/vocabulary.json')
-      .then(response => response.json())
-      .then(data => {
-        // Transform the data to match our interface
-        const transformedData = (Array.isArray(data.vocabulary) ? data.vocabulary : data).map((item: any, index: number) => ({
-          ...item,
-          id: item.id || `word-${index}`,
-          difficulty: item.difficulty || 'medium',
-          frequency: typeof item.frequency === 'number' ? item.frequency : 1
-        }));
-        setVocabulary(transformedData);
-      })
-      .catch(error => console.error('Error loading vocabulary:', error));
-  }, []);
+  if (loading) {
+    return (
+      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+        <Typography>Loading...</Typography>
+      </Box>
+    );
+  }
 
-  const handleWordSelect = (word: Vocabulary) => {
-    setSelectedWords(prev => [...prev, word]);
-  };
-
-  const handleRemoveWord = (wordToRemove: string) => {
-    setSelectedWords(prev => prev.filter(word => word.term !== wordToRemove));
-  };
-
-  // Group vocabulary by type
-  const vocabularyByType = vocabulary.reduce<Record<string, Vocabulary[]>>((acc, word) => {
-    const type = word.type || 'Other';
-    if (!acc[type]) {
-      acc[type] = [];
-    }
-    acc[type].push(word);
-    return acc;
-  }, {});
+  if (error) {
+    return (
+      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+        <Typography color="error">{error}</Typography>
+      </Box>
+    );
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -99,7 +55,7 @@ const App: React.FC = () => {
           </Typography>
 
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
-            {/* Selected Words Section - Centered */}
+            {/* Selected Words Section */}
             <SelectedWords
               selectedWords={selectedWords}
               onRemoveWord={handleRemoveWord}
