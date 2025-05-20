@@ -1,8 +1,41 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Grid, Box } from '@mui/material';
+import { Container, Grid, Box, Typography, ThemeProvider, createTheme, CssBaseline } from '@mui/material';
 import VocabularyColumn from './components/VocabularyColumn';
 import SelectedWords from './components/SelectedWords';
 import { Vocabulary } from './types/vocabulary';
+
+// Create a theme with better spacing and colors
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#1976d2',
+      light: '#42a5f5',
+      dark: '#1565c0',
+    },
+    background: {
+      default: '#f5f5f5',
+      paper: '#ffffff',
+    }
+  },
+  typography: {
+    h4: {
+      fontWeight: 600,
+      color: '#1976d2',
+    },
+    h6: {
+      fontWeight: 500,
+    }
+  },
+  components: {
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          borderRadius: 8,
+        },
+      },
+    },
+  },
+});
 
 const App: React.FC = () => {
   const [vocabulary, setVocabulary] = useState<Vocabulary[]>([]);
@@ -43,29 +76,70 @@ const App: React.FC = () => {
   }, {});
 
   return (
-    <Container maxWidth={false} sx={{ py: 4 }}>
-      {/* Selected Words Section - Centered */}
-      <Box sx={{ mb: 4 }}>
-        <SelectedWords
-          selectedWords={selectedWords}
-          onRemoveWord={handleRemoveWord}
-        />
-      </Box>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Box sx={{ 
+        minHeight: '100vh',
+        bgcolor: 'background.default',
+        py: 3
+      }}>
+        <Container maxWidth="xl">
+          {/* Header */}
+          <Typography 
+            variant="h4" 
+            component="h1" 
+            align="center" 
+            gutterBottom 
+            sx={{ 
+              mb: 3,
+              fontSize: { xs: '1.75rem', sm: '2.125rem' }
+            }}
+          >
+            Vocabulary Lab
+          </Typography>
 
-      {/* Vocabulary Columns */}
-      <Grid container spacing={2}>
-        {Object.entries(vocabularyByType).map(([type, words]) => (
-          <Grid item xs={12} sm={6} md={4} lg={3} key={type}>
-            <VocabularyColumn
-              title={type}
-              words={words}
-              onWordSelect={handleWordSelect}
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+            {/* Selected Words Section - Centered */}
+            <SelectedWords
               selectedWords={selectedWords}
+              onRemoveWord={handleRemoveWord}
             />
-          </Grid>
-        ))}
-      </Grid>
-    </Container>
+
+            {/* Vocabulary Columns */}
+            <Grid 
+              container 
+              spacing={2} 
+              sx={{ 
+                mx: 'auto',
+                width: '100%',
+                maxWidth: '1400px'
+              }}
+            >
+              {Object.entries(vocabularyByType).map(([type, words]) => (
+                <Grid 
+                  item 
+                  xs={12} 
+                  sm={6} 
+                  md={4} 
+                  key={type}
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'stretch'
+                  }}
+                >
+                  <VocabularyColumn
+                    title={type}
+                    words={words}
+                    onWordSelect={handleWordSelect}
+                    selectedWords={selectedWords}
+                  />
+                </Grid>
+              ))}
+            </Grid>
+          </Box>
+        </Container>
+      </Box>
+    </ThemeProvider>
   );
 };
 

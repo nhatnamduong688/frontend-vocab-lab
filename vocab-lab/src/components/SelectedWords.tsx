@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Paper, Typography, IconButton, Chip } from '@mui/material';
+import { Box, Paper, Typography, Chip, Stack } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Vocabulary } from '../types/vocabulary';
 
@@ -14,65 +14,127 @@ const SelectedWords: React.FC<SelectedWordsProps> = ({
 }) => {
   return (
     <Paper 
-      elevation={3}
+      elevation={2}
       sx={{
-        p: 3,
-        my: 4,
-        minHeight: '200px',
-        width: '80%',
+        width: '100%',
+        maxWidth: '1400px',
         mx: 'auto',
-        backgroundColor: '#f5f5f5',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 2
+        bgcolor: 'background.paper',
+        borderRadius: 2,
+        overflow: 'hidden',
       }}
     >
-      <Typography variant="h5" component="h2" gutterBottom align="center" color="primary">
-        Sentence Formation
-      </Typography>
-      
+      {/* Header */}
       <Box 
         sx={{ 
-          display: 'flex',
-          flexWrap: 'wrap',
-          gap: 1,
-          p: 2,
-          minHeight: '100px',
-          backgroundColor: 'white',
-          borderRadius: 1,
-          alignItems: 'center',
-          justifyContent: 'center'
+          bgcolor: 'primary.main',
+          color: 'white',
+          py: 2,
+          px: 3,
+          borderBottom: '1px solid',
+          borderColor: 'divider'
         }}
       >
-        {selectedWords.length === 0 ? (
-          <Typography color="text.secondary" align="center">
-            Select words from the columns to form a sentence
-          </Typography>
-        ) : (
-          selectedWords.map((word) => (
-            <Chip
-              key={word.term}
-              label={word.term}
-              onDelete={() => onRemoveWord(word.term)}
-              deleteIcon={<DeleteIcon />}
-              sx={{
-                fontSize: '1.1rem',
-                py: 2,
-                px: 1,
-                backgroundColor: '#e3f2fd',
-                '&:hover': {
-                  backgroundColor: '#bbdefb',
-                }
-              }}
-            />
-          ))
-        )}
+        <Typography 
+          variant="h6" 
+          component="h2"
+          sx={{ 
+            fontWeight: 500,
+            textAlign: 'center'
+          }}
+        >
+          Sentence Formation
+        </Typography>
       </Box>
 
-      <Box sx={{ mt: 2 }}>
-        <Typography variant="body1" color="text.secondary" align="center">
-          {selectedWords.map(word => word.term).join(' ')}
-        </Typography>
+      {/* Content */}
+      <Box sx={{ p: { xs: 2, sm: 3 } }}>
+        <Stack spacing={3}>
+          {/* Instructions */}
+          <Typography 
+            variant="body2" 
+            color="text.secondary"
+            align="center"
+            sx={{ maxWidth: '600px', mx: 'auto' }}
+          >
+            Select words from the columns below to form your sentence. Click on any word to remove it.
+          </Typography>
+
+          {/* Selected Words Area */}
+          <Paper 
+            variant="outlined"
+            sx={{ 
+              p: { xs: 2, sm: 3 },
+              minHeight: '100px',
+              bgcolor: 'background.default',
+              borderRadius: 1,
+            }}
+          >
+            {/* Words Container */}
+            <Box 
+              sx={{ 
+                display: 'flex',
+                flexWrap: 'wrap',
+                gap: 1,
+                alignItems: 'center',
+                justifyContent: selectedWords.length ? 'flex-start' : 'center',
+                minHeight: '50px'
+              }}
+            >
+              {selectedWords.length === 0 ? (
+                <Typography color="text.secondary" variant="body1">
+                  Your selected words will appear here
+                </Typography>
+              ) : (
+                selectedWords.map((word) => (
+                  <Chip
+                    key={word.id}
+                    label={word.term}
+                    onDelete={() => onRemoveWord(word.term)}
+                    deleteIcon={<DeleteIcon />}
+                    sx={{
+                      fontSize: '1rem',
+                      py: 2.5,
+                      bgcolor: 'primary.light',
+                      color: 'white',
+                      '&:hover': {
+                        bgcolor: 'primary.main',
+                      },
+                      '& .MuiChip-label': {
+                        px: 2,
+                      },
+                      '& .MuiChip-deleteIcon': {
+                        color: 'white',
+                      }
+                    }}
+                  />
+                ))
+              )}
+            </Box>
+
+            {/* Sentence Preview */}
+            {selectedWords.length > 0 && (
+              <Box sx={{ 
+                mt: 3,
+                pt: 2,
+                borderTop: '1px solid',
+                borderColor: 'divider'
+              }}>
+                <Typography 
+                  variant="body1" 
+                  color="text.primary" 
+                  sx={{ 
+                    fontStyle: 'italic',
+                    lineHeight: 1.6,
+                    textAlign: 'center'
+                  }}
+                >
+                  {selectedWords.map(word => word.term).join(' ')}
+                </Typography>
+              </Box>
+            )}
+          </Paper>
+        </Stack>
       </Box>
     </Paper>
   );
